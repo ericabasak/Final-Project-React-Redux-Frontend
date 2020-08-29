@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Todos from './components/Todos';
+import TodoForm from './components/TodoForm';
+import uuid from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 
 class App extends Component {
@@ -7,17 +10,17 @@ class App extends Component {
   state = {
     todos: [
       {
-        id: 1,
+        id: uuidv4(),
         title: "take out the trash",
         is_complete: false
       },
       {
-        id: 2,
+        id: uuidv4(),
         title: "go to grocery store",
         is_complete: true
       },
       {
-        id: 3,
+        id: uuidv4(),
         title: "moew lawn",
         is_complete: false
       }
@@ -41,14 +44,26 @@ class App extends Component {
     })
   }
 
+  // add form for todo item
+  todoForm = (title) => {
+    const newTodo = {
+      id: uuidv4(),
+      title,
+      is_complete: false,
+    }
+    this.setState({ todos: [...this.state.todos, newTodo] });
+  }
+
   render() {
-    // console.log(this.state.todos)
     return (
       <div className="App">
-        <Todos todos={this.state.todos} 
-        markComplete={this.markComplete}
-        deleteTodo={this.deleteTodo}
-        />
+        <div className="container">
+          <TodoForm todoForm={this.todoForm} />
+          <Todos todos={this.state.todos} 
+          markComplete={this.markComplete}
+          deleteTodo={this.deleteTodo}
+          />
+        </div>
       </div>
     );
   }
