@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Todos from './components/Todos';
 import TodoForm from './components/TodoForm';
-import uuid from 'uuid';
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 
@@ -56,15 +56,17 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="container">
-          <TodoForm todoForm={this.todoForm} />
-          <Todos todos={this.state.todos} 
-          markComplete={this.markComplete}
-          deleteTodo={this.deleteTodo}
-          />
+      <Router>
+        <div className="App">
+          <div className="container">
+            <TodoForm todoForm={this.todoForm} />
+            <Todos todos={this.state.todos} 
+            markComplete={this.markComplete}
+            deleteTodo={this.deleteTodo}
+            />
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }
