@@ -59,9 +59,9 @@ class App extends Component {
       <Router>
         <div className="App">
           <div className="container">
+          <Nav />
             <Route exact path="/" render={props => (
-              <React.Fragment>
-                <Nav />
+              <React.Fragment> 
                 <TodoForm todoForm={this.todoForm} />
                 <Todos todos={this.state.todos} 
                 markComplete={this.markComplete}
