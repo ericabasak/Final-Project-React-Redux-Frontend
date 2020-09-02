@@ -2,29 +2,29 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Todos from './components/Todos';
 import TodoForm from './components/TodoForm';
+import HomePage from './components/HomePage';
+import Nav from './components/Nav';
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 
 class App extends Component {
 
   state = {
-    todos: [
-      {
-        id: uuidv4(),
-        title: "take out the trash",
-        is_complete: false
-      },
-      {
-        id: uuidv4(),
-        title: "go to grocery store",
-        is_complete: true
-      },
-      {
-        id: uuidv4(),
-        title: "moew lawn",
-        is_complete: false
-      }
-    ]
+    todos: [{
+      id: uuidv4(),
+      title: "take out the trash",
+      is_complete: false
+    },
+    {
+      id: uuidv4(),
+      title: "go to grocery store",
+      is_complete: true
+    },
+    {
+      id: uuidv4(),
+      title: "moew lawn",
+      is_complete: false
+    }]
   }
 
   // toggle complete vs not complete
@@ -59,11 +59,17 @@ class App extends Component {
       <Router>
         <div className="App">
           <div className="container">
-            <TodoForm todoForm={this.todoForm} />
-            <Todos todos={this.state.todos} 
-            markComplete={this.markComplete}
-            deleteTodo={this.deleteTodo}
-            />
+            <Route exact path="/" render={props => (
+              <React.Fragment>
+                <Nav />
+                <TodoForm todoForm={this.todoForm} />
+                <Todos todos={this.state.todos} 
+                markComplete={this.markComplete}
+                deleteTodo={this.deleteTodo}
+                />
+              </React.Fragment>
+            )} />
+            <Route exact path="/homepage" component={HomePage}/>
           </div>
         </div>
       </Router>
