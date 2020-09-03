@@ -6,7 +6,13 @@ class Nav extends Component {
     return (
       <div style={ navStyle }>
         <h1>TodoApp</h1>
-        <Link style={ linkStyle } to="/">Main</Link> | <Link style={ linkStyle } to="/homepage">Home</Link>
+        <Link 
+          style={ linkStyle } 
+          to="/">Main</Link> 
+          | 
+        <Link 
+          style={ linkStyle } 
+          to="/homepage">Home</Link>
       </div>
     );
   }
@@ -16,7 +22,9 @@ const navStyle = {
   background: '#2089F3',
   color: '#fff',
   textAlign: 'center',
-  padding: '15px'
+  textDecoration: 'none',
+  padding: '15px',
+  margin: '10px 10px 10px 10px'
 }
 
 const linkStyle = {

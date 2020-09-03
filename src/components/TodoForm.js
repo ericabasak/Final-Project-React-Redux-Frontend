@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export class TodoForm extends Component {
+class TodoForm extends Component {
 
   state = {
     title: " "
@@ -16,12 +16,12 @@ export class TodoForm extends Component {
 
   render() {
     return (
-        <form onSubmit={this.onSubmit} style={{ display: 'flex' }} >
+        <form onSubmit={this.onSubmit} style={{ display: 'flex' }}>
           <input
             type="text"
             name="title"
             style={{ flex: '10', padding: '5px' }}
-            placeholder="add todo ..."
+            placeholder="Add todo ..."
             value={this.state.title}
             onChange={this.onChange}
           />
