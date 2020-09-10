@@ -4,6 +4,8 @@ import Todos from './components/Todos';
 import TodoForm from './components/TodoForm';
 import HomePage from './components/HomePage';
 import Nav from './components/Nav';
+import AllLists from './components/AllLists';
+import UserLoginForm from './components/UserLoginForm';
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 
@@ -70,6 +72,8 @@ class App extends Component {
               </React.Fragment>
             )} />
             <Route exact path="/homepage" component={HomePage}/>
+            <Route exact path="/alllists" component={AllLists} />
+            <Route exact path="/userloginform" component={UserLoginForm} />
           </div>
         </div>
       </Router>

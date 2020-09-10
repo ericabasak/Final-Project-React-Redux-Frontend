@@ -8,11 +8,19 @@ class Nav extends Component {
         <h1>TodoApp</h1>
         <Link 
           style={ linkStyle } 
-          to="/">Main</Link> 
+          to="/"> Main </Link> 
           | 
         <Link 
           style={ linkStyle } 
-          to="/homepage">Home</Link>
+          to="/userloginform"> Login </Link>
+          |
+        <Link 
+          style={ linkStyle } 
+          to="/homepage"> Home </Link>
+          | 
+        <Link 
+          style={ linkStyle } 
+          to="/alllists"> Lists </Link>
       </div>
     );
   }
