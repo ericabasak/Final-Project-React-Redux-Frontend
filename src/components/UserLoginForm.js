@@ -61,7 +61,7 @@ class UserLoginForm extends Component {
           <br></br>
           <div>
             <form style={{ textAlign: "center" }}>
-              <Button type="subit" label="create account"> Create Account </Button>
+              <Button onClick={() => this.props.history.push("/usersignupform")}> Create Account </Button>
             </form>
           </div>
       </div>

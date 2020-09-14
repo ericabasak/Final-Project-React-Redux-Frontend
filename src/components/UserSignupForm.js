@@ -17,11 +17,34 @@ class UserSignupForm extends Component {
 
   handleSubmitForm = e => {
     e.preventDefault()
-    this.props.login({
-      username: this.state.username,
-      email: this.state.email,
-      password: this.state.password
-    })
+    if (this.state.username === this.state.password) {
+      fetch("htttp://localhost:3000/api/v1/usersignupform", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          username: this.state.username,
+          password: this.state.password
+        })
+      })
+        .then(resp => resp.json())
+        .then(response => {
+          if (response.errors){
+            alert(response.errors)
+          } else {
+            this.props.history.push("/home")
+          }
+        })
+    } else {
+      alert("Something went wrong")
+    }
+    // this.props.login({
+    //   username: this.state.username,
+    //   email: this.state.email,
+    //   password: this.state.password
+    // })
   }
 
 
