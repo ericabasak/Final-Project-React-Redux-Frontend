@@ -8,7 +8,7 @@ class Nav extends Component {
         <h1>TodoApp</h1>
         <Link 
           style={ linkStyle } 
-          to="/"> Main </Link> 
+          to="/homepage"> Home </Link>
           | 
         <Link 
           style={ linkStyle } 
@@ -16,7 +16,7 @@ class Nav extends Component {
           |
         <Link 
           style={ linkStyle } 
-          to="/homepage"> Home </Link>
+          to="/"> Main </Link> 
           | 
         <Link 
           style={ linkStyle } 

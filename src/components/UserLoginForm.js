@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from '@material-ui/core';
 
 class UserLoginForm extends Component {
 
@@ -27,29 +28,42 @@ class UserLoginForm extends Component {
         <div>
           <h1 style={{ color: "black", textAlign: "center" }}> Login </h1>
         </div>
-          <form onSubmit={this.handleSubmitForm}>
+        <br></br>
+          <form onSubmit={this.handleSubmitForm} style={{ textAlign: "center" }}>
             <div>
               <label>
                 Username:
                 <input 
                   type="text" 
+                  name="username"
+                  placeholder="username"
                   value={this.state.username} 
                   onChange={this.handleChange} 
                 />
               </label>
             </div>
+            <br></br>
             <div>
               <label>
                 Password:
                 <input 
                   type="text" 
+                  name="password"
+                  placeholder="password"
                   value={this.state.password} 
                   onChange={this.handleChange}
                 />
               </label>
             </div>
-            <btn type="submit" label="Login"> Submit </btn>
+            <br></br>
+            <Button type="submit" label="Login"> Enter </Button>
           </form>
+          <br></br>
+          <div>
+            <form style={{ textAlign: "center" }}>
+              <Button type="subit" label="create account"> Create Account </Button>
+            </form>
+          </div>
       </div>
     );
   }

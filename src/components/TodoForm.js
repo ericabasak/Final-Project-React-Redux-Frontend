@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class TodoForm extends Component {
 
   state = {
-    title: " "
+    title: " ",
   }
 
   onChange = (e) => this.setState({ title: e.target.value });
@@ -21,13 +21,13 @@ class TodoForm extends Component {
             type="text"
             name="title"
             style={{ flex: '10', padding: '5px' }}
-            placeholder="Add todo ..."
+            placeholder="enter task..."
             value={this.state.title}
             onChange={this.onChange}
           />
           <input
             type="submit"
-            value="Submit"
+            value="add item"
             className="btn"
             style={{flex: '1'}}
           />
