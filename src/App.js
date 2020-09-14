@@ -6,6 +6,7 @@ import HomePage from './components/HomePage';
 import Nav from './components/Nav';
 import AllLists from './components/AllLists';
 import UserLoginForm from './components/UserLoginForm';
+import UserSignupForm from './components/UserSignupForm';
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 
@@ -56,6 +57,12 @@ class App extends Component {
     this.setState({ todos: [...this.state.todos, newTodo] });
   }
 
+  // componentDidMount() {
+  //   fetch("http://localhost:3000/api/v1/list")
+  //     .then(response => response.json())
+  //     .then(data => console.log(data))
+  // }
+
   render() {
     return (
       <Router>
@@ -74,11 +81,13 @@ class App extends Component {
             <Route exact path="/homepage" component={HomePage}/>
             <Route exact path="/alllists" component={AllLists} />
             <Route exact path="/userloginform" component={UserLoginForm} />
+            <Route exact path="/usersignupform" component={UserSignupForm} />
           </div>
         </div>
       </Router>
     );
   }
 }
+
 
 export default App;

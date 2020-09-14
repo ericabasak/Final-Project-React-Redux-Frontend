@@ -21,6 +21,10 @@ class Nav extends Component {
         <Link 
           style={ linkStyle } 
           to="/alllists"> Lists </Link>
+          | 
+        <Link 
+          style={ linkStyle } 
+          to="/usersignupform"> Sign up </Link>
       </div>
     );
   }

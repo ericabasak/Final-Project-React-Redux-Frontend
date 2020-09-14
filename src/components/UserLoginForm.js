@@ -36,7 +36,7 @@ class UserLoginForm extends Component {
                 <input 
                   type="text" 
                   name="username"
-                  placeholder="username"
+                  placeholder="enter username"
                   value={this.state.username} 
                   onChange={this.handleChange} 
                 />

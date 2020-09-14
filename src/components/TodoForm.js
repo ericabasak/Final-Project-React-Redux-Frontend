@@ -4,6 +4,7 @@ class TodoForm extends Component {
 
   state = {
     title: " ",
+    is_complete: false
   }
 
   onChange = (e) => this.setState({ title: e.target.value });
@@ -13,6 +14,7 @@ class TodoForm extends Component {
     this.props.todoForm(this.state.title);
     this.setState({ title: " " });
   }
+
 
   render() {
     return (
