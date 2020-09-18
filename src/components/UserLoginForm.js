@@ -14,12 +14,33 @@ class UserLoginForm extends Component {
     })
   }
 
-  handleSubmitForm = e => {
+  handleLogin = e => {
     e.preventDefault()
-    this.props.login({
-      username: this.state.username,
-      password: this.state.password
+    console.log(this.state)
+    fetch("http://localhost:3001/api/v1/userloginform", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password
+      })
     })
+      .then(resp => resp.json())
+      .then(response => {
+        // set user to state
+        //redirect user
+        if (response.errors) {
+          alert(response.errors)
+        } else {
+          this.props.history.push("/home")
+        }
+      })
+       
+        
+   
   }
 
   render() {
@@ -29,7 +50,7 @@ class UserLoginForm extends Component {
           <h1 style={{ color: "black", textAlign: "center" }}> Login </h1>
         </div>
         <br></br>
-          <form onSubmit={this.handleSubmitForm} style={{ textAlign: "center" }}>
+          <form onSubmit={this.handleLogin} style={{ textAlign: "center" }}>
             <div>
               <label>
                 Username:
@@ -56,12 +77,12 @@ class UserLoginForm extends Component {
               </label>
             </div>
             <br></br>
-            <Button type="submit" label="Login"> Enter </Button>
+            <Button color="primary" variant="contained" type="submit" label="Login"> Enter </Button>
           </form>
           <br></br>
           <div>
             <form style={{ textAlign: "center" }}>
-              <Button onClick={() => this.props.history.push("/usersignupform")}> Create Account </Button>
+              <Button color="primary" variant="contained" onClick={() => this.props.history.push("/usersignupform")}> Create Account </Button>
             </form>
           </div>
       </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Todos from './components/Todos';
 import TodoForm from './components/TodoForm';
 import HomePage from './components/HomePage';
@@ -16,18 +16,32 @@ class App extends Component {
     todos: [{
       id: uuidv4(),
       title: "take out the trash",
-      is_complete: false
-    },
-    {
-      id: uuidv4(),
-      title: "go to grocery store",
-      is_complete: true
-    },
-    {
-      id: uuidv4(),
-      title: "moew lawn",
-      is_complete: false
+      is_complete: false,
+      currentUser: null
     }]
+  }
+
+  logout = () => {
+    this.setState({
+      currentUser: null
+    })
+  }
+
+  handleLogin = (e) => {
+    e.preventDefault()
+    fetch("http://localhost:3000/api/v1/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        username: this.state.username, 
+        password: this.state.password
+      })
+      .then(resp => resp.json())
+      .then(console.log)
+    })
   }
 
   // toggle complete vs not complete
@@ -57,34 +71,30 @@ class App extends Component {
     this.setState({ todos: [...this.state.todos, newTodo] });
   }
 
-  // componentDidMount() {
-  //   fetch("http://localhost:3000/api/v1/list")
-  //     .then(response => response.json())
-  //     .then(data => console.log(data))
-  // }
-
   render() {
     return (
-      <Router>
-        <div className="App">
-          <div className="container">
-          <Nav />
-            <Route exact path="/" render={props => (
-              <React.Fragment> 
-                <TodoForm todoForm={this.todoForm} />
-                <Todos todos={this.state.todos} 
-                markComplete={this.markComplete}
-                deleteTodo={this.deleteTodo}
-                />
-              </React.Fragment>
-            )} />
-            <Route exact path="/homepage" component={HomePage}/>
-            <Route exact path="/alllists" component={AllLists} />
-            <Route exact path="/userloginform" component={UserLoginForm} />
-            <Route exact path="/usersignupform" component={UserSignupForm} />
-          </div>
-        </div>
-      </Router>
+        <BrowserRouter>
+            <div className="App">
+              <div className="container">
+                <Nav />
+                  <Route exact path="/" logout={this.logout} render={props => (
+                    <React.Fragment> 
+                      <TodoForm todoForm={this.todoForm} />
+                      <Todos todos={this.state.todos} 
+                      markComplete={this.markComplete}
+                      deleteTodo={this.deleteTodo}
+                      />
+                    </React.Fragment>
+                  )} />
+                    <React.Fragment>
+                    <Route exact path="/homepage" component={HomePage}/>
+                    <Route exact path="/alllists" component={AllLists} />
+                    <Route exact path="/userloginform" component={UserLoginForm} />
+                    <Route exact path="/usersignupform" component={UserSignupForm} />
+                   </React.Fragment> 
+              </div>
+            </div>
+        </BrowserRouter>
     );
   }
 }

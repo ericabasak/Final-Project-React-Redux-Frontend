@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class Nav extends Component {
+
+  handleLogout = () => {
+    this.props.logout()
+    this.props.history.push("/")
+  }
+
   render() {
     return (
       <div style={ navStyle }>
@@ -25,6 +31,8 @@ class Nav extends Component {
         <Link 
           style={ linkStyle } 
           to="/usersignupform"> Sign up </Link>
+          |
+          <div className="item" style={ linkStyle } onClick={this.handleLogout}> Logout </div>
       </div>
     );
   }
