@@ -3,16 +3,36 @@ import React, { Component } from 'react';
 class TodoForm extends Component {
 
   state = {
-    title: " ",
+    name: " ",
     is_complete: false
   }
 
-  onChange = (e) => this.setState({ title: e.target.value });
+  onChange = (e) => {
+    console.log(e.target.value);
+       this.setState({ name: e.target.value });
+  }
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.todoForm(this.state.title);
-    this.setState({ title: " " });
+    fetch("http://localhost:3001/api/v1/items", {
+      method: "POST",
+      headers: 
+      {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ 
+        name: this.state.name, 
+        is_complete: false 
+      })
+    }).then(r => r.json())
+    .then(r => console.log(r));
+
+    this.props.todoForm(this.state.name);
+    this.setState({ 
+      name: " ",
+      is_complete: false
+     });
+
   }
 
 

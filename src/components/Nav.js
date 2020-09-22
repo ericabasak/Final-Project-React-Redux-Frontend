@@ -32,7 +32,10 @@ class Nav extends Component {
           style={ linkStyle } 
           to="/usersignupform"> Sign up </Link>
           |
-          <div className="item" style={ linkStyle } onClick={this.handleLogout}> Logout </div>
+        <Link
+          style={ linkStyle } 
+          onClick={this.handleLogout}
+          to="/"> Logout </Link>
       </div>
     );
   }
