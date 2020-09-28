@@ -87,7 +87,7 @@ class App extends Component {
                     </React.Fragment>
                   )} />
                     <React.Fragment>
-                    <Route exact path="/homepage" component={HomePage}/>
+                    <Route exact path="/homepage" render={() => <HomePage name="Adi" />} />
                     <Route exact path="/alllists" component={AllLists} />
                     <Route exact path="/userloginform" component={UserLoginForm} />
                     <Route exact path="/usersignupform" component={UserSignupForm} />

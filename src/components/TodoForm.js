@@ -8,8 +8,8 @@ class TodoForm extends Component {
   }
 
   onChange = (e) => {
-    console.log(e.target.value);
-       this.setState({ name: e.target.value });
+    // console.log(e.target.value);
+    this.setState({ name: e.target.value });
   }
 
   onSubmit = (e) => {
@@ -24,8 +24,8 @@ class TodoForm extends Component {
         name: this.state.name, 
         is_complete: false 
       })
-    }).then(r => r.json())
-    .then(r => console.log(r));
+    }).then(response => response.json())
+    .then(response => console.log(response));
 
     this.props.todoForm(this.state.name);
     this.setState({ 
@@ -34,7 +34,6 @@ class TodoForm extends Component {
      });
 
   }
-
 
   render() {
     return (
