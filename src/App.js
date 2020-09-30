@@ -80,7 +80,7 @@ class App extends Component {
                   <Route exact path="/" logout={this.logout} render={props => (
                     <React.Fragment> 
                       <TodoForm todoForm={this.todoForm} />
-                      <Todos todos={this.state.todos} 
+                      <Todos 
                       markComplete={this.markComplete}
                       deleteTodo={this.deleteTodo}
                       />

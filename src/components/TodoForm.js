@@ -55,7 +55,6 @@ class TodoForm extends Component {
         </form>
     );
   };
-
 }
 
 
