@@ -4,6 +4,7 @@ class Todos extends Component {
   state = {}
 
   componentDidMount() {
+    console.log('Todos executing componentDidMount');
     // fetch the data
     // set the state
     fetch("http://localhost:3001/api/v1/items", {
@@ -42,19 +43,25 @@ class Todos extends Component {
     .then(response => {
       return response.json()
     })
-    .then(data => {
-      console.log(data);
-      this.setState({ is_complete: ""})
+    .then(r => {
+      console.log(r);
+      let oldTodos = this.state.todos;
+      let oldTodoIndex = oldTodos.findIndex(e => e.id == r.id)
+      oldTodos[oldTodoIndex] = r
+      this.setState({ todos: oldTodos })
+      // this.setState({ todos: []})
     })
   }
 
   render() {
+    console.log('Todos executing render function');
     // check if state is define
     // map the array into some html
     // this.state.key.map((e,i) => {
     //   return <h1 key={i}>{e.name}</h1>
     // });
-    console.log(this.state);
+    
+    // console.log(this.state);
 
     return (
       <div>
@@ -62,7 +69,7 @@ class Todos extends Component {
           
            return (
             <div key={index}>
-            <input type="checkbox" value={todo.id} onChange={this.isCompleteHandler}/>&nbsp;&nbsp;&nbsp;
+            <input type="checkbox" checked={todo.is_complete} value={todo.id} onChange={this.isCompleteHandler}/>&nbsp;&nbsp;&nbsp;
             <span>{todo.name} {todo.is_complete}</span>
             </div>
           )

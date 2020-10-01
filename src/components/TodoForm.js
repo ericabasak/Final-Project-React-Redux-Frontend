@@ -43,7 +43,7 @@ class TodoForm extends Component {
             name="title"
             style={{ flex: '10', padding: '5px' }}
             placeholder="enter task..."
-            value={this.state.title}
+            value={this.state.name}
             onChange={this.onChange}
           />
           <input
