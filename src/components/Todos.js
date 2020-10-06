@@ -20,6 +20,25 @@ class Todos extends Component {
         console.log(data);
         this.setState({ todos: data })
       })
+
+    console.log("hello");
+    this.get_lists();
+  }
+
+  get_lists = () => {
+    fetch("http://localhost:3001/api/v1/lists", {
+      method: "GET",
+      header:
+      {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        this.setState({ todos: data })
+      })
   }
 
   isCompleteHandler = (e) => {
@@ -30,7 +49,7 @@ class Todos extends Component {
     const url = `http://localhost:3001/api/v1/items/${id}`;
     fetch(url, {
       method: "PATCH",
-      headers: 
+      headers:
       {
         "Accept": "application/json",
         "Content-Type": "application/json"
@@ -40,40 +59,33 @@ class Todos extends Component {
         is_complete: e.target.checked
       })
     })
-    .then(response => {
-      return response.json()
-    })
-    .then(r => {
-      console.log(r);
-      let oldTodos = this.state.todos;
-      let oldTodoIndex = oldTodos.findIndex(e => e.id == r.id)
-      oldTodos[oldTodoIndex] = r
-      this.setState({ todos: oldTodos })
-      // this.setState({ todos: []})
-    })
+      .then(response => {
+        return response.json()
+      })
+      .then(r => {
+        console.log(r);
+        let oldTodos = this.state.todos;
+        let oldTodoIndex = oldTodos.findIndex(e => e.id === r.id)
+        oldTodos[oldTodoIndex] = r
+        this.setState({ todos: oldTodos })
+        // this.setState({ todos: []})
+      })
   }
 
   render() {
     console.log('Todos executing render function');
-    // check if state is define
-    // map the array into some html
-    // this.state.key.map((e,i) => {
-    //   return <h1 key={i}>{e.name}</h1>
-    // });
-    
-    // console.log(this.state);
 
     return (
       <div>
         { this.state.todos && this.state.todos.map((todo, index) => {
-          
-           return (
+
+          return (
             <div key={index}>
-            <input type="checkbox" checked={todo.is_complete} value={todo.id} onChange={this.isCompleteHandler}/>&nbsp;&nbsp;&nbsp;
-            <span>{todo.name} {todo.is_complete}</span>
+              <input type="checkbox" checked={todo.is_complete} value={todo.id} onChange={this.isCompleteHandler} />&nbsp;&nbsp;&nbsp;
+              <span>{todo.name} {todo.is_complete}</span>
             </div>
           )
-          
+
         })}
       </div>
     )
