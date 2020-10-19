@@ -78,7 +78,8 @@ class TodoForm extends Component {
             style={{flex: '1'}}
           />
         </form>
-    
+        <br></br>
+        
         <form onSubmit={this.onSubmit} style={{ display: 'flex' }}>
           <p>Add items to your list:</p>
           <input

@@ -26,6 +26,7 @@ class Todos extends Component {
   }
 
   get_lists = () => {
+    console.log("calling get list function")
     fetch("http://localhost:3001/api/v1/lists", {
       method: "GET",
       header:
@@ -81,11 +82,16 @@ class Todos extends Component {
 
           return (
             <div key={index}>
-              <input type="checkbox" checked={todo.is_complete} value={todo.id} onChange={this.isCompleteHandler} />&nbsp;&nbsp;&nbsp;
+              <input 
+                type="checkbox" 
+                checked={todo.value} 
+                value={todo.id} 
+                onChange={this.isCompleteHandler} 
+              />
+              &nbsp;&nbsp;&nbsp;
               <span>{todo.name} {todo.is_complete}</span>
             </div>
           )
-
         })}
       </div>
     )

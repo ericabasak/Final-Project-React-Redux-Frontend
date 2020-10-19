@@ -79,19 +79,19 @@ class App extends Component {
                 <Nav />
                   <Route exact path="/" logout={this.logout} render={props => (
                     <React.Fragment> 
-                      <TodoForm todoForm={this.todoForm} />
+                      <TodoForm 
+                      todoForm={this.todoForm} 
+                      />
                       <Todos 
                       markComplete={this.markComplete}
                       deleteTodo={this.deleteTodo}
                       />
+                      <Route exact path="/homepage" render={() => <HomePage name="Adi" />} />
+                      <Route exact path="/alllists" component={AllLists} />
+                      <Route exact path="/userloginform" component={UserLoginForm} />
+                      <Route exact path="/usersignupform" component={UserSignupForm} />
                     </React.Fragment>
                   )} />
-                    <React.Fragment>
-                    <Route exact path="/homepage" render={() => <HomePage name="Adi" />} />
-                    <Route exact path="/alllists" component={AllLists} />
-                    <Route exact path="/userloginform" component={UserLoginForm} />
-                    <Route exact path="/usersignupform" component={UserSignupForm} />
-                   </React.Fragment> 
               </div>
             </div>
         </BrowserRouter>
