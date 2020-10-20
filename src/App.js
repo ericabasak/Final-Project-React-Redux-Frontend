@@ -36,22 +36,24 @@ class App extends Component {
         "Accept": "application/json"
       },
       body: JSON.stringify({
-        username: this.state.username, 
+        username: this.state.username,
         password: this.state.password
       })
-      .then(resp => resp.json())
-      .then(console.log)
+        .then(resp => resp.json())
+        .then(console.log)
     })
   }
 
   // toggle complete vs not complete
   markComplete = (id) => {
-    this.setState({ todos: this.state.todos.map(todo => {
-      if(todo.id === id) {
-        todo.is_complete = !todo.is_complete
-      }
-      return todo;
-    }) });
+    this.setState({
+      todos: this.state.todos.map(todo => {
+        if (todo.id === id) {
+          todo.is_complete = !todo.is_complete
+        }
+        return todo;
+      })
+    });
   }
 
   // delete todo item
@@ -73,28 +75,28 @@ class App extends Component {
 
   render() {
     return (
-        <BrowserRouter>
-            <div className="App">
-              <div className="container">
-                <Nav />
-                  <Route exact path="/" logout={this.logout} render={props => (
-                    <React.Fragment> 
-                      <TodoForm 
-                      todoForm={this.todoForm} 
-                      />
-                      <Todos 
-                      markComplete={this.markComplete}
-                      deleteTodo={this.deleteTodo}
-                      />
-                      <Route exact path="/homepage" render={() => <HomePage name="Adi" />} />
-                      <Route exact path="/alllists" component={AllLists} />
-                      <Route exact path="/userloginform" component={UserLoginForm} />
-                      <Route exact path="/usersignupform" component={UserSignupForm} />
-                    </React.Fragment>
-                  )} />
-              </div>
-            </div>
-        </BrowserRouter>
+      <BrowserRouter>
+        <div className="App">
+          <div className="container">
+            <Nav />
+            <Route exact path="/homepage" render={() => <HomePage name="Adi" />} />
+            <Route exact path="/alllists" component={AllLists} />
+            <Route exact path="/userloginform" component={UserLoginForm} />
+            <Route exact path="/usersignupform" component={UserSignupForm} />
+            <Route exact path="/" logout={this.logout} render={props => (
+              <React.Fragment>
+                <TodoForm
+                  todoForm={this.todoForm}
+                />
+                <Todos
+                  markComplete={this.markComplete}
+                  deleteTodo={this.deleteTodo}
+                />
+              </React.Fragment>
+            )} />
+          </div>
+        </div>
+      </BrowserRouter>
     );
   }
 }

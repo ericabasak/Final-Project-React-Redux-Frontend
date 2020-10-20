@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import SingleList from './SingleList';
 
 class Todos extends Component {
-  state = {}
+  state = {
+    lists: [],
+    todos: ""
+  }
 
   componentDidMount() {
     console.log('Todos executing componentDidMount');
@@ -38,7 +42,7 @@ class Todos extends Component {
       .then(response => response.json())
       .then(data => {
         console.log(data);
-        this.setState({ todos: data })
+        this.setState({ lists: data })
       })
   }
 
@@ -74,25 +78,10 @@ class Todos extends Component {
   }
 
   render() {
-    console.log('Todos executing render function');
-
-    return (
+    return(
       <div>
-        { this.state.todos && this.state.todos.map((todo, index) => {
-
-          return (
-            <div key={index}>
-              <input 
-                type="checkbox" 
-                checked={todo.value} 
-                value={todo.id} 
-                onChange={this.isCompleteHandler} 
-              />
-              &nbsp;&nbsp;&nbsp;
-              <span>{todo.name} {todo.is_complete}</span>
-            </div>
-          )
-        })}
+        <h1>hello world</h1>
+        {this.state.lists.map(e => <SingleList name={e.title} />)}
       </div>
     )
   }
