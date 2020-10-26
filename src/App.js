@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import Todos from './components/Todos';
-import TodoForm from './components/TodoForm';
-// import HomePage from './components/HomePage';
+// import Todos from './components/Todos';
+// import TodoForm from './components/TodoForm';
+import HomePage from './components/HomePage';
 import Nav from './components/Nav';
 import AllLists from './components/AllLists';
 import UserLoginForm from './components/UserLoginForm';
@@ -77,14 +77,12 @@ class App extends Component {
   // }
 
   render() {
-    console.log(this.props);
-    
     return (
       <BrowserRouter>
         <div className="App">
           <div className="container">
             <Nav />
-            {/* <Route exact path="/homepage" component={HomePage} /> */}
+            <Route exact path="/homepage" component={HomePage} />
             <Route exact path="/alllists" component={AllLists} />
             <Route exact path="/userloginform" component={UserLoginForm} />
             <Route exact path="/usersignupform" component={UserSignupForm} />
