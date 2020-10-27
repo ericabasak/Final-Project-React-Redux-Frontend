@@ -17,7 +17,7 @@ class App extends Component {
   state = {
     todos: [{
       id: uuidv4(),
-      title: "take out the trash",
+      title: "",
       is_complete: false,
       // currentUser: null,
       name: ""
@@ -47,17 +47,6 @@ class App extends Component {
     })
   }
 
-  // toggle complete vs not complete
-  markComplete = (id) => {
-    this.setState({
-      todos: this.state.todos.map(todo => {
-        if (todo.id === id) {
-          todo.is_complete = !todo.is_complete
-        }
-        return todo;
-      })
-    });
-  }
 
   // delete todo item
   deleteTodo = (id) => {
@@ -66,15 +55,33 @@ class App extends Component {
     })
   }
 
-  // // add form for todo item
-  // todoForm = (title) => {
-  //   const newTodo = {
-  //     id: uuidv4(),
-  //     title,
-  //     is_complete: false,
-  //   }
-  //   this.setState({ todos: [...this.state.todos, newTodo] });
+
+
+
+  // toggle complete vs not complete
+  // markComplete = (id) => {
+  //   this.setState({
+  //     todos: this.state.todos.map(todo => {
+  //       if (todo.id === id) {
+  //         todo.is_complete = !todo.is_complete
+  //       }
+  //       return todo;
+  //     })
+  //   });
   // }
+
+  // for updating the checkbox next to each item
+  handleCheckboxChange = (id) => {
+    // this.setState({ is_complete: e.target.checked })
+    this.setState({
+      todos: this.state.todos.map(e => {
+        if ( e.id === id ) {
+          e.is_complete = !e.is_complete
+        }
+        return e;
+      })
+    });
+  }
 
   render() {
     return (

@@ -28,9 +28,7 @@ class TodoForm extends Component {
     }).then(response => response.json())
     .then(response => console.log(response));
     this.todoForm(this.state.title);
-    this.setState({
-      title: " "
-    });
+    this.setState({ title: "" });
   }
 
   // add form for todo item
@@ -38,9 +36,9 @@ class TodoForm extends Component {
     const newTodo = {
       id: uuidv4(),
       title,
-      is_complete: false,
+      is_complete: false
     }
-    this.setState({ todos: [...this.state.todos, newTodo] });
+    this.setState({ title: [...this.state.title, newTodo] });
   }
 
   render() {

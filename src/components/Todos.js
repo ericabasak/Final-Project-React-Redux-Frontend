@@ -91,25 +91,10 @@ class Todos extends Component {
     return(
       <div>
         {this.state.lists.map((e, index) => <SingleList 
-        key={index} name={e.title} id={e.id} /> )}
-
-        {/* <form onSubmit={this.handleSubmit} style={{ display: 'flex' }}>
-          <p>Add a to do</p>
-          <input
-            type="text"
-            name="title"
-            style={{ flex: '10', padding: '10px' }}
-            placeholder="create a to do here"
-            value={this.state.name}
-            onChange={this.onChange}
-          />
-          <input
-            type="submit"
-            value="submit"
-            className="btn"
-            style={{flex: '1'}}
-          />
-        </form> */}
+          key={index} 
+          name={e.title} 
+          id={e.id} /> 
+        )}
       </div>
     )
   }

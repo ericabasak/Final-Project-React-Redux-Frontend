@@ -7,18 +7,41 @@ class TodoItem extends Component {
       background: '#f4f4f4',
       padding: '10px',
       borderBottom: '1px #ccc dotted',
-      textDecoration: this.props.todo.is_complete ? 'line-through' : 'none'
     }
   }
+
+  // for updating the checkbox next to each item
+  handleCheckboxChange = (e) => {
+    this.setState({ is_complete: e.target.checked })
+  }
+
+  // toggle complete vs not complete
+  // for updating the checkbox next to each item
+  // handleCheckboxChange = (id) => {
+  //   // this.setState({ is_complete: e.target.checked })
+  //   this.setState({
+  //     todos: this.state.todos.map(e => {
+  //       if ( e.id === id ) {
+  //         e.is_complete = !e.is_complete
+  //       }
+  //       return e;
+  //     })
+  //   });
+  // }
 
   render() {
     return (
       <div style={this.getStyle()}>
-        <p>
-          <input type="checkbox" onChange={this.props.markComplete.bind(this, this.props.todo.id)} /> {' '}
-          { this.props.todo.title }
-          <button onClick={this.props.deleteTodo.bind(this, this.props.todo.id)}>remove</button>
-        </p>
+          <label>
+            <input
+              name="is_complete"
+              type="checkbox"
+              checked={this.state.is_complete}
+              onChange={this.state.handleCheckboxChange}
+            />
+          </label>
+          &nbsp; {this.props.name} &nbsp;
+          <button onClick={this.props.deleteTodo}>remove</button>
       </div>
     )
   }
