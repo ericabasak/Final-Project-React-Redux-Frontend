@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 
 class TodoItem extends Component {
 
+  state = {
+    name: "",
+    is_complete: false,
+    title: ""
+  }
+
   getStyle = () => {
     return {
       background: '#f4f4f4',
@@ -11,9 +17,13 @@ class TodoItem extends Component {
   }
 
   // for updating the checkbox next to each item
+  // handler for onChange
   handleCheckboxChange = (e) => {
+    e.preventDefault();
+    console.log("this checkbox was clicked")
     this.setState({ is_complete: e.target.checked })
   }
+    
 
   // toggle complete vs not complete
   // for updating the checkbox next to each item
@@ -29,6 +39,12 @@ class TodoItem extends Component {
   //   });
   // }
 
+  // handler for onclick to delete item
+  handleDelete = (e) => {
+    e.preventDefault();
+    console.log("this button is being deleted")
+  }
+
   render() {
     return (
       <div style={this.getStyle()}>
@@ -36,15 +52,16 @@ class TodoItem extends Component {
             <input
               name="is_complete"
               type="checkbox"
-              checked={this.state.is_complete}
-              onChange={this.state.handleCheckboxChange}
+              checked={this.props.value}
+              onChange={this.handleCheckboxChange}
             />
           </label>
           &nbsp; {this.props.name} &nbsp;
-          <button onClick={this.props.deleteTodo}>remove</button>
+          <button onClick={this.handleDelete}>remove</button>
       </div>
     )
   }
 }
+
 
 export default TodoItem;
