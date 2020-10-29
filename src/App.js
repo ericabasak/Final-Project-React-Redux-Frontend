@@ -49,39 +49,11 @@ class App extends Component {
 
 
   // delete todo item
-  deleteTodo = (id) => {
-    this.setState({
-      todos: [...this.state.todos.filter(todo => todo.id !== id)]
-    })
-  }
-
-
-
-
-  // toggle complete vs not complete
-  // markComplete = (id) => {
+  // deleteTodo = (id) => {
   //   this.setState({
-  //     todos: this.state.todos.map(todo => {
-  //       if (todo.id === id) {
-  //         todo.is_complete = !todo.is_complete
-  //       }
-  //       return todo;
-  //     })
-  //   });
+  //     todos: [...this.state.todos.filter(todo => todo.id !== id)]
+  //   })
   // }
-
-  // for updating the checkbox next to each item
-  handleCheckboxChange = (id) => {
-    // this.setState({ is_complete: e.target.checked })
-    this.setState({
-      todos: this.state.todos.map(e => {
-        if ( e.id === id ) {
-          e.is_complete = !e.is_complete
-        }
-        return e;
-      })
-    });
-  }
 
   render() {
     return (

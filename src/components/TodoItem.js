@@ -3,8 +3,10 @@ import React, { Component } from 'react';
 class TodoItem extends Component {
 
   // initialize state from db
+  // here we are using the constructor method to initialize
+  // state from the parent component - props
   constructor(props) {
-    super(props);
+    super(props); 
       this.state = {
         name: props.name,
         is_complete: props.is_complete,
@@ -69,9 +71,13 @@ class TodoItem extends Component {
   // }
 
   // handler for onclick to delete item
-  handleDelete = (e) => {
-    e.preventDefault();
+  // fetch request to delete the inidivual item
+  deleteHandler = () => {
     console.log("this button is being clicked")
+    fetch(`http://localhost:3001/api/v1/items/${this.props.id}`, {
+      method: "DELETE"
+    })
+    .then(response => response.json())
   }
 
   render() {
@@ -85,8 +91,8 @@ class TodoItem extends Component {
               onChange={this.handleCheckboxChange}
             />
           </label>
-          &nbsp; {this.props.name} &nbsp;
-          <button onClick={this.handleDelete}>remove</button>
+          &nbsp; {this.props.name} {this.props.id}  &nbsp;
+          <button onClick={this.deleteHandler}>remove</button>
       </div>
     )
   }
