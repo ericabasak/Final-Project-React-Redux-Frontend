@@ -59,34 +59,7 @@ class Todos extends Component {
         this.setState({ todos: oldTodos })
       })
   }
-
-  // onChange = (e) => {
-  //   // console.log(e.target.value);
-  //   this.setState({ name: e.target.value });
-  // }
-
-  // handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   fetch("http://localhost:3001/api/vi/items", {
-  //     header: "POST",
-  //     method: 
-  //     {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify({
-  //       name: this.state.name,
-  //       is_complete: false
-  //     })
-  //   }).then(response => response.json())
-  //   .then(data => console.log(data));
-
-  //   this.props.todoForm(this.state.name);
-  //   this.setState({
-  //     name: "",
-  //     is_complete: false
-  //   });
-  // }
-
+  
   render() {
     return(
       <div>

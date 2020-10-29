@@ -97,7 +97,8 @@ class SingleList extends Component {
           {this.state.items.map((e, index) => (<TodoItem 
             key={index} 
             name={e.name} 
-            id={e.id}/>
+            id={e.id}
+            is_complete={e.is_complete} />
           ))}
       </div>
     )

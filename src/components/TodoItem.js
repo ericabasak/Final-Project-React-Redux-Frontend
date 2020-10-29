@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 
 class TodoItem extends Component {
 
-  state = {
-    name: "",
-    is_complete: false,
-    title: ""
+  // initialize state from db
+  constructor(props) {
+    super(props);
+      this.state = {
+        name: props.name,
+        is_complete: props.is_complete,
+    }
   }
 
   getStyle = () => {
@@ -19,9 +22,35 @@ class TodoItem extends Component {
   // for updating the checkbox next to each item
   // handler for onChange
   handleCheckboxChange = (e) => {
-    e.preventDefault();
-    console.log("this checkbox was clicked")
-    this.setState({ is_complete: e.target.checked })
+    console.log(e.target.checked);
+    // if (this.state.is_complete) {
+    //   this.setState({ is_complete: false })  
+    // } else {
+    //   this.setState({ is_complete: true })  
+    // }{
+    this.setState({ is_complete : !this.state.is_complete })
+  }
+
+
+  checkboxHandler = (e) => {
+    console.log("the the checkbox is being called")
+    fetch(`http://localhost:3001/api/v1/items/${this.props.id}`, {
+      method: "PATCH",
+      headers: 
+      {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: this.state.name,
+        list_id: this.props.id,
+        is_complete: e.target.checked
+      })
+    })
+    .then(response => response.json())
+      .then(data => console.log(data))
+        this.setState({ 
+          is_complete: e.target.checked
+        });
   }
     
 
@@ -42,17 +71,17 @@ class TodoItem extends Component {
   // handler for onclick to delete item
   handleDelete = (e) => {
     e.preventDefault();
-    console.log("this button is being deleted")
+    console.log("this button is being clicked")
   }
 
   render() {
     return (
       <div style={this.getStyle()}>
           <label>
-            <input
+            <input onClick={this.checkboxHandler}
               name="is_complete"
               type="checkbox"
-              checked={this.props.value}
+              checked={this.state.is_complete}
               onChange={this.handleCheckboxChange}
             />
           </label>
