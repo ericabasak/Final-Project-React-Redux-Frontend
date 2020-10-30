@@ -54,21 +54,6 @@ class TodoItem extends Component {
           is_complete: e.target.checked
         });
   }
-    
-
-  // toggle complete vs not complete
-  // for updating the checkbox next to each item
-  // handleCheckboxChange = (id) => {
-  //   // this.setState({ is_complete: e.target.checked })
-  //   this.setState({
-  //     todos: this.state.todos.map(e => {
-  //       if ( e.id === id ) {
-  //         e.is_complete = !e.is_complete
-  //       }
-  //       return e;
-  //     })
-  //   });
-  // }
 
   // handler for onclick to delete item
   // fetch request to delete the inidivual item
@@ -97,6 +82,5 @@ class TodoItem extends Component {
     )
   }
 }
-
 
 export default TodoItem;

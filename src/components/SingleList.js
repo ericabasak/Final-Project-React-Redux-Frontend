@@ -10,10 +10,10 @@ class SingleList extends Component {
     is_complete: false
   }
 
+  // console.log("list items is being called")
+  // retrieve all items from the backend
+  // console.log(this.props);
   componentDidMount() {
-    // console.log("list items is being called")
-    // retrieve all items from the backend
-    // console.log(this.props);
     let result = fetch(`http://localhost:3001/api/v1/lists/${this.props.id}`, 
     {method: "GET"})
     result.then(r => r.json())
@@ -62,6 +62,26 @@ class SingleList extends Component {
     }
     this.setState({ name: [...this.state.name, newItem] });
   }
+
+  // list is complete checkbox handler
+  listCheckboxHandler = () => {
+    console.log("is the listcheckboxhandler being called???")
+    fetch(`http://localhost:3001/api/v1/lists/${this.props.id}`, {
+      method: "PATCH",
+      header: 
+      {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        list: {
+          name: this.state.name,
+          is_complete: this.state.is_complete
+          }
+        })
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+  }
   
   render() {
     // console.log(this.props)
@@ -69,9 +89,19 @@ class SingleList extends Component {
   
     return(
       <div>
-       <h2> List - {this.props.name} {this.props.id} </h2>
-       <h4> Items </h4>
+       <h2> 
+         
+         <input onClick={this.listCheckboxHandler}
+          name="is_complete"
+          type="checkbox"
+         />
+         
+         &nbsp;
 
+         List &nbsp; - &nbsp; {this.props.name} {this.props.id} &nbsp; 
+         
+        </h2>
+       <h4> Items </h4>
         <div>
           <form onSubmit={this.handleSubmit} style={{ display: 'flex' }}>
             <label>
