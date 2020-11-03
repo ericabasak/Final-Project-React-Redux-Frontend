@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 class Nav extends Component {
 
   handleLogout = () => {
-    this.props.logout()
-    this.props.history.push("/")
+    this.state.logout()
+    this.state.history.push("/")
   }
 
   render() {

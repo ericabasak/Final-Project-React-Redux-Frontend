@@ -9,51 +9,84 @@ import UserLoginForm from './components/UserLoginForm';
 import UserSignupForm from './components/UserSignupForm';
 import MainComponent from './components/MainComponent';
 
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 
 class App extends Component {
 
-  state = {
-    todos: [{
-      id: uuidv4(),
+  constructor(props){
+    super(props)
+    this.state = {
+      currentUser: null,
+      name: "",
       title: "",
       is_complete: false,
-      // currentUser: null,
-      name: ""
-    }]
+      loginForm: {
+        email: "",
+        password: ""
+      }
+    }
   }
 
-  logout = () => {
-    this.setState({
-      currentUser: null
-    })
-  }
+  // state = {
+  //   todos: [{
+  //     id: uuidv4(),
+  //     title: "",
+  //     is_complete: false,
+  //     currentUser: null,
+  //     name: "",
+  //     loginForm: {
+  //       email: "",
+  //       password: "",
+  //       username: ""
+  //     }
+  //   }]
+  // }
 
-  handleLogin = (e) => {
-    e.preventDefault()
-    fetch("http://localhost:3000/api/v1/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password
-      })
-        .then(resp => resp.json())
-        .then(console.log)
-    })
-  }
+  // first goal:
+  // loggin and get current user
 
 
-  // delete todo item
-  // deleteTodo = (id) => {
+  // logout = () => {
   //   this.setState({
-  //     todos: [...this.state.todos.filter(todo => todo.id !== id)]
+  //     currentUser: null
   //   })
   // }
+
+  // handleLogin = (e) => {
+  //   e.preventDefault()
+  //   console.log("hello from the app login")
+  //   fetch("http://localhost:3000/api/v1/users", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       "Accept": "application/json"
+  //     },
+  //     body: JSON.stringify({
+  //       username: this.state.username,
+  //       password: this.state.password
+  //     })
+  //       .then(resp => resp.json())
+  //       .then(console.log)
+  //   })
+  // }
+
+  // original handleChange
+  // handleLoginFormChange = e => {
+  //   this.setState({
+  //     [e.target.name]: e.target.value
+  //   })
+  // }
+
+
+
+  handleLoginFormChange = e => {
+    const { name, value } = e.target
+    this.setState({
+      ...this.state.todos.loginForm,
+      [name]: value
+    })
+  }
 
   render() {
     return (
@@ -63,7 +96,12 @@ class App extends Component {
             <Nav />
             <Route exact path="/homepage" component={HomePage} />
             <Route exact path="/alllists" component={AllLists} />
-            <Route exact path="/userloginform" component={UserLoginForm} />
+            <Route exact path="/userloginform" 
+              component={UserLoginForm} 
+              handleLoginFormChange={this.handleLoginFormChange}
+              username={this.state.loginForm.username}
+              password={this.state.loginForm.password}
+              />
             <Route exact path="/usersignupform" component={UserSignupForm} />
             <Route exact path="/" logout={this.logout} component={MainComponent} />
           </div>
@@ -72,6 +110,5 @@ class App extends Component {
     );
   }
 }
-
 
 export default App;

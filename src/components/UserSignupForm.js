@@ -58,6 +58,7 @@ class UserSignupForm extends Component {
           <div>
             <label>
               Username:
+              <br></br>
                <input
                 type="text"
                 name="username"
@@ -72,6 +73,7 @@ class UserSignupForm extends Component {
           <div>
             <label>
               Email:
+              <br></br>
                 <input
                 type="text"
                 name="email"
@@ -86,6 +88,7 @@ class UserSignupForm extends Component {
           <div>
             <label>
               Password:
+              <br></br>
                 <input
                 type="password"
                 name="password"

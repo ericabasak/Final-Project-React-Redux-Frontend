@@ -63,8 +63,12 @@ class SingleList extends Component {
     this.setState({ name: [...this.state.name, newItem] });
   }
 
+  listHandleCheckboxChange = () => {
+    this.setState({ is_complete: !this.state.is_complete })
+  }
+
   // list is complete checkbox handler
-  listCheckboxHandler = () => {
+  listCheckboxHandler = (e) => {
     console.log("is the listcheckboxhandler being called???")
     fetch(`http://localhost:3001/api/v1/lists/${this.props.id}`, {
       method: "PATCH",
@@ -75,7 +79,7 @@ class SingleList extends Component {
       body: JSON.stringify({
         list: {
           name: this.state.name,
-          is_complete: this.state.is_complete
+          is_complete: e.target.checked
           }
         })
     })
@@ -94,6 +98,8 @@ class SingleList extends Component {
          <input onClick={this.listCheckboxHandler}
           name="is_complete"
           type="checkbox"
+          checked={this.state.is_complete}
+          onChange={this.listHandleCheckboxChange}
          />
          
          &nbsp;
