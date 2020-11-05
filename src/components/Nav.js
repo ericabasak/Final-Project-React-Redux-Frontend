@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 class Nav extends Component {
 
-  handleLogout = () => {
-    this.state.logout()
-    this.state.history.push("/")
-  }
+  // handleLogout = () => {
+  //   this.state.logout()
+  //   this.state.history.push("/")
+  // }
 
   render() {
     return (
@@ -31,11 +31,11 @@ class Nav extends Component {
         <Link 
           style={ linkStyle } 
           to="/usersignupform"> Sign up </Link>
-          |
+          {/* |
         <Link
           style={ linkStyle } 
-          onClick={this.handleLogout}
-          to="/"> Logout </Link>
+          onClick={this.logout}
+          to="/"> Logout </Link> */}
       </div>
     );
   }

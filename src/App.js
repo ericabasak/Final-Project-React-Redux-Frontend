@@ -47,11 +47,46 @@ class App extends Component {
   // loggin and get current user
 
 
-  // logout = () => {
-  //   this.setState({
-  //     currentUser: null
-  //   })
-  // }
+
+  getCurrentUser = () => {
+    fetch("http://localhost:3001/get_current_user", {
+      method: "GET",
+      credentials: "include",
+      header: 
+      {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => response.json())
+      .then(resp => {
+        if (resp.error) {
+          alert(resp.error)
+        } else {
+          this.setState({
+            currentUser: resp.user
+          })
+        }
+      })
+      .catch(console.log)
+  }
+
+  logout = (e) => {
+    e.preventDefault();
+    console.log("hi from the logout")
+    fetch("http://localhost:3001/logout", {
+      method: "DELETE",
+      credentials: "include",
+      header: 
+      {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(response => response.json())
+    .then(resp => alert(resp.message))
+      this.setState({
+        currentUser: null
+      })
+  }
 
   // handleLogin = (e) => {
   //   e.preventDefault()
@@ -98,12 +133,18 @@ class App extends Component {
             <Route exact path="/alllists" component={AllLists} />
             <Route exact path="/userloginform" 
               component={UserLoginForm} 
+              getCurrentUser={this.getCurrentUser}
+              logout={this.logout}
               handleLoginFormChange={this.handleLoginFormChange}
               username={this.state.loginForm.username}
               password={this.state.loginForm.password}
               />
-            <Route exact path="/usersignupform" component={UserSignupForm} />
-            <Route exact path="/" logout={this.logout} component={MainComponent} />
+            <Route exact path="/usersignupform" 
+              component={UserSignupForm} 
+            />
+            <Route exact path="/" 
+              component={MainComponent} 
+            />
           </div>
         </div>
       </BrowserRouter>

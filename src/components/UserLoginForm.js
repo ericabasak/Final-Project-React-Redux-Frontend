@@ -15,12 +15,15 @@ class UserLoginForm extends Component {
   //   })
   // }
 
+  // now i need to submit the info from the form the backend
+  // where it will authenticate the user and if valid, sent the user back
+  // with that response, then set the state
   handleLoginForm = e => {
     e.preventDefault()
     console.log(this.props)
-    console.log("hello from the form submit - cows moooooo")
     fetch("http://localhost:3001/api/v1/userloginform", {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json"
@@ -49,6 +52,11 @@ class UserLoginForm extends Component {
       <div className="loginForm">
         <div>
           <h1 style={{ color: "black", textAlign: "center" }}> Login </h1>
+
+            <h2>{ this.props.name ? 
+               `Logged in as ${ this.props.name}` : 
+                "Not logged in"}
+            </h2>
         </div>
         <br></br>
           <form onSubmit={this.handleLoginForm} style={{ textAlign: "center" }}>
@@ -81,6 +89,10 @@ class UserLoginForm extends Component {
             </div>
             <br></br>
             <Button color="primary" variant="contained" type="submit" label="Login"> Enter </Button>
+            <br></br>
+            <br></br>
+            <Button color="primary" variant="contained" onClick={this.logout} type="submit" label="Logout"> Logout </Button>
+            <br></br>
             <br></br>
             <Button color="primary" variant="contained" onClick={() => this.props.history.push("/usersignupform")}> Create Account </Button>
           </form>
