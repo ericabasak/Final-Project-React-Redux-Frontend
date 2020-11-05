@@ -91,9 +91,6 @@ class UserLoginForm extends Component {
             <Button color="primary" variant="contained" type="submit" label="Login"> Enter </Button>
             <br></br>
             <br></br>
-            <Button color="primary" variant="contained" onClick={this.logout} type="submit" label="Logout"> Logout </Button>
-            <br></br>
-            <br></br>
             <Button color="primary" variant="contained" onClick={() => this.props.history.push("/usersignupform")}> Create Account </Button>
           </form>
       </div>

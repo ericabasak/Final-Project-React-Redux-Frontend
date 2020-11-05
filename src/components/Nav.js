@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 
 class Nav extends Component {
 
@@ -31,11 +32,6 @@ class Nav extends Component {
         <Link 
           style={ linkStyle } 
           to="/usersignupform"> Sign up </Link>
-          {/* |
-        <Link
-          style={ linkStyle } 
-          onClick={this.logout}
-          to="/"> Logout </Link> */}
       </div>
     );
   }
