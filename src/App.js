@@ -49,27 +49,28 @@ class App extends Component {
 
 
 
-  getCurrentUser = () => {
-    fetch("http://localhost:3001/get_current_user", {
-      method: "GET",
-      credentials: "include",
-      header: 
-      {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(response => response.json())
-      .then(resp => {
-        if (resp.error) {
-          alert(resp.error)
-        } else {
-          this.setState({
-            currentUser: resp.user
-          })
-        }
-      })
-      .catch(console.log)
-  }
+  // getCurrentUser = () => {
+  //   console.log("get current user is being called")
+  //   fetch("http://localhost:3001/api/v1/get_current_user", {
+  //     method: "GET",
+  //     credentials: "include",
+  //     header: 
+  //     {
+  //       "Content-Type": "application/json"
+  //     }
+  //   })
+  //     .then(response => response.json())
+  //     .then(resp => {
+  //       if (resp.error) {
+  //         alert(resp.error)
+  //       } else {
+  //         this.setState({
+  //           currentUser: resp.user
+  //         })
+  //       }
+  //     })
+  //     .catch(console.log)
+  // }
 
   handleLoginFormChange = e => {
     const { name, value } = e.target

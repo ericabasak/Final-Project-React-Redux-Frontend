@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from '@material-ui/core';
+// import { Button } from '@material-ui/core';
 
 class Logout extends Component {
 
@@ -25,11 +25,6 @@ class Logout extends Component {
     return(
       <div className="Logout">
         <form onSubmit={this.logout}>
-          <Button 
-            color="primary" 
-            variant="contained" 
-            type="submit" 
-            label="Logout"> Logout </Button>
         </form>
       </div>
     )

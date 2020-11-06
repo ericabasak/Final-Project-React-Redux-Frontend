@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 
 class UserSignupForm extends Component {
 
@@ -52,55 +53,47 @@ class UserSignupForm extends Component {
     return (
       <div className="signupForm">
         <div>
-          <h1 style={{ textAlign: "center" }}> Create Account </h1>
+          <h1 style={{ textAlign: "center" }}>Create Account</h1>
+          <br></br>
         </div>
         <form onSubmit={this.handleSubmitForm} style={{ textAlign: "center" }}>
           <div>
-            <label>
-              Username:
-              <br></br>
-               <input
+            <TextField
+              id="standard-basic"
+                label="Username"
                 type="text"
                 name="username"
                 required
-                placeholder="enter username"
                 value={this.state.username}
                 onChange={this.handleChange}
-              />
-            </label>
+            />
           </div>
           <br></br>
           <div>
-            <label>
-              Email:
-              <br></br>
-                <input
-                type="text"
-                name="email"
-                required
-                placeholder="enter email"
-                value={this.state.email}
-                onChange={this.handleChange}
-              />
-            </label>
+            <TextField
+            id="standard-basic"
+              label="Email"
+              type="text"
+              name="email"
+              required
+              value={this.state.email}
+              onChange={this.handleChange}
+            />
           </div>
           <br></br>
           <div>
-            <label>
-              Password:
-              <br></br>
-                <input
-                type="password"
-                name="password"
-                placeholder="enter password"
-                required
-                value={this.state.password}
-                onChange={this.handleChange}
-              />
-            </label>
+            <TextField
+              id="standard-basic"
+              label="Password"
+              type="password"
+              name="password"
+              required
+              value={this.state.password}
+              onChange={this.handleChange}
+            />
           </div>
           <br></br>
-          <Button color="primary" variant="contained" type="submit" label="signup"> Create Account </Button>
+          <Button type="submit" label="signup">Create Account</Button>
         </form>
       </div>
     )

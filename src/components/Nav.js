@@ -32,7 +32,14 @@ class Nav extends Component {
         <Link 
           style={ linkStyle } 
           to="/usersignupform"> Sign up </Link>
+          <br></br>
+          <br></br>
+        <div>
+          <Button type="submit" label="Logout">Logout</Button>
+        </div>
       </div>
+      
+      
     );
   }
 }
