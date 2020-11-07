@@ -1,4 +1,6 @@
+import { TextField } from '@material-ui/core';
 import React, { Component } from 'react';
+import { Button } from '@material-ui/core';
 import { v4 as uuidv4 } from 'uuid';
 
 class TodoForm extends Component {
@@ -45,24 +47,17 @@ class TodoForm extends Component {
     return (
       <>
         <form onSubmit={this.onSubmitList} style={{ display: 'flex' }}>
-          <label>
-            Create list:
-            <input
-                type="text"
-                name="title"
-                style={{ flex: '10', padding: '10px' }}
-                placeholder="enter list name"
-                value={this.state.title}
-                onChange={this.onChangeList}
-              />
-          </label>
-          <br></br>
-          <input
-            type="submit"
-            value="submit"
-            className="btn"
-            style={{flex: '1'}}
+          <TextField
+            id="standard-basic"
+            label="Create List"
+            type="text"
+            name="create list"
+            style={{ flex: '10', padding: '10px' }}
+            value={this.state.title}
+            onChange={this.onChangeList}
           />
+          <br></br>
+          <Button type="submit" label="Submit">Submit</Button>
         </form>
       </>
     );

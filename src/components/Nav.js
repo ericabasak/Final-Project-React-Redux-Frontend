@@ -45,12 +45,12 @@ class Nav extends Component {
 }
 
 const navStyle = {
-  background: '#2089F3',
-  color: '#fff',
+  background: '#cbb9aa',
+  color: '#rrr',
   textAlign: 'center',
   textDecoration: 'none',
-  padding: '15px',
-  margin: '10px 10px 10px 10px'
+  padding: '12px',
+  margin: '6px 6px 6px px'
 }
 
 const linkStyle = {

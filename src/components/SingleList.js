@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import TodoItem from './TodoItem';
+import TextField from '@material-ui/core/TextField';
+import { Button } from '@material-ui/core';
 import { v4 as uuidv4 } from 'uuid';
 
 class SingleList extends Component {
@@ -110,24 +112,17 @@ class SingleList extends Component {
        <h4> Items </h4>
         <div>
           <form onSubmit={this.handleSubmit} style={{ display: 'flex' }}>
-            <label>
-              Add a to do:
-              <input
-                type="text"
-                name="name"
-                style={{ flex: '10', padding: '10px' }}
-                placeholder="enter to do here"
-                value={this.state.name}
-                onChange={this.onChange}
-              />
-            </label>
-            <br></br>
-            <input
-              type="submit"
-              value="submit"
-              className="btn"
-              style={{flex: '1'}}
+             <TextField 
+              id="standard-basic"
+              label="Add todo item"
+              type="text"
+              name="name"
+              value={this.state.name}
+              onChange={this.onChange}
             />
+            <br></br>
+            <br></br>
+            <Button type="submit" label="Submit">Enter</Button>
           </form>
         </div>
           {this.state.items.map((e, index) => (<TodoItem 

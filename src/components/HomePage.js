@@ -1,14 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 
-class HomePage extends Component {
-  render() {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    minHeight: '100vh',
+    backgroundImage: `url(image4.jpg)`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+  }
+}));
+
+export default function HomePage() {
+  const classes = useStyles();
     return (
-        <div style={{ textAlign: "center" }}>
-          <h2>Todo</h2>
-          <p>Organize your life with TodoApp</p>
+        <div className={classes.root} style={{ textAlign: "center" }}>
+          <h2>Organize your life with TodoApp</h2>
         </div>
     );
-  }
 }
-
-export default HomePage;
