@@ -49,7 +49,7 @@ class UserLoginForm extends Component {
     return (
       <div className="loginForm">
         <div>
-          <h1 style={{ color: "black", textAlign: "center" }}> Login </h1>
+          <h1 style={{ color: "#484030", textAlign: "center" }}>Login</h1>
 
             <h2>{ this.props.name ? 
                `Logged in as ${ this.props.name}` : 
@@ -82,10 +82,10 @@ class UserLoginForm extends Component {
             </div>
             <br></br>
             <br></br>
-            <Button type="submit" label="Login"> Enter </Button>
+            <Button type="submit" label="Login">Enter</Button>
             <br></br>
             <br></br>
-            <Button onClick={() => this.props.history.push("/usersignupform")}> Create Account </Button>
+            <Button onClick={() => this.props.history.push("/usersignupform")}>Create Account</Button>
           </form>
       </div>
     )
