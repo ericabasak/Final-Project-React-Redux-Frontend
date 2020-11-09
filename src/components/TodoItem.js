@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Button } from '@material-ui/core';
+import Checkbox from '@material-ui/core/Checkbox';
 
 class TodoItem extends Component {
 
@@ -65,11 +67,14 @@ class TodoItem extends Component {
     .then(response => response.json())
   }
 
+  
+
   render() {
+
     return (
       <div style={this.getStyle()}>
           <label>
-            <input onClick={this.checkboxHandler}
+            <Checkbox onClick={this.checkboxHandler}
               name="is_complete"
               type="checkbox"
               checked={this.state.is_complete}
@@ -77,7 +82,11 @@ class TodoItem extends Component {
             />
           </label>
           &nbsp; {this.props.name} {this.props.id}  &nbsp;
-          <button onClick={this.deleteHandler}>remove</button>
+          <Button 
+            type="submit" 
+            label="Remove" 
+            onClick={this.deleteHandler}
+            />
       </div>
     )
   }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TodoItem from './TodoItem';
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
+import Checkbox from '@material-ui/core/Checkbox';
 import { v4 as uuidv4 } from 'uuid';
 
 class SingleList extends Component {
@@ -96,24 +97,20 @@ class SingleList extends Component {
     return(
       <div>
        <h2> 
-         
-         <input onClick={this.listCheckboxHandler}
+         <Checkbox onClick={this.listCheckboxHandler}
           name="is_complete"
           type="checkbox"
           checked={this.state.is_complete}
           onChange={this.listHandleCheckboxChange}
+          inputProps={{ 'aria-label': 'secondary checkbox' }}
          />
-         
          &nbsp;
-
          List &nbsp; - &nbsp; {this.props.name} {this.props.id} &nbsp; 
-         
         </h2>
        <h4> Items </h4>
         <div>
           <form onSubmit={this.handleSubmit} style={{ display: 'flex' }}>
              <TextField 
-              id="standard-basic"
               label="Add todo item"
               type="text"
               name="name"

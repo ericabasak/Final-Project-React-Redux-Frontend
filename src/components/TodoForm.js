@@ -48,7 +48,6 @@ class TodoForm extends Component {
       <>
         <form onSubmit={this.onSubmitList} style={{ display: 'flex' }}>
           <TextField
-            id="standard-basic"
             label="Create List"
             type="text"
             name="create list"

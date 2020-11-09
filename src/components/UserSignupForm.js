@@ -59,7 +59,6 @@ class UserSignupForm extends Component {
         <form onSubmit={this.handleSubmitForm} style={{ textAlign: "center" }}>
           <div>
             <TextField
-              id="standard-basic"
                 label="Username"
                 type="text"
                 name="username"
@@ -71,7 +70,6 @@ class UserSignupForm extends Component {
           <br></br>
           <div>
             <TextField
-            id="standard-basic"
               label="Email"
               type="text"
               name="email"
@@ -83,7 +81,6 @@ class UserSignupForm extends Component {
           <br></br>
           <div>
             <TextField
-              id="standard-basic"
               label="Password"
               type="password"
               name="password"
