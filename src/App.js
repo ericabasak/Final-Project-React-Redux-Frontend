@@ -72,13 +72,13 @@ class App extends Component {
   //     .catch(console.log)
   // }
 
-  handleLoginFormChange = e => {
-    const { name, value } = e.target
-    this.setState({
-      ...this.state.todos.loginForm,
-      [name]: value
-    })
-  }
+  // handleLoginFormChange = e => {
+  //   const { name, value } = e.target
+  //   this.setState({
+  //     ...this.state.todos.loginForm,
+  //     [name]: value
+  //   })
+  // }
 
   render() {
     return (

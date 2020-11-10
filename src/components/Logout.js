@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { Button } from '@material-ui/core';
 
 class Logout extends Component {
 

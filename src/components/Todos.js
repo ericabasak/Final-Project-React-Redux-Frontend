@@ -1,4 +1,3 @@
-// import { createGenerateClassName } from '@material-ui/core';
 import React, { Component } from 'react';
 import SingleList from './SingleList';
 

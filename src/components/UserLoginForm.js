@@ -4,11 +4,10 @@ import TextField from '@material-ui/core/TextField';
 
 class UserLoginForm extends Component {
 
-  // state = {
-  //   username: "",
-  //   password: ""
-  // }
-
+  state = {
+    username: "",
+    password: ""
+  }
 
   // handleChange = e => {
   //   this.setState({
@@ -29,8 +28,8 @@ class UserLoginForm extends Component {
         "Accept": "application/json"
       },
       body: JSON.stringify({
-          username: this.props.username,
-          password: this.props.password
+          username: this.state.username,
+          password: this.state.password
       })
     })
       .then(resp => resp.json())
@@ -45,14 +44,23 @@ class UserLoginForm extends Component {
       })
   }
 
+
+  handleUsernameChange = e => {
+    this.setState({username: e.target.value, password: this.state.password })
+  }
+
+  handlePasswordChange = e => {
+    this.setState({password: e.target.value, username: this.state.username })
+  }
+
   render() {
     return (
       <div className="loginForm">
         <div>
           <h1 style={{ color: "#484030", textAlign: "center" }}>Login</h1>
 
-            <h2>{ this.props.name ? 
-               `Logged in as ${ this.props.name}` : 
+            <h2>{ this.state.username ? 
+               `Logged in as ${ this.state.username }` : 
                 "Not logged in"}
             </h2>
         </div>
@@ -65,7 +73,7 @@ class UserLoginForm extends Component {
                 name="username"
                 required
                 value={this.props.username} 
-                onChange={this.handleLoginFormChange} 
+                onChange={this.handleUsernameChange} 
               />
             </div>
             <div>
@@ -75,12 +83,14 @@ class UserLoginForm extends Component {
                 name="password"
                 required
                 value={this.props.password} 
-                onChange={this.handleLoginFormChange}
+                onChange={this.handlePasswordChange}
               />
             </div>
             <br></br>
             <br></br>
-            <Button type="submit" label="Login">Enter</Button>
+            <Button 
+              type="submit" 
+              label="Login">Enter</Button>
             <br></br>
             <br></br>
             <Button onClick={() => this.props.history.push("/usersignupform")}>Create Account</Button>

@@ -95,7 +95,7 @@ class SingleList extends Component {
     // console.log(this.state.lists)
   
     return(
-      <div>
+      <div >
        <h2> 
          <Checkbox onClick={this.listCheckboxHandler}
           name="is_complete"

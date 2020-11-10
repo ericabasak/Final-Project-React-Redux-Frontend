@@ -82,11 +82,9 @@ class TodoItem extends Component {
             />
           </label>
           &nbsp; {this.props.name} {this.props.id}  &nbsp;
-          <Button 
+          <Button onClick={this.deleteHandler}
             type="submit" 
-            label="Remove" 
-            onClick={this.deleteHandler}
-            />
+            label="Delete">Delete</Button>
       </div>
     )
   }
