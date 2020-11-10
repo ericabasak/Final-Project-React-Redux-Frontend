@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
+import Grid from '@material-ui/core/Grid';
 
 class TodoItem extends Component {
 
@@ -73,18 +74,20 @@ class TodoItem extends Component {
 
     return (
       <div style={this.getStyle()}>
-          <label>
+          <Grid item xs={12}>
             <Checkbox onClick={this.checkboxHandler}
               name="is_complete"
               type="checkbox"
               checked={this.state.is_complete}
               onChange={this.handleCheckboxChange}
             />
-          </label>
+          </Grid>
           &nbsp; {this.props.name} {this.props.id}  &nbsp;
-          <Button onClick={this.deleteHandler}
-            type="submit" 
-            label="Delete">Delete</Button>
+          <Grid container justify="flex-end">
+            <Button onClick={this.deleteHandler}
+              type="submit" 
+              label="Delete">Delete</Button>
+          </Grid>
       </div>
     )
   }

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-// import Todos from './components/Todos';
-// import TodoForm from './components/TodoForm';
 import HomePage from './components/HomePage';
 import Nav from './components/Nav';
 import AllLists from './components/AllLists';
@@ -9,7 +7,6 @@ import UserLoginForm from './components/UserLoginForm';
 import UserSignupForm from './components/UserSignupForm';
 import Logout from './components/Logout';
 import MainComponent from './components/MainComponent';
-
 // import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 
@@ -44,9 +41,6 @@ class App extends Component {
   //   }]
   // }
 
-  // first goal:
-  // loggin and get current user
-
 
 
   // getCurrentUser = () => {
@@ -70,14 +64,6 @@ class App extends Component {
   //       }
   //     })
   //     .catch(console.log)
-  // }
-
-  // handleLoginFormChange = e => {
-  //   const { name, value } = e.target
-  //   this.setState({
-  //     ...this.state.todos.loginForm,
-  //     [name]: value
-  //   })
   // }
 
   render() {

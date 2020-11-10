@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { Button } from '@material-ui/core';
 
 class Logout extends Component {
 
-  logout = (e) => {
-    e.preventDefault();
+  logout = () => {
     console.log("hi from the logout")
     fetch("http://localhost:3001/api/v1/logout", {
       method: "DELETE",
@@ -15,16 +15,16 @@ class Logout extends Component {
     })
     .then(response => response.json())
     .then(resp => alert(resp.message))
-      this.setState({
-        currentUser: null
-      })
+      // this.setState({
+      //   currentUser: null
+      // })
   }
+
 
   render() {
     return(
       <div className="Logout">
-        <form onSubmit={this.logout}>
-        </form>
+        <Button onClick={this.logout} type="submit" label="Logout">Logout</Button>
       </div>
     )
   }

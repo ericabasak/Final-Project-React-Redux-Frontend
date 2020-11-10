@@ -39,7 +39,7 @@ class UserLoginForm extends Component {
         if (response.errors) {
           alert(response.errors)
         } else {
-          this.props.history.push("/home")
+          this.props.history.push("/")
         }
       })
   }
@@ -59,8 +59,8 @@ class UserLoginForm extends Component {
         <div>
           <h1 style={{ color: "#484030", textAlign: "center" }}>Login</h1>
 
-            <h2>{ this.state.username ? 
-               `Logged in as ${ this.state.username }` : 
+            <h2>{ this.props.username ? 
+               `Logged in as ${ this.props.username }` : 
                 "Not logged in"}
             </h2>
         </div>

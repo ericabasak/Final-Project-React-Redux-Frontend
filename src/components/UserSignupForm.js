@@ -37,17 +37,10 @@ class UserSignupForm extends Component {
         if (response.errors) {
           alert(response.errors)
         } else {
-          this.props.history.push("/home")
+          this.props.history.push("/")
         }
       })
-    // this.props.login({
-    //   username: this.state.username,
-    //   email: this.state.email,
-    //   password: this.state.password
-    // })
   }
-
-
 
   render() {
     return (
