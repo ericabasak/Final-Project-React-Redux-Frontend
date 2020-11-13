@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button } from '@material-ui/core';
 
 class Logout extends Component {
 
@@ -24,7 +23,7 @@ class Logout extends Component {
   render() {
     return(
       <div className="Logout">
-        <Button onClick={this.logout} type="submit" label="Logout">Logout</Button>
+        
       </div>
     )
   }

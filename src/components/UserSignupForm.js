@@ -18,7 +18,7 @@ class UserSignupForm extends Component {
 
   handleSubmitForm = e => {
     e.preventDefault();
-    console.log(e);
+    console.log("hey i'm being called from the signup form");
     fetch("http://localhost:3001/api/v1/usersignupform", {
       method: "POST",
       headers: {
@@ -46,8 +46,7 @@ class UserSignupForm extends Component {
     return (
       <div className="signupForm">
         <div>
-          <h1 style={{ textAlign: "center" }}>Create Account</h1>
-          <br></br>
+          <h1 style={{ color: "#484030", textAlign: "center", padding: "80px" }}>Create Account</h1>
         </div>
         <form onSubmit={this.handleSubmitForm} style={{ textAlign: "center" }}>
           <div>

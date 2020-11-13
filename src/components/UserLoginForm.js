@@ -20,6 +20,7 @@ class UserLoginForm extends Component {
   // with that response, then set the state
   handleLoginForm = e => {
     e.preventDefault();
+    console.log("it this login form being called?")
     fetch("http://localhost:3001/api/v1/login", {
       method: "POST",
       credentials: "include",
@@ -37,7 +38,8 @@ class UserLoginForm extends Component {
         // set user to state
         //redirect user
         if (response.errors) {
-          alert(response.errors)
+          console.log(response)
+          alert(response.error)
         } else {
           this.props.history.push("/")
         }
@@ -57,14 +59,12 @@ class UserLoginForm extends Component {
     return (
       <div className="loginForm">
         <div>
-          <h1 style={{ color: "#484030", textAlign: "center" }}>Login</h1>
-
+          <h1 style={{ color: "#484030", textAlign: "center", padding: "80px" }}>Login</h1>
             <h2>{ this.props.username ? 
                `Logged in as ${ this.props.username }` : 
                 "Not logged in"}
             </h2>
         </div>
-        <br></br>
           <form onSubmit={this.handleLoginForm} style={{ textAlign: "center" }}>
             <div>
               <TextField

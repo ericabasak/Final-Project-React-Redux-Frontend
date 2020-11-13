@@ -80,7 +80,7 @@ class App extends Component {
               getCurrentUser={this.getCurrentUser}
               handleLoginFormChange={this.handleLoginFormChange}
               username={this.state.loginForm.username}
-              password={this.state.loginForm.password}
+              password={this.state.loginForm.password} 
               />
             <Route exact path="/usersignupform" 
               component={UserSignupForm} 

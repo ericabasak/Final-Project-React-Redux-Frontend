@@ -12,7 +12,7 @@ class Todos extends Component {
   }
 
   get_lists = () => {
-    // console.log("calling get list function")
+    console.log("calling get list function")
     fetch("http://localhost:3001/api/v1/lists", {
       method: "GET",
       header:

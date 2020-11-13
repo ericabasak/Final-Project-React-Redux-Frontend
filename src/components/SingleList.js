@@ -105,7 +105,7 @@ class SingleList extends Component {
           inputProps={{ 'aria-label': 'secondary checkbox' }}
          />
          &nbsp;
-         List &nbsp; - &nbsp; {this.props.name} {this.props.id} &nbsp; 
+          {this.props.name} {this.props.id} &nbsp; 
         </h2>
        <h4> Items </h4>
         <div>

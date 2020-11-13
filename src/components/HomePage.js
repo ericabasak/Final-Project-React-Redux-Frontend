@@ -7,13 +7,14 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage: `url(image4.jpg)`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
+    postion: 'static'
   }
 }));
 
 export default function HomePage() {
   const classes = useStyles();
     return (
-        <div className={classes.root} style={{ textAlign: "center" }}>
+        <div className={classes.root} style={{ textAlign: "center", padding: "90px" }}>
           <h2>Organize your life with TodoApp</h2>
         </div>
     );
