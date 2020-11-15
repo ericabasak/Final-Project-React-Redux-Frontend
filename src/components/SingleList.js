@@ -17,13 +17,19 @@ class SingleList extends Component {
   // retrieve all items from the backend
   // console.log(this.props);
   componentDidMount() {
-    let result = fetch(`http://localhost:3001/api/v1/lists/${this.props.id}`, 
-    {method: "GET"})
+    let result = fetch(`http://localhost:3001/api/v1/lists/${this.props.id}`,
+      {
+        method: "GET",
+        headers:
+        {
+          "Authorization": "Bearer " + localStorage.getItem("token")
+        },
+      })
     result.then(r => r.json())
-    .then(data => {
-      console.log(data);
-      this.setState({ items: data })
-    })
+      .then(data => {
+        console.log(data);
+        this.setState({ items: data })
+      })
   }
 
   onChange = (e) => {
@@ -50,11 +56,11 @@ class SingleList extends Component {
     })
       .then(response => response.json())
       .then(data => console.log(data))
-        this.listTodo(this.state.name);
-        this.setState({ 
-          name: "",
-          is_complete: false
-       });
+    this.listTodo(this.state.name);
+    this.setState({
+      name: "",
+      is_complete: false
+    });
   }
 
   listTodo = (name) => {
@@ -75,7 +81,7 @@ class SingleList extends Component {
     console.log("is the listcheckboxhandler being called???")
     fetch(`http://localhost:3001/api/v1/lists/${this.props.id}`, {
       method: "PATCH",
-      header: 
+      header:
       {
         "Content-Type": "application/json"
       },
@@ -83,34 +89,34 @@ class SingleList extends Component {
         list: {
           name: this.state.name,
           is_complete: e.target.checked
-          }
-        })
+        }
+      })
     })
-    .then(response => response.json())
-    .then(data => console.log(data))
+      .then(response => response.json())
+      .then(data => console.log(data))
   }
-  
+
   render() {
     // console.log(this.props)
     // console.log(this.state.lists)
-  
-    return(
+
+    return (
       <div >
-       <h2> 
-         <Checkbox onClick={this.listCheckboxHandler}
-          name="is_complete"
-          type="checkbox"
-          checked={this.state.is_complete}
-          onChange={this.listHandleCheckboxChange}
-          inputProps={{ 'aria-label': 'secondary checkbox' }}
-         />
+        <h2>
+          <Checkbox onClick={this.listCheckboxHandler}
+            name="is_complete"
+            type="checkbox"
+            checked={this.state.is_complete}
+            onChange={this.listHandleCheckboxChange}
+            inputProps={{ 'aria-label': 'secondary checkbox' }}
+          />
          &nbsp;
-          {this.props.name} {this.props.id} &nbsp; 
+          {this.props.name} {this.props.id} &nbsp;
         </h2>
-       <h4> Items </h4>
+        <h4> Items </h4>
         <div>
           <form onSubmit={this.handleSubmit} style={{ display: 'flex' }}>
-             <TextField 
+            <TextField
               label="Add todo item"
               type="text"
               name="name"
@@ -122,12 +128,12 @@ class SingleList extends Component {
             <Button type="submit" label="Submit">Enter</Button>
           </form>
         </div>
-          {this.state.items.map((e, index) => (<TodoItem 
-            key={index} 
-            name={e.name} 
-            id={e.id}
-            is_complete={e.is_complete} />
-          ))}
+        {this.state.items.map((e, index) => (<TodoItem
+          key={index}
+          name={e.name}
+          id={e.id}
+          is_complete={e.is_complete} />
+        ))}
       </div>
     )
   }

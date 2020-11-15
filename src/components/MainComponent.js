@@ -1,4 +1,3 @@
-// import { createGenerateClassName } from '@material-ui/core';
 import React, { Component } from 'react';
 import TodoForm from './TodoForm';
 import Todos from './Todos';

@@ -25,6 +25,10 @@ import { Button } from '@material-ui/core';
 class Nav extends Component {
 
 
+  logout = () => {
+    localStorage.removeItem("token")
+  }
+  
   render() {
     return (
       <div>
@@ -52,7 +56,7 @@ class Nav extends Component {
                   <Link to="/usersignupform">Signup</Link>
                 </Box>
                 <Box pl={70}>
-                  <Button onClick={this.props.logout} type="submit" label="Logout">Logout</Button>
+                  <Button onClick={this.logout} type="submit" label="Logout">Logout</Button>
                 </Box>
           </Toolbar>
         </AppBar>

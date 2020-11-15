@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SingleList from './SingleList';
+import { withRouter } from 'react-router-dom';
 
 class Todos extends Component {
   state = {
@@ -15,13 +16,20 @@ class Todos extends Component {
     console.log("calling get list function")
     fetch("http://localhost:3001/api/v1/lists", {
       method: "GET",
-      header:
+      headers:
       {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
+        "Authorization": "Bearer " + localStorage.getItem("token")
       },
     })
-    .then(response => response.json())
+    .then(response => {
+      console.log(response);
+      if (response.status === 401) {
+        this.props.history.push("/userloginform");
+        return
+      } else {
+        return response.json()
+      }
+    })
     .then(data => {
       console.log(data);
       this.setState({ lists: data })
@@ -39,8 +47,7 @@ class Todos extends Component {
       method: "PATCH",
       headers:
       {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
+        "Authorization": "Bearer " + localStorage.getItem("token")
       },
       body: JSON.stringify({
         id: e.target.value,
@@ -72,4 +79,4 @@ class Todos extends Component {
   }
 }
 
-export default Todos;
+export default withRouter(Todos);

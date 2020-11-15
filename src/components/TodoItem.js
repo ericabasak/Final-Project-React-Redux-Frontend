@@ -41,10 +41,8 @@ class TodoItem extends Component {
     console.log("the the checkbox is being called")
     fetch(`http://localhost:3001/api/v1/items/${this.props.id}`, {
       method: "PATCH",
-      headers: 
-      {
-        "Content-Type": "application/json"
-      },
+      "Content-Type": "application/json",
+
       body: JSON.stringify({
         name: this.state.name,
         list_id: this.props.id,
@@ -67,8 +65,6 @@ class TodoItem extends Component {
     })
     .then(response => response.json())
   }
-
-  
 
   render() {
 

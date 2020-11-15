@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import Nav from './components/Nav';
-import AllLists from './components/AllLists';
 import UserLoginForm from './components/UserLoginForm';
 import UserSignupForm from './components/UserSignupForm';
 import Logout from './components/Logout';
@@ -71,10 +70,9 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <div className="container">
-            <Nav />
+            <Nav logout={this.logout} />
             <Logout logout={this.logout}/>
             <Route exact path="/homepage" component={HomePage} />
-            <Route exact path="/alllists" component={AllLists} />
             <Route exact path="/userloginform" 
               component={UserLoginForm} 
               getCurrentUser={this.getCurrentUser}

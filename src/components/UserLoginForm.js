@@ -41,6 +41,7 @@ class UserLoginForm extends Component {
           console.log(response)
           alert(response.error)
         } else {
+          localStorage.setItem('token', response.token);
           this.props.history.push("/")
         }
       })
