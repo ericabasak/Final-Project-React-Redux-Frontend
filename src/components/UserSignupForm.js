@@ -27,7 +27,7 @@ class UserSignupForm extends Component {
       },
       body: JSON.stringify({
         username: this.state.username,
-        password_digest: this.state.password,
+        password: this.state.password,
         email: this.state.email
       })
     })
