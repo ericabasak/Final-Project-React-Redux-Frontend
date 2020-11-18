@@ -52,7 +52,11 @@ class TodoItem extends Component {
   deleteHandler = () => {
     console.log("this button is being clicked")
     fetch(`http://localhost:3001/api/v1/items/${this.props.id}`, {
-      method: "DELETE"
+      method: "DELETE",
+      headers:
+      {
+        "Authorization": "Bearer " + localStorage.getItem("token")
+      }
     })
     .then(response => response.json())
   }
