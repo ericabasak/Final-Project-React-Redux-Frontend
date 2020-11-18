@@ -72,18 +72,16 @@ class SingleList extends Component {
     this.setState({ name: [...this.state.name, newItem] });
   }
 
-  listHandleCheckboxChange = () => {
-    this.setState({ is_complete: !this.state.is_complete })
-  }
 
   // list is complete checkbox handler
   listCheckboxHandler = (e) => {
     console.log("is the listcheckboxhandler being called???")
     fetch(`http://localhost:3001/api/v1/lists/${this.props.id}`, {
       method: "PATCH",
-      header:
+      headers:
       {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("token")
       },
       body: JSON.stringify({
         list: {
@@ -94,6 +92,9 @@ class SingleList extends Component {
     })
       .then(response => response.json())
       .then(data => console.log(data))
+      this.setState({ 
+        is_complete: !this.state.is_complete 
+      })
   }
 
   render() {
@@ -103,11 +104,11 @@ class SingleList extends Component {
     return (
       <div >
         <h2>
-          <Checkbox onClick={this.listCheckboxHandler}
+          <Checkbox
             name="is_complete"
             type="checkbox"
             checked={this.state.is_complete}
-            onChange={this.listHandleCheckboxChange}
+            onChange={this.listCheckboxHandler}
             inputProps={{ 'aria-label': 'secondary checkbox' }}
           />
          &nbsp;

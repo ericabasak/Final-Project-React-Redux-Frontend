@@ -25,27 +25,14 @@ class TodoItem extends Component {
     }
   }
 
-  // for updating the checkbox next to each item
-  // handler for onChange
-  // handleCheckboxChange = (e) => {
-  //   console.log(e.target.checked);
-  //   // if (this.state.is_complete) {
-  //   //   this.setState({ is_complete: false })  
-  //   // } else {
-  //   //   this.setState({ is_complete: true })  
-  //   // }{
-  //   this.setState({ is_complete : !this.state.is_complete })
-  // }
-
-  // 
-
   checkboxHandler = (e) => {
     console.log("the the checkbox is being called")
     fetch(`http://localhost:3001/api/v1/items/${this.props.id}`, {
       method: "PATCH",
       headers: 
       {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("token")
       },
       body: JSON.stringify({
         name: this.state.name,
@@ -71,7 +58,6 @@ class TodoItem extends Component {
   }
 
   render() {
-
     return (
       <div style={this.getStyle()}>
           <Grid item xs={12}>
