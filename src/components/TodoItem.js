@@ -13,6 +13,7 @@ class TodoItem extends Component {
       this.state = {
         name: props.name,
         is_complete: props.is_complete,
+        id: props.id
     }
   }
 
@@ -26,23 +27,26 @@ class TodoItem extends Component {
 
   // for updating the checkbox next to each item
   // handler for onChange
-  handleCheckboxChange = (e) => {
-    console.log(e.target.checked);
-    // if (this.state.is_complete) {
-    //   this.setState({ is_complete: false })  
-    // } else {
-    //   this.setState({ is_complete: true })  
-    // }{
-    this.setState({ is_complete : !this.state.is_complete })
-  }
+  // handleCheckboxChange = (e) => {
+  //   console.log(e.target.checked);
+  //   // if (this.state.is_complete) {
+  //   //   this.setState({ is_complete: false })  
+  //   // } else {
+  //   //   this.setState({ is_complete: true })  
+  //   // }{
+  //   this.setState({ is_complete : !this.state.is_complete })
+  // }
 
+  // 
 
   checkboxHandler = (e) => {
     console.log("the the checkbox is being called")
     fetch(`http://localhost:3001/api/v1/items/${this.props.id}`, {
       method: "PATCH",
-      "Content-Type": "application/json",
-
+      headers: 
+      {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({
         name: this.state.name,
         list_id: this.props.id,
@@ -52,7 +56,7 @@ class TodoItem extends Component {
     .then(response => response.json())
       .then(data => console.log(data))
         this.setState({ 
-          is_complete: e.target.checked
+          is_complete : !this.state.is_complete
         });
   }
 
@@ -71,11 +75,11 @@ class TodoItem extends Component {
     return (
       <div style={this.getStyle()}>
           <Grid item xs={12}>
-            <Checkbox onClick={this.checkboxHandler}
+            <Checkbox 
               name="is_complete"
               type="checkbox"
               checked={this.state.is_complete}
-              onChange={this.handleCheckboxChange}
+              onChange={this.checkboxHandler}
             />
           </Grid>
           &nbsp; {this.props.name} {this.props.id}  &nbsp;
