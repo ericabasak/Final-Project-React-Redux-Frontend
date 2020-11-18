@@ -22,7 +22,7 @@ class Todos extends Component {
       },
     })
     .then(response => {
-      console.log(response);
+      // console.log(response);
       if (response.status === 401) {
         this.props.history.push("/userloginform");
         return

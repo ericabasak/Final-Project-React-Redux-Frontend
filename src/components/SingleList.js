@@ -46,7 +46,8 @@ class SingleList extends Component {
       headers:
       {
         "Accept": "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("token")
       },
       body: JSON.stringify({
         name: this.state.name,
@@ -71,7 +72,6 @@ class SingleList extends Component {
     }
     this.setState({ name: [...this.state.name, newItem] });
   }
-
 
   // list is complete checkbox handler
   listCheckboxHandler = (e) => {
@@ -100,7 +100,6 @@ class SingleList extends Component {
   render() {
     // console.log(this.props)
     // console.log(this.state.lists)
-
     return (
       <div >
         <h2>
