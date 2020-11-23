@@ -6,7 +6,7 @@ import UserLoginForm from './components/UserLoginForm';
 import UserSignupForm from './components/UserSignupForm';
 import Logout from './components/Logout';
 import MainComponent from './components/MainComponent';
-// import { v4 as uuidv4 } from 'uuid';
+import { connect } from 'react-redux';
 import './App.css';
 
 class App extends Component {
@@ -24,46 +24,6 @@ class App extends Component {
       }
     }
   }
-
-  // state = {
-  //   todos: [{
-  //     id: uuidv4(),
-  //     title: "",
-  //     is_complete: false,
-  //     currentUser: null,
-  //     name: "",
-  //     loginForm: {
-  //       email: "",
-  //       password: "",
-  //       username: ""
-  //     }
-  //   }]
-  // }
-
-
-
-  // getCurrentUser = () => {
-  //   console.log("get current user is being called")
-  //   fetch("http://localhost:3001/api/v1/get_current_user", {
-  //     method: "GET",
-  //     credentials: "include",
-  //     header: 
-  //     {
-  //       "Content-Type": "application/json"
-  //     }
-  //   })
-  //     .then(response => response.json())
-  //     .then(resp => {
-  //       if (resp.error) {
-  //         alert(resp.error)
-  //       } else {
-  //         this.setState({
-  //           currentUser: resp.user
-  //         })
-  //       }
-  //     })
-  //     .catch(console.log)
-  // }
 
   render() {
     return (
@@ -93,4 +53,12 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return { items: state.items};
+};
+ 
+const mapDispatchToProps = dispatch => {
+  return { increaseCount: () => dispatch({ type: 'INCREASE_COUNT' })};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
