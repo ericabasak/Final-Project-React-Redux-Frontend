@@ -1,4 +1,4 @@
-const toDoAppReducer = (
+const index = (
   state = { 
     todos: [], 
     loading: false 
@@ -23,4 +23,4 @@ const toDoAppReducer = (
   }
 }
  
-export default toDoAppReducer;
+export default index;

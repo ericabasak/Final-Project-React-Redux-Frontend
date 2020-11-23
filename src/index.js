@@ -4,10 +4,10 @@ import App from './App';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import toDoAppReducer from './reducers/toDoAppReducer';
+import reducer from './reducers';
 
 const store = createStore(
-  toDoAppReducer,
+  reducer,
   applyMiddleware(thunk)
   );
 

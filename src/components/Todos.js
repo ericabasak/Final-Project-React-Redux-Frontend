@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SingleList from './SingleList';
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Todos extends Component {
   state = {
@@ -14,26 +15,29 @@ class Todos extends Component {
 
   get_lists = () => {
     console.log("calling get list function")
-    fetch("http://localhost:3001/api/v1/lists", {
-      method: "GET",
-      headers:
-      {
-        "Authorization": "Bearer " + localStorage.getItem("token")
-      },
-    })
-    .then(response => {
-      // console.log(response);
-      if (response.status === 401) {
-        this.props.history.push("/userloginform");
-        return
-      } else {
-        return response.json()
-      }
-    })
-    .then(data => {
-      console.log(data);
-      this.setState({ lists: data })
-    })
+    return (dispatch) => {
+      dispatch({ type: 'LOADING_TODOS'})
+      fetch("http://localhost:3001/api/v1/lists", {
+        method: "GET",
+        headers:
+        {
+          "Authorization": "Bearer " + localStorage.getItem("token")
+        },
+      })
+      .then(response => {
+        // console.log(response);
+        if (response.status === 401) {
+          this.props.history.push("/userloginform");
+          return
+        } else {
+          return response.json()
+        }
+      })
+      .then(data => {
+        console.log(data);
+        this.setState({ lists: data })
+      })
+    }
   }
 
   isCompleteHandler = (e) => {
@@ -79,4 +83,9 @@ class Todos extends Component {
   }
 }
 
-export default withRouter(Todos);
+const mapStateToProps = state => {
+  return { lists: state.lists};
+};
+
+// export default withRouter(Todos);
+export default connect(mapStateToProps)(Todos);
