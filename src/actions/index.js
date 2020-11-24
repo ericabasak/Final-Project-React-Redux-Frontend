@@ -20,11 +20,11 @@ export const fetchTodos = () => {
 }
 
 // fetching all items from each todo
-export const fetchTodoItems = () => {
+export const fetchTodoItems = (id) => {
   return (dispatch) => {
     console.log("loading todo items")
     dispatch({ type: 'LOAD_TODO_ITEMS' })
-    fetch(`http://localhost:3001/api/v1/lists/${this.props.id}`,
+    fetch(`http://localhost:3001/api/v1/lists/${id}`,
       {
         headers:
         {

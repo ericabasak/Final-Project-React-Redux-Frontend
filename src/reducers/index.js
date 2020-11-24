@@ -6,6 +6,10 @@ export default function index(
   },
   action
 ) {
+  console.log("this is what action is")
+  console.log(action)
+  console.log(action.type)
+
   switch (action.type) {
     case "LOAD_TODOS":
       console.log("reducer 1")
@@ -23,14 +27,15 @@ export default function index(
       case "LOAD_TODO_ITEMS":
       console.log("reducer 3")
       return {
-        todoItems: [],
-        loading: true
+        ...state,
+        todoItems: action.todoItems,
+        loading: false
       };
     case "ADD_TODO_ITEMS":
       console.log("reducer 4")
       return {
         ...state,
-        todoItems: action.lists,
+        todoItems: action.todoItems,
         loading: false
       };
     default:

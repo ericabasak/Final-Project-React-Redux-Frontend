@@ -65,7 +65,6 @@ class Todos extends Component {
         return response.json()
       })
       .then(r => {
-        console.log(r);
         let oldTodos = this.state.todos;
         let oldTodoIndex = oldTodos.findIndex(e => e.id === r.id)
         oldTodos[oldTodoIndex] = r
@@ -74,10 +73,6 @@ class Todos extends Component {
   }
   
   render() {
-    console.log('000000000000000000000000000000000000000000000000');
-    console.log(this.props);
-
-    console.log(this.props.loading);
     if (this.props.loading) {
       return (<div>Loading...</div>);
     }

@@ -3,7 +3,8 @@ import TodoItem from './TodoItem';
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
-// import { v4 as uuidv4 } from 'uuid';
+import { fetchTodoItems } from '../actions/index';
+import { connect } from 'react-redux';
 
 class SingleList extends Component {
 
@@ -17,19 +18,21 @@ class SingleList extends Component {
   // retrieve all items from the backend
   // console.log(this.props);
   componentDidMount() {
-    let result = fetch(`http://localhost:3001/api/v1/lists/${this.props.id}`,
-      {
-        method: "GET",
-        headers:
-        {
-          "Authorization": "Bearer " + localStorage.getItem("token")
-        },
-      })
-    result.then(r => r.json())
-      .then(data => {
-        console.log(data);
-        this.setState({ items: data })
-      })
+    console.log("fetching the data for the todo items")
+    this.props.fetchDataTodoItems(this.props.id);
+    // let result = fetch(`http://localhost:3001/api/v1/lists/${this.props.id}`,
+    //   {
+    //     method: "GET",
+    //     headers:
+    //     {
+    //       "Authorization": "Bearer " + localStorage.getItem("token")
+    //     },
+    //   })
+    // result.then(r => r.json())
+    //   .then(data => {
+    //     console.log(data);
+    //     this.setState({ items: data })
+    //   })
   }
 
   onChange = (e) => {
@@ -66,7 +69,6 @@ class SingleList extends Component {
 
   listTodo = (name) => {
     const newItem = {
-      // id: uuidv4(),
       name,
       is_complete: false
     }
@@ -139,5 +141,17 @@ class SingleList extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return { 
+    todoItems: state.todoItems,
+    loading: state.loading
+  };
+};
 
-export default SingleList;
+const mapDispatchToProps = (dispatch) => {
+  return {
+      fetchDataTodoItems: (id) => dispatch(fetchTodoItems(id))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SingleList);
