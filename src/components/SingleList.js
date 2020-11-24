@@ -3,7 +3,7 @@ import TodoItem from './TodoItem';
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 
 class SingleList extends Component {
 
@@ -66,7 +66,7 @@ class SingleList extends Component {
 
   listTodo = (name) => {
     const newItem = {
-      id: uuidv4(),
+      // id: uuidv4(),
       name,
       is_complete: false
     }

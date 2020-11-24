@@ -6,7 +6,7 @@ import UserLoginForm from './components/UserLoginForm';
 import UserSignupForm from './components/UserSignupForm';
 import Logout from './components/Logout';
 import MainComponent from './components/MainComponent';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import './App.css';
 
 class App extends Component {
@@ -53,13 +53,12 @@ class App extends Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   return { items: state.items};
-// };
+const mapStateToProps = state => {
+  return { todos: state.todos};
+};
  
 // const mapDispatchToProps = dispatch => {
 //   return { increaseCount: () => dispatch({ type: 'INCREASE_COUNT' })};
 // };
 
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
-export default App;
+export default connect(mapStateToProps)(App);
