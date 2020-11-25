@@ -40,3 +40,26 @@ export const fetchTodoItems = (id) => {
   }
 }
 
+
+
+// is_complete update for lists
+export const fetchIsComplete = (id) => {
+  return (dispatch) => {
+    console.log("loading is_complete lists")
+    dispatch({ type: 'LOAD_IS_COMPLETE_CHECKBOX' })
+    fetch(`http://localhost:3001/api/v1/lists/${id}`,
+      {
+        headers:
+        {
+          "Authorization": "Bearer " + localStorage.getItem("token")
+        }
+      })
+      .then(response => {
+        return response.json()
+      })
+      .then(isComplete => {
+        dispatch({ type: 'ADD_IS_COMPLETE_CHECKBOX', isComplete: isComplete })
+      })
+  }
+}
+

@@ -2,14 +2,11 @@ export default function index(
   state = {
     todos: [],
     loading: false,
-    todoItems: []
+    todoItems: [],
+    isComplete: false
   },
   action
 ) {
-  console.log("this is what action is")
-  console.log(action)
-  console.log(action.type)
-
   switch (action.type) {
     case "LOAD_TODOS":
       console.log("reducer 1")
@@ -37,6 +34,18 @@ export default function index(
         ...state,
         todoItems: action.todoItems,
         loading: false
+      };
+      case "LOAD_IS_COMPLETE_CHECKBOX":
+      console.log("reducer 5")
+      return {
+        ...state,
+        isComplete: action.isComplete
+      };
+    case "ADD_IS_COMPLETE_CHECKBOX":
+      console.log("reducer 6")
+      return {
+        ...state,
+        isComplete: action.isComplete
       };
     default:
       return state;

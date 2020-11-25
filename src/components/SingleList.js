@@ -3,7 +3,7 @@ import TodoItem from './TodoItem';
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
-import { fetchTodoItems } from '../actions/index';
+import { fetchTodoItems, fetchIsComplete } from '../actions/index';
 import { connect } from 'react-redux';
 
 class SingleList extends Component {
@@ -18,8 +18,9 @@ class SingleList extends Component {
   // retrieve all items from the backend
   // console.log(this.props);
   componentDidMount() {
-    console.log("fetching the data for the todo items")
     this.props.fetchDataTodoItems(this.props.id);
+    this.props.listCheckboxHandler(this.props.id);
+    // this.props.listCheckboxHandler(this.props.id);
     // let result = fetch(`http://localhost:3001/api/v1/lists/${this.props.id}`,
     //   {
     //     method: "GET",
@@ -76,28 +77,29 @@ class SingleList extends Component {
   }
 
   // list is complete checkbox handler
-  listCheckboxHandler = (e) => {
-    console.log("is the listcheckboxhandler being called???")
-    fetch(`http://localhost:3001/api/v1/lists/${this.props.id}`, {
-      method: "PATCH",
-      headers:
-      {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("token")
-      },
-      body: JSON.stringify({
-        list: {
-          name: this.state.name,
-          is_complete: e.target.checked
-        }
-      })
-    })
-      .then(response => response.json())
-      .then(data => console.log(data))
-      this.setState({ 
-        is_complete: !this.state.is_complete 
-      })
-  }
+    // listCheckboxHandler = (id) => { 
+    // console.log("is the listcheckboxhandler being called???")
+    // fetch(`http://localhost:3001/api/v1/lists/${this.props.id}`, {
+    //   method: "PATCH",
+    //   headers:
+    //   {
+    //     "Content-Type": "application/json",
+    //     "Authorization": "Bearer " + localStorage.getItem("token")
+    //   },
+    //   body: JSON.stringify({
+    //     list: {
+    //       name: this.state.name,
+    //       is_complete: this.target.checked
+    //     }
+    //   })
+    // })
+    //   .then(response => response.json())
+    //   .then(data => console.log(data))
+    //   this.setState({ 
+    //     is_complete: !this.state.is_complete 
+    //   })
+    // }
+
 
   render() {
     // console.log(this.props)
@@ -108,8 +110,7 @@ class SingleList extends Component {
           <Checkbox
             name="is_complete"
             type="checkbox"
-            checked={this.state.is_complete}
-            onChange={this.listCheckboxHandler}
+            onChange={this.state.listCheckboxHandler}
             inputProps={{ 'aria-label': 'secondary checkbox' }}
           />
          &nbsp;
@@ -144,13 +145,15 @@ class SingleList extends Component {
 const mapStateToProps = state => {
   return { 
     todoItems: state.todoItems,
-    loading: state.loading
+    loading: state.loading,
+    isComplete: state.isComplete,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      fetchDataTodoItems: (id) => dispatch(fetchTodoItems(id))
+      fetchDataTodoItems: (id) => dispatch(fetchTodoItems(id)),
+      listCheckboxHandler: (id) => dispatch(fetchIsComplete(id))
   };
 };
 
