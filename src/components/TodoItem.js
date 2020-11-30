@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Button } from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
+import { fetchDeleteTodoItem } from '../actions/index';
+import { connect } from 'react-redux';
 
 class TodoItem extends Component {
-
   // initialize state from db
   // here we are using the constructor method to initialize
   // state from the parent component - props
@@ -83,4 +84,18 @@ class TodoItem extends Component {
   }
 }
 
-export default TodoItem;
+const mapStateToProps = state => {
+  return { 
+    todos: state.todos,
+    loading: state.loading
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteHandler: (id) => dispatch(fetchDeleteTodoItem(id))
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoItem);

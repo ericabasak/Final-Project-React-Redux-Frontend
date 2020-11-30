@@ -23,7 +23,7 @@ export const fetchTodos = () => {
 export const fetchTodoItems = (id) => {
   return (dispatch) => {
     console.log("loading todo items")
-    dispatch({ type: 'LOAD_TODO_ITEMS' })
+    // dispatch({ type: 'LOAD_TODO_ITEMS' })
     fetch(`http://localhost:3001/api/v1/lists/${id}`,
       {
         headers:
@@ -39,8 +39,6 @@ export const fetchTodoItems = (id) => {
       })
   }
 }
-
-
 
 // is_complete update for lists
 export const fetchIsComplete = (id) => {
@@ -63,3 +61,23 @@ export const fetchIsComplete = (id) => {
   }
 }
 
+// deleting an individual todo item
+export const fetchDeleteTodoItem = (id) => {
+  return (dispatch) => {
+    console.log("load delete todo items")
+    dispatch({ type: 'LOAD_DELETE_TODO_ITEM' })
+    fetch(`http://localhost:3001/api/v1/items/${id}`,
+      {
+        headers:
+        {
+          "Authorization": "Bearer " + localStorage.getItem("token")
+        }
+      })
+      .then(response => {
+        return response.json()
+      })
+      .then(todos => {
+        dispatch({ type: 'DELETE_TODO_ITEM', todos: todos })
+      })
+  }
+}

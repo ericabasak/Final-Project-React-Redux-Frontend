@@ -52,6 +52,7 @@ class TodoForm extends Component {
             label="Create List"
             type="text"
             name="create list"
+            fullWidth
             style={{ flex: '30', padding: '20px' }}
             value={this.state.title}
             onChange={this.onChangeList}

@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 class SingleList extends Component {
 
   state = {
-    items: [],
+    todoItems: [],
     name: "",
     is_complete: false
   }
@@ -19,7 +19,6 @@ class SingleList extends Component {
   // console.log(this.props);
   componentDidMount() {
     this.props.fetchDataTodoItems(this.props.id);
-    this.props.listCheckboxHandler(this.props.id);
     // this.props.listCheckboxHandler(this.props.id);
     // let result = fetch(`http://localhost:3001/api/v1/lists/${this.props.id}`,
     //   {
@@ -76,41 +75,29 @@ class SingleList extends Component {
     this.setState({ name: [...this.state.name, newItem] });
   }
 
-  // list is complete checkbox handler
-    // listCheckboxHandler = (id) => { 
-    // console.log("is the listcheckboxhandler being called???")
-    // fetch(`http://localhost:3001/api/v1/lists/${this.props.id}`, {
-    //   method: "PATCH",
-    //   headers:
-    //   {
-    //     "Content-Type": "application/json",
-    //     "Authorization": "Bearer " + localStorage.getItem("token")
-    //   },
-    //   body: JSON.stringify({
-    //     list: {
-    //       name: this.state.name,
-    //       is_complete: this.target.checked
-    //     }
-    //   })
-    // })
-    //   .then(response => response.json())
-    //   .then(data => console.log(data))
-    //   this.setState({ 
-    //     is_complete: !this.state.is_complete 
-    //   })
-    // }
+  handleCheckbox = (e) => { 
+    console.log(e)
 
+    this.setState({
+      [e.target.isComplete]: e.target.value
+    });
+    // this.setState({ is_complete: e.target.value });
+    // this.setState({
+    //   [e.target.name]: e.target.value
+    // })
+    // this.props.listCheckboxHandler(this.props.id)
+  }
 
   render() {
-    // console.log(this.props)
+    console.log(this.props)
     // console.log(this.state.lists)
     return (
       <div >
         <h2>
-          <Checkbox
+          <Checkbox 
             name="is_complete"
             type="checkbox"
-            onChange={this.state.listCheckboxHandler}
+            onChange={this.handleCheckbox}
             inputProps={{ 'aria-label': 'secondary checkbox' }}
           />
          &nbsp;
@@ -131,7 +118,7 @@ class SingleList extends Component {
             <Button type="submit" label="Submit">Enter</Button>
           </form>
         </div>
-        {this.state.items.map((e, index) => (<TodoItem
+        {this.props.todoItems.map((e, index) => (<TodoItem
           key={index}
           name={e.name}
           id={e.id}

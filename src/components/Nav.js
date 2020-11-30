@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import { Typography } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
 import { Box } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 
@@ -32,7 +29,13 @@ class Nav extends Component {
   render() {
     return (
       <div>
-        <AppBar postion="relative" color="transparent">
+        <AppBar 
+          postion="sticky" 
+          style={{
+            backgroundColor: "#bcaaa4", 
+            color: "#484030",
+            boxShadow: "0px 0px 0px 0px"
+            }}>
           <Toolbar>
             <IconButton edge="start" aria-label="menu">
               </IconButton>
