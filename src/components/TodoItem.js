@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Button } from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
-import Grid from '@material-ui/core/Grid';
+import { Grid, Button } from '@material-ui/core';
 import { fetchDeleteTodoItem } from '../actions/index';
 import { connect } from 'react-redux';
 
@@ -65,10 +64,11 @@ class TodoItem extends Component {
   render() {
     return (
       <div style={this.getStyle()}>
-          <Grid item xs={12}>
+          <Grid contianer item xs={12}>
             <Checkbox 
               name="is_complete"
               type="checkbox"
+              color="#bcaaa4"
               checked={this.state.is_complete}
               onChange={this.checkboxHandler}
             />

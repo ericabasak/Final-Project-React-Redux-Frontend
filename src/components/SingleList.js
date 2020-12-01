@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import TodoItem from './TodoItem';
-import TextField from '@material-ui/core/TextField';
-import { Button } from '@material-ui/core';
-import Checkbox from '@material-ui/core/Checkbox';
+import { Button, Checkbox, TextField, Grid, Paper } from '@material-ui/core';
 import { fetchTodoItems, fetchIsComplete } from '../actions/index';
 import { connect } from 'react-redux';
 
@@ -92,11 +90,13 @@ class SingleList extends Component {
     console.log(this.props)
     // console.log(this.state.lists)
     return (
-      <div >
+      <Grid container direction="column" justify="center" alignItems="center">
+        <Paper>
         <h2>
           <Checkbox 
             name="is_complete"
             type="checkbox"
+            color="#bcaaa4"
             onChange={this.handleCheckbox}
             inputProps={{ 'aria-label': 'secondary checkbox' }}
           />
@@ -124,7 +124,8 @@ class SingleList extends Component {
           id={e.id}
           is_complete={e.is_complete} />
         ))}
-      </div>
+        </Paper>
+      </Grid>
     )
   }
 }
