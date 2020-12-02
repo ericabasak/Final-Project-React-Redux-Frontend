@@ -92,12 +92,12 @@ class SingleList extends Component {
     return (
       <Grid container direction="column" justify="center" alignItems="center">
         <Paper>
-          <Box padding="2" margin="2" width={800} height={500}>
+          <Box>
             <h2>
               <Checkbox
                 name="is_complete"
                 type="checkbox"
-                color="#bcaaa4"
+                color="default"
                 onChange={this.handleCheckbox}
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
               />

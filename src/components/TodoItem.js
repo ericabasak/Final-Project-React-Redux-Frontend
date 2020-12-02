@@ -64,11 +64,11 @@ class TodoItem extends Component {
   render() {
     return (
       <div style={this.getStyle()} >
-          <Grid contianer item xs={12}>
+          <Grid container item xs={12}>
             <Checkbox 
               name="is_complete"
               type="checkbox"
-              color="#bcaaa4"
+              color="default"
               checked={this.state.is_complete}
               onChange={this.checkboxHandler}
             />
