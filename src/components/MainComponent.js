@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import TodoForm from './TodoForm';
-import Todos from './Todos';
+import ListForm from './ListForm';
+import AllLists from './AllLists';
 
 class MainComponent extends Component {
 
   render() {
     return (
       <div>
-        <TodoForm />
-        <Todos />
+        <ListForm />
+        <AllLists />
       </div>
     )
   }

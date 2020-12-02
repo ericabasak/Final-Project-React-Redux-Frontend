@@ -33,7 +33,7 @@ export default function index(
       console.log("reducer 4")
       return {
         ...state,
-        todoItems: action.todoItems,
+        todoItems: state.todoItems.concat(action.todoItems),
         loading: false
       };
     case "LOAD_IS_COMPLETE_CHECKBOX":

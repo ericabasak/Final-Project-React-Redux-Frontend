@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TodoItem from './TodoItem';
+import Items from './Items';
 import { Button, Checkbox, TextField, Grid, Paper, Box } from '@material-ui/core';
 import { fetchTodoItems, fetchIsComplete } from '../actions/index';
 import { connect } from 'react-redux';
@@ -12,9 +12,7 @@ class SingleList extends Component {
     is_complete: false
   }
 
-  // console.log("list items is being called")
   // retrieve all items from the backend
-  // console.log(this.props);
   componentDidMount() {
     this.props.fetchDataTodoItems(this.props.id);
     // this.props.listCheckboxHandler(this.props.id);
@@ -34,13 +32,11 @@ class SingleList extends Component {
   }
 
   onChange = (e) => {
-    // console.log(e.target.value);
     this.setState({ name: e.target.value });
   }
 
   // create a item associated to a list
   handleSubmit = (e) => {
-    console.log("inside handleSubmit")
     e.preventDefault();
     fetch("http://localhost:3001/api/v1/items", {
       method: "POST",
@@ -74,21 +70,18 @@ class SingleList extends Component {
   }
 
   handleCheckbox = (e) => { 
-    console.log(e)
-
     this.setState({
       [e.target.isComplete]: e.target.value
     });
-    // this.setState({ is_complete: e.target.value });
-    // this.setState({
-    //   [e.target.name]: e.target.value
-    // })
-    // this.props.listCheckboxHandler(this.props.id)
   }
 
   render() {
     console.log(this.props)
-    // console.log(this.state.lists)
+    // filter toditems over lists with list id
+    const items = this.props.todoItems.filter(x => {
+      return x.id
+    });
+
     return (
       <Grid container direction="column" justify="center" alignItems="center">
         <Paper>
@@ -119,18 +112,14 @@ class SingleList extends Component {
                 <Button type="submit" label="Submit">Enter</Button>
               </form>
             </div>
-            <Grid>
-              <Paper>
-                <Box>
-                  {this.props.todoItems.map((e, index) => (<TodoItem
+            
+                  {items.map((e, index) => (<Items
                     key={index}
                     name={e.name}
                     id={e.id}
                     is_complete={e.is_complete} />
                   ))}
-                </Box>
-              </Paper>
-            </Grid>
+         
           </Box>
         </Paper>
       </Grid>

@@ -1,9 +1,9 @@
 import { TextField } from '@material-ui/core';
 import React, { Component } from 'react';
 import { Button } from '@material-ui/core';
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 
-class TodoForm extends Component {
+class ListForm extends Component {
 
   state = {
     name: "",
@@ -37,7 +37,7 @@ class TodoForm extends Component {
   // add form for todo item
   todoForm = (title) => {
     const newTodo = {
-      id: uuidv4(),
+      // id: uuidv4(),
       title,
       is_complete: false
     }
@@ -66,4 +66,4 @@ class TodoForm extends Component {
 }
 
 
-export default TodoForm;
+export default ListForm;

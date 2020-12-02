@@ -9,12 +9,6 @@ class UserLoginForm extends Component {
     password: ""
   }
 
-  // handleChange = e => {
-  //   this.setState({
-  //     [e.target.name]: e.target.value
-  //   })
-  // }
-
   // now i need to submit the info from the form the backend
   // where it will authenticate the user and if valid, sent the user back
   // with that response, then set the state

@@ -4,7 +4,7 @@ import { Grid, Button } from '@material-ui/core';
 import { fetchDeleteTodoItem } from '../actions/index';
 import { connect } from 'react-redux';
 
-class TodoItem extends Component {
+class Items extends Component {
   // initialize state from db
   // here we are using the constructor method to initialize
   // state from the parent component - props
@@ -98,4 +98,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodoItem);
+export default connect(mapStateToProps, mapDispatchToProps)(Items);

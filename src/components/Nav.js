@@ -4,23 +4,7 @@ import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
 import { Box } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 
-
-
-// const navStyle = {
-//   background: '#cbb9aa',
-//   color: '#rrr',
-//   textAlign: 'center',
-//   textDecoration: 'none',
-//   padding: '12px',
-//   margin: '6px 6px 6px 6px'
-// }
-
-// const linkStyle = {
-//   color: '#fff'
-// }
-
 class Nav extends Component {
-
 
   logout = () => {
     localStorage.removeItem("token")

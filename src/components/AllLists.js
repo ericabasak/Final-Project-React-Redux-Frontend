@@ -4,7 +4,7 @@ import SingleList from './SingleList';
 import { connect } from 'react-redux';
 import { fetchTodos } from '../actions/index';
 
-class Todos extends Component {
+class AllLists extends Component {
   
   state = {
     lists: [],
@@ -102,4 +102,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Todos);
+export default connect(mapStateToProps, mapDispatchToProps)(AllLists);
