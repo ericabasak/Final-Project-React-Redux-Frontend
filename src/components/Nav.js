@@ -30,8 +30,9 @@ class Nav extends Component {
     return (
       <div>
         <AppBar 
-          postion="sticky" 
+        postion="static"
           style={{
+            postion: "static",
             backgroundColor: "#bcaaa4", 
             color: "#484030",
             boxShadow: "0px 0px 0px 0px"

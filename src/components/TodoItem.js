@@ -63,7 +63,7 @@ class TodoItem extends Component {
 
   render() {
     return (
-      <div style={this.getStyle()}>
+      <div style={this.getStyle()} >
           <Grid contianer item xs={12}>
             <Checkbox 
               name="is_complete"
@@ -74,7 +74,7 @@ class TodoItem extends Component {
             />
           </Grid>
           &nbsp; {this.props.name} {this.props.id}  &nbsp;
-          <Grid container justify="flex-end">
+          <Grid container justify="flex-end" >
             <Button onClick={this.deleteHandler}
               type="submit" 
               label="Delete">Delete</Button>

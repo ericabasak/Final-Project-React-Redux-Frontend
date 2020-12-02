@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TodoItem from './TodoItem';
-import { Button, Checkbox, TextField, Grid, Paper } from '@material-ui/core';
+import { Button, Checkbox, TextField, Grid, Paper, Box } from '@material-ui/core';
 import { fetchTodoItems, fetchIsComplete } from '../actions/index';
 import { connect } from 'react-redux';
 
@@ -92,38 +92,46 @@ class SingleList extends Component {
     return (
       <Grid container direction="column" justify="center" alignItems="center">
         <Paper>
-        <h2>
-          <Checkbox 
-            name="is_complete"
-            type="checkbox"
-            color="#bcaaa4"
-            onChange={this.handleCheckbox}
-            inputProps={{ 'aria-label': 'secondary checkbox' }}
-          />
-         &nbsp;
-          {this.props.name} {this.props.id} &nbsp;
-        </h2>
-        <h4> Items </h4>
-        <div>
-          <form onSubmit={this.handleSubmit} style={{ display: 'flex' }}>
-            <TextField
-              label="Add todo item"
-              type="text"
-              name="name"
-              value={this.state.name}
-              onChange={this.onChange}
-            />
-            <br></br>
-            <br></br>
-            <Button type="submit" label="Submit">Enter</Button>
-          </form>
-        </div>
-        {this.props.todoItems.map((e, index) => (<TodoItem
-          key={index}
-          name={e.name}
-          id={e.id}
-          is_complete={e.is_complete} />
-        ))}
+          <Box padding="2" margin="2" width={800} height={500}>
+            <h2>
+              <Checkbox
+                name="is_complete"
+                type="checkbox"
+                color="#bcaaa4"
+                onChange={this.handleCheckbox}
+                inputProps={{ 'aria-label': 'secondary checkbox' }}
+              />
+            &nbsp;
+              {this.props.name} {this.props.id} &nbsp;
+            </h2>
+            <h4> Items </h4>
+            <div>
+              <form onSubmit={this.handleSubmit} style={{ display: 'flex' }}>
+                <TextField
+                  label="Add todo item"
+                  type="text"
+                  name="name"
+                  value={this.state.name}
+                  onChange={this.onChange}
+                />
+                <br></br>
+                <br></br>
+                <Button type="submit" label="Submit">Enter</Button>
+              </form>
+            </div>
+            <Grid>
+              <Paper>
+                <Box>
+                  {this.props.todoItems.map((e, index) => (<TodoItem
+                    key={index}
+                    name={e.name}
+                    id={e.id}
+                    is_complete={e.is_complete} />
+                  ))}
+                </Box>
+              </Paper>
+            </Grid>
+          </Box>
         </Paper>
       </Grid>
     )
