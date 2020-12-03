@@ -1,8 +1,8 @@
 // fetching all todos AKA lists
-export const fetchTodos = () => {
+export const fetchLists = () => {
   return (dispatch) => {
-    console.log("loading todos")
-    dispatch({ type: 'LOAD_TODOS' })
+    console.log("loading lists")
+    dispatch({ type: 'LOAD_LISTS' })
     fetch('http://localhost:3001/api/v1/lists',
       {
         headers:
@@ -13,8 +13,8 @@ export const fetchTodos = () => {
       .then(response => {
         return response.json()
       })
-      .then(todos => {
-        dispatch({ type: 'ADD_TODOS', todos: todos })
+      .then(lists => {
+        dispatch({ type: 'ADD_LISTS', lists: lists })
       })
   }
 }

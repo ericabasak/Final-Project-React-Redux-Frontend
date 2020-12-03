@@ -1,6 +1,6 @@
 export default function index(
   state = {
-    todos: [],
+    lists: [],
     loading: false,
     todoItems: [],
     isComplete: false
@@ -8,54 +8,46 @@ export default function index(
   action
 ) {
   switch (action.type) {
-    case "LOAD_TODOS":
-      console.log("reducer 1")
+    case "LOAD_LISTS":
       return {
         ...state,
-        todos: [],
+        lists: [],
         loading: true
       };
-    case "ADD_TODOS":
-      console.log("reducer 2")
+    case "ADD_LISTS":
       return {
         ...state,
-        todos: action.todos,
+        lists: action.lists,
         loading: false
       };
     case "LOAD_TODO_ITEMS":
-      console.log("reducer 3")
       return {
         ...state,
         // todoItems: action.todoItems,
         loading: true
       };
     case "ADD_TODO_ITEMS":
-      console.log("reducer 4")
       return {
         ...state,
         todoItems: state.todoItems.concat(action.todoItems),
         loading: false
       };
     case "LOAD_IS_COMPLETE_CHECKBOX":
-      console.log("reducer 5")
       return {
         ...state,
         loading: true
       };
     case "ADD_IS_COMPLETE_CHECKBOX":
-      console.log("reducer 6")
       return {
         ...state,
         isComplete: action.isComplete
       };
     case "LOAD_DELETE_TODO_ITEM":
-      console.log("reducer 7")
       return {
         ...state,
         loading: true
       };
     case "DELETE_TODO_ITEM":
-      console.log("reducer 8")
       return {
         ...state,
         todoItems: action.loading

@@ -15,20 +15,6 @@ class SingleList extends Component {
   // retrieve all items from the backend
   componentDidMount() {
     this.props.fetchDataTodoItems(this.props.id);
-    // this.props.listCheckboxHandler(this.props.id);
-    // let result = fetch(`http://localhost:3001/api/v1/lists/${this.props.id}`,
-    //   {
-    //     method: "GET",
-    //     headers:
-    //     {
-    //       "Authorization": "Bearer " + localStorage.getItem("token")
-    //     },
-    //   })
-    // result.then(r => r.json())
-    //   .then(data => {
-    //     console.log(data);
-    //     this.setState({ items: data })
-    //   })
   }
 
   onChange = (e) => {
@@ -66,21 +52,32 @@ class SingleList extends Component {
       name,
       is_complete: false
     }
-    this.setState({ name: [...this.state.name, newItem] });
+    this.setState({ 
+      name: [
+        ...this.state.name, 
+        newItem
+      ] 
+    });
   }
 
   handleCheckbox = (e) => { 
+    console.log("this box is clicked")
+    // console.log(e.target.checked)
     this.setState({
-      [e.target.isComplete]: e.target.value
+    is_complete: e.target.checked
     });
   }
+  
 
   render() {
-    console.log(this.props)
+    console.log(this.state)
+
     // filter toditems over lists with list id
     const items = this.props.todoItems.filter(x => {
-      return x.id
+      console.log(x);
+      return x.list_id === this.props.id
     });
+    console.log(items)
 
     return (
       <Grid container direction="column" justify="center" alignItems="center">
@@ -94,8 +91,9 @@ class SingleList extends Component {
                 onChange={this.handleCheckbox}
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
               />
-            &nbsp;
-              {this.props.name} {this.props.id} &nbsp;
+              <div style={{textDecoration: this.state.is_complete ? "line-through" : "" }}>
+                {this.props.name} {this.props.id}
+              </div>
             </h2>
             <h4> Items </h4>
             <div>
@@ -117,7 +115,8 @@ class SingleList extends Component {
                     key={index}
                     name={e.name}
                     id={e.id}
-                    is_complete={e.is_complete} />
+                    is_complete={e.is_complete} 
+                    />
                   ))}
          
           </Box>
