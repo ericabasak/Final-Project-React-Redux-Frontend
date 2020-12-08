@@ -94,7 +94,6 @@ class SingleList extends Component {
 
   render() {
     console.log(this.state)
-
     // filter toditems over lists with list id
     const items = this.props.todoItems.filter(x => {
       console.log(x);

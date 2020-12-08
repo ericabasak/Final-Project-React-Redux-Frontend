@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 
 class UserLoginForm extends Component {
@@ -54,7 +54,12 @@ class UserLoginForm extends Component {
     return (
       <div className="loginForm">
         <div>
-          <h1 style={{ color: "#484030", textAlign: "center", padding: "80px" }}>Login</h1>
+            <Typography variant="h4" align="center">
+                  Welcome to Todo App
+            </Typography> 
+            <Typography variant="h4" align="center">
+              Login
+            </Typography> 
             <h2>{ this.props.username ? 
                `Logged in as ${ this.props.username }` : 
                 "Not logged in"}
