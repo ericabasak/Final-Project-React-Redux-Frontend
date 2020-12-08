@@ -60,13 +60,36 @@ class SingleList extends Component {
     });
   }
 
-  handleCheckbox = (e) => { 
-    console.log("this box is clicked")
-    // console.log(e.target.checked)
-    this.setState({
-    is_complete: e.target.checked
-    });
+
+  checkboxHandlerList = (e) => {
+    console.log("the the checkbox is being called")
+    fetch(`http://localhost:3001/api/v1/lists/${this.props.id}`, {
+      method: "PATCH",
+      headers: 
+      {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("token")
+      },
+      body: JSON.stringify({
+        name: this.props.name,
+        id: this.props.id,
+        is_complete: e.target.checked
+      })
+    })
+    .then(response => response.json())
+      .then(data => console.log(data))
+        this.setState({ 
+          is_complete : e.target.checked
+        });
   }
+
+  // handleCheckbox = (e) => { 
+  //   console.log("this box is clicked")
+  //   // console.log(e.target.checked)
+  //   this.setState({
+  //   is_complete: e.target.checked
+  //   });
+  // }
   
 
   render() {
@@ -88,7 +111,7 @@ class SingleList extends Component {
                 name="is_complete"
                 type="checkbox"
                 color="default"
-                onChange={this.handleCheckbox}
+                onChange={this.checkboxHandlerList}
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
               />
               <div style={{textDecoration: this.state.is_complete ? "line-through" : "" }}>
