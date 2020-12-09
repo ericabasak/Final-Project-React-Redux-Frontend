@@ -3,7 +3,8 @@ export default function index(
     lists: [],
     loading: false,
     todoItems: [],
-    isComplete: false
+    isComplete: false,
+    username: ""
   },
   action
 ) {
@@ -51,6 +52,16 @@ export default function index(
       return {
         ...state,
         todoItems: action.loading
+      };
+      case "LOAD_GET_CURRENT_USER":
+      return {
+        ...state,
+        loading: true
+      };
+    case "ADD_CURRENT_USER":
+      return {
+        ...state,
+        username: action.username
       };
     default:
       return state;

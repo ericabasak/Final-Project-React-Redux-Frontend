@@ -81,3 +81,24 @@ export const fetchDeleteTodoItem = (id) => {
       })
   }
 }
+
+
+export const fetchCurrentUser = () => {
+  return (dispatch) => {
+    console.log("loading current user")
+    dispatch({ type: 'LOAD_GET_CURRENT_USER' })
+    fetch('http://localhost:3001/api/v1/get_current_user',
+      {
+        headers:
+        {
+          "Authorization": "Bearer " + localStorage.getItem("token")
+        }
+      })
+      .then(response => {
+        return response.json()
+      })
+      .then(username => {
+        dispatch({ type: 'ADD_CURRENT_USER', username: username })
+      })
+  }
+}

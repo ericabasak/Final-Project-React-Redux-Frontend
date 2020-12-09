@@ -60,10 +60,7 @@ class UserLoginForm extends Component {
             <Typography variant="h4" align="center">
               Login
             </Typography> 
-            <h2>{ this.props.username ? 
-               `Logged in as ${ this.props.username }` : 
-                "Not logged in"}
-            </h2>
+  
         </div>
           <form onSubmit={this.handleLoginForm} style={{ textAlign: "center" }}>
             <div>
