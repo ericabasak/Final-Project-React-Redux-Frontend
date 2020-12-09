@@ -22,7 +22,6 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
-    console.log("hello")
     this.getCurrentUser();
   }
 
@@ -40,7 +39,7 @@ class HomePage extends Component {
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data);
+      console.log(data)
       if (data.user) {
       this.setState({
         username: data.user.username,
