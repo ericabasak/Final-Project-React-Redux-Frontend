@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+// import { Link } from '@material-ui/core';
+
 
 class Logout extends Component {
 
@@ -24,7 +26,6 @@ class Logout extends Component {
   render() {
     return(
       <div className="Logout">
-        
       </div>
     )
   }

@@ -22,34 +22,6 @@ class HomePage extends Component {
     email: ""
   }
 
-  componentDidMount() {
-    this.getCurrentUser();
-  }
-
-
-  // understand this inside and out
-  // know basics of react
-  // know state 
-  getCurrentUser = () => {
-    fetch('http://localhost:3001/api/v1/get_current_user', {
-      method: 'GET',
-      headers: 
-      {
-        "Authorization": "Bearer " + localStorage.getItem("token")
-      }
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data)
-      if (data.user) {
-      this.setState({
-        username: data.user.username,
-        email: data.user.email
-      })
-      }
-    })
-  }
-
   render() {
     return (
       <div style={{ textAlign: "center", padding: "90px" }}>

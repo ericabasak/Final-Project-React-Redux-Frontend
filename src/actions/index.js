@@ -97,8 +97,11 @@ export const fetchCurrentUser = () => {
       .then(response => {
         return response.json()
       })
-      .then(username => {
-        dispatch({ type: 'ADD_CURRENT_USER', username: username })
+      .then(response => {
+        console.log(response);
+        if (response.user) {
+          dispatch({ type: 'ADD_CURRENT_USER', user: response.user })
+        } 
       })
   }
 }

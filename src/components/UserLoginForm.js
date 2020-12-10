@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Typography } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
+import { connect } from 'react-redux';
 
 class UserLoginForm extends Component {
 
@@ -37,6 +38,7 @@ class UserLoginForm extends Component {
         } else {
           localStorage.setItem('token', response.token);
           this.props.history.push("/")
+          this.props.setCurrentUser(response.user);
         }
       })
   }
@@ -51,6 +53,10 @@ class UserLoginForm extends Component {
   }
 
   render() {
+    if (this.props.user.username) {
+      this.props.history.push('/');
+    }
+
     return (
       <div className="loginForm">
         <div>
@@ -98,4 +104,20 @@ class UserLoginForm extends Component {
   
 }
 
-export default UserLoginForm;
+const mapStateToProps = state => {
+  return { 
+    user: state.user
+  };
+};
+ 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setCurrentUser: (user) => dispatch({type: 'ADD_CURRENT_USER', user: user})
+  };
+};
+
+// const mapDispatchToProps = dispatch => {
+//   return { increaseCount: () => dispatch({ type: 'INCREASE_COUNT' })};
+// };
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserLoginForm);

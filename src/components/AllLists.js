@@ -22,8 +22,6 @@ class AllLists extends Component {
   // make a fetch call to is_complete
   // making an update to item
   isCompleteHandler = (e) => {
-    console.log(e.target.checked);
-    console.log(e.target.value);
     const id = e.target.value;
     const url = `http://localhost:3001/api/v1/items/${id}`;
     fetch(url, {
@@ -53,9 +51,11 @@ class AllLists extends Component {
       return (<div>Loading...</div>);
     }
 
+    console.log(this.props.lists);
     return(
       <div>
-        {this.props.lists.map((e, index) => <SingleList 
+        <h3>All Todos</h3>
+        {this.props.lists && this.props.lists.map((e, index) => <SingleList 
           key={index} 
           name={e.title} 
           id={e.id} /> 

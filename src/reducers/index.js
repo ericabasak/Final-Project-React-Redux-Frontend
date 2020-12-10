@@ -4,7 +4,7 @@ export default function index(
     loading: false,
     todoItems: [],
     isComplete: false,
-    username: ""
+    user: {},
   },
   action
 ) {
@@ -61,8 +61,13 @@ export default function index(
     case "ADD_CURRENT_USER":
       return {
         ...state,
-        username: action.username
+        user: action.user
       };
+    case "LOGOUT_USER":
+        return {
+          ...state,
+          user: {}
+        };
     default:
       return state;
   }

@@ -8,6 +8,7 @@ import Logout from './components/Logout';
 import MainComponent from './components/MainComponent';
 import { connect } from 'react-redux';
 import './App.css';
+import { fetchCurrentUser } from './actions/index';
 
 class App extends Component {
 
@@ -25,15 +26,17 @@ class App extends Component {
     }
   }
 
-  
+  componentDidMount() {
+    this.props.fetchCurrentUser();
+  }
 
   render() {
     return (
       <BrowserRouter>
         <div className="App">
           <div className="container">
-            <Nav logout={this.logout} />
-            <Logout logout={this.logout}/>
+            <Nav />
+            {/* <h1>{this.props.user.username}</h1> */}
             <Route exact path="/homepage" component={HomePage} />
             <Route exact path="/userloginform" 
               component={UserLoginForm} 
@@ -56,11 +59,20 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  return { todos: state.todos};
+  return { 
+    todos: state.todos,
+    user: state.user,
+  };
 };
  
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchCurrentUser: () => dispatch(fetchCurrentUser())
+  };
+};
+
 // const mapDispatchToProps = dispatch => {
 //   return { increaseCount: () => dispatch({ type: 'INCREASE_COUNT' })};
 // };
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

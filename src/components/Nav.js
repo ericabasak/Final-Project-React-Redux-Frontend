@@ -8,36 +8,9 @@ import { fetchCurrentUser } from '../actions/index';
 
 class Nav extends Component {
 
-  state = {
-    username: ""
-  }
-
-  componentDidMount = () => {
-    this.getCurrentUser();
-  }
-
-  getCurrentUser = () => {
-    fetch('http://localhost:3001/api/v1/get_current_user', {
-      method: 'GET',
-      headers: 
-      {
-        "Authorization": "Bearer " + localStorage.getItem("token")
-      }
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data)
-      if (data.user) {
-      this.setState({
-        username: data.user.username,
-      })
-      }
-    })
-  }
-
-
   logout = () => {
-    localStorage.removeItem("token")
+    localStorage.removeItem("token");
+    this.props.logoutUser();
   }
   
   render() {
@@ -62,9 +35,11 @@ class Nav extends Component {
                   <Link to="/homepage">Home</Link>
                 </Box>
                 &nbsp;
-                <Box color="primary" padding={2} position="right">
+                {!this.props.user.username &&
+                (<Box color="primary" padding={2} position="right">
                   <Link to="/userloginform">Login</Link> 
-                </Box>
+                </Box>)
+                }
                 &nbsp;
                 <Box color="primary" padding={2} position="right">
                   <Link to="/">Main</Link>
@@ -75,7 +50,7 @@ class Nav extends Component {
                 </Box>
             
                 <Box pl={70}>
-                    {this.state.username && <h4>Hi, {this.state.username}</h4>}
+                    {this.props.user.username && <h4>Hi, {this.props.user.username}</h4>}
                   <Button onClick={this.logout} type="submit" label="Logout">Logout</Button>
                 </Box>
           </Toolbar>
@@ -87,14 +62,13 @@ class Nav extends Component {
 
 const mapStateToProps = state => {
   return {
-    username: state.username,
-    loading: state.loading
+    user: state.user,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getCurrentUser: () => dispatch(fetchCurrentUser())
+    logoutUser: () => dispatch({type: 'LOGOUT_USER'})
   };
 };
 
