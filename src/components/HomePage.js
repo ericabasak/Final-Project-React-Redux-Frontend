@@ -27,18 +27,10 @@ class HomePage extends Component {
       <div style={{ textAlign: "center", padding: "90px" }}>
         <h2>Organize your life with TodoApp</h2>
         {this.state.username &&
-          <h4>Welcome, {this.state.username}</h4>
-        }
-
+          <h4>Welcome, {this.state.username}</h4>}
+          
         {!this.state.username &&
           <h5>You are not currently logged in</h5>}
-          {/* <Typography>
-            <Button onClick={() => this.props.history.push("/userloginform")}>Login</Button>
-            &nbsp;
-            or
-            &nbsp;
-            <Button onClick={() => this.props.history.push("/usersignupform")}>Sign up</Button> 
-          </Typography> */}
       </div>
     );
   }

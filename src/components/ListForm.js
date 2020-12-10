@@ -1,7 +1,6 @@
 import { TextField } from '@material-ui/core';
 import React, { Component } from 'react';
 import { Button } from '@material-ui/core';
-// import { v4 as uuidv4 } from 'uuid';
 
 class ListForm extends Component {
 
@@ -37,11 +36,12 @@ class ListForm extends Component {
   // add form for todo item
   todoForm = (title) => {
     const newTodo = {
-      // id: uuidv4(),
       title,
       is_complete: false
     }
-    this.setState({ title: [...this.state.title, newTodo] });
+    this.setState({ 
+      title: [...this.state.title, newTodo]
+    });
   }
 
   render() {
@@ -64,6 +64,5 @@ class ListForm extends Component {
     );
   };
 }
-
 
 export default ListForm;

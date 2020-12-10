@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import SingleList from './SingleList';
-// import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchLists } from '../actions/index';
 

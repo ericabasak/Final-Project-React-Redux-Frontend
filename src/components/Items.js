@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Checkbox from '@material-ui/core/Checkbox';
-import { Grid, Button } from '@material-ui/core';
+import { Grid, Button, Checkbox } from '@material-ui/core';
 import { fetchDeleteTodoItem } from '../actions/index';
 import { connect } from 'react-redux';
 
@@ -96,6 +95,5 @@ const mapDispatchToProps = (dispatch) => {
     deleteHandler: (id) => dispatch(fetchDeleteTodoItem(id))
   };
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Items);

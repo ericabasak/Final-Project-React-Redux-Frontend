@@ -4,7 +4,6 @@ import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
 import { Box } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { fetchCurrentUser } from '../actions/index';
 
 class Nav extends Component {
 
@@ -42,7 +41,7 @@ class Nav extends Component {
                 }
                 &nbsp;
                 <Box color="primary" padding={2} position="right">
-                  <Link to="/">Main</Link>
+                  <Link to="/">Lists</Link>
                 </Box>
                 &nbsp;
                 <Box color="primary" padding={2} position="right">

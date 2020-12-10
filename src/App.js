@@ -4,7 +4,6 @@ import HomePage from './components/HomePage';
 import Nav from './components/Nav';
 import UserLoginForm from './components/UserLoginForm';
 import UserSignupForm from './components/UserSignupForm';
-import Logout from './components/Logout';
 import MainComponent from './components/MainComponent';
 import { connect } from 'react-redux';
 import './App.css';
@@ -70,9 +69,5 @@ const mapDispatchToProps = (dispatch) => {
     fetchCurrentUser: () => dispatch(fetchCurrentUser())
   };
 };
-
-// const mapDispatchToProps = dispatch => {
-//   return { increaseCount: () => dispatch({ type: 'INCREASE_COUNT' })};
-// };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
