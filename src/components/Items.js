@@ -48,9 +48,9 @@ class Items extends Component {
 
   // handler for onclick to delete item
   // fetch request to delete the inidivual item
-  deleteHandler = () => {
+  fetchDeleteTodoItem = (token) => {
     console.log("this button is being clicked")
-    fetch(`http://localhost:3001/api/v1/items/${this.props.id}`, {
+    fetch(`http://localhost:3001/api/v1/items/${token}`, {
       method: "DELETE",
       headers:
       {
@@ -86,13 +86,14 @@ class Items extends Component {
 const mapStateToProps = state => {
   return { 
     todos: state.todos,
-    loading: state.loading
+    loading: state.loading,
+    token: state.token
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deleteHandler: (id) => dispatch(fetchDeleteTodoItem(id))
+    fetchDeleteTodoItem: (token) => dispatch(fetchDeleteTodoItem(token))
   };
 };
 

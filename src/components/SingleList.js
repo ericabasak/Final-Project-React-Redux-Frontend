@@ -14,7 +14,7 @@ class SingleList extends Component {
 
   // retrieve all items from the backend
   componentDidMount() {
-    this.props.fetchDataTodoItems(this.props.id);
+    this.props.fetchTodoItems(this.props.id);
   }
 
   onChange = (e) => {
@@ -158,8 +158,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      fetchDataTodoItems: (id) => dispatch(fetchTodoItems(id)),
-      listCheckboxHandler: (id) => dispatch(fetchIsComplete(id))
+    fetchTodoItems: (token) => dispatch(fetchTodoItems(token)),
+    fetchIsComplete: (token) => dispatch(fetchIsComplete(token))
   };
 };
 

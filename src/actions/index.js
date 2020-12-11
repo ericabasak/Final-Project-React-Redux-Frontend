@@ -28,15 +28,15 @@ export const fetchLists = (token) => {
 }
 
 // fetching all items from each todo
-export const fetchTodoItems = (id) => {
+export const fetchTodoItems = (token) => {
   return (dispatch) => {
     console.log("loading todo items")
     // dispatch({ type: 'LOAD_TODO_ITEMS' })
-    fetch(`http://localhost:3001/api/v1/lists/${id}`,
+    fetch(`http://localhost:3001/api/v1/lists/${token}`,
       {
         headers:
         {
-          "Authorization": "Bearer " + localStorage.getItem("token")
+          "Authorization": "Bearer " + token
         }
       })
       .then(response => {
@@ -49,15 +49,15 @@ export const fetchTodoItems = (id) => {
 }
 
 // is_complete update for lists
-export const fetchIsComplete = (id) => {
+export const fetchIsComplete = (token) => {
   return (dispatch) => {
     console.log("loading is_complete lists")
     dispatch({ type: 'LOAD_IS_COMPLETE_CHECKBOX' })
-    fetch(`http://localhost:3001/api/v1/lists/${id}`,
+    fetch(`http://localhost:3001/api/v1/lists/${token}`,
       {
         headers:
         {
-          "Authorization": "Bearer " + localStorage.getItem("token")
+          "Authorization": "Bearer " + token
         }
       })
       .then(response => {
@@ -70,15 +70,15 @@ export const fetchIsComplete = (id) => {
 }
 
 // deleting an individual todo item
-export const fetchDeleteTodoItem = (id) => {
+export const fetchDeleteTodoItem = (token) => {
   return (dispatch) => {
     console.log("load delete todo items")
     dispatch({ type: 'LOAD_DELETE_TODO_ITEM' })
-    fetch(`http://localhost:3001/api/v1/items/${id}`,
+    fetch(`http://localhost:3001/api/v1/items/${token}`,
       {
         headers:
         {
-          "Authorization": "Bearer " + localStorage.getItem("token")
+          "Authorization": "Bearer " + token
         }
       })
       .then(response => {
