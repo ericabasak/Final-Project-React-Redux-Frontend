@@ -8,6 +8,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.4;
   margin-top: 90px;
+  /* background-image: url("image4.jpg"); */
 }
 
 a {
@@ -17,6 +18,9 @@ a {
 
 .container {
   color: #484030;
+  background-image: url("./components/image4.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .btn {

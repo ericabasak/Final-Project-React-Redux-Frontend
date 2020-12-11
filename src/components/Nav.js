@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
-import { Box } from '@material-ui/core';
-import { Button } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, IconButton, Box, Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 
 class Nav extends Component {
@@ -11,6 +9,10 @@ class Nav extends Component {
     localStorage.removeItem("token");
     this.props.logoutUser();
   }
+
+  // DO THIS --
+  // auth token passed in every function and store in redux instead of local storage
+  // redux for state management
   
   render() {
     return (

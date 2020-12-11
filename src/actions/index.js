@@ -1,5 +1,12 @@
+// to update state, create an action (object with a key type)
+// and pass the action as an arguement to the reducer(the switch/case statement)
+// and that is how you change state
+
+// actions are plain javascript objects that have a type field
+// think of an action as an event that describes something that happend on the frontend
+
 // fetching all todos AKA lists
-export const fetchLists = () => {
+export const fetchLists = (token) => {
   return (dispatch) => {
     console.log("loading lists")
     dispatch({ type: 'LOAD_LISTS' })
@@ -7,13 +14,14 @@ export const fetchLists = () => {
       {
         headers:
         {
-          "Authorization": "Bearer " + localStorage.getItem("token")
+          "Authorization": "Bearer " + token
         }
       })
       .then(response => {
         return response.json()
       })
       .then(lists => {
+        console.log(lists)
         dispatch({ type: 'ADD_LISTS', lists: lists })
       })
   }

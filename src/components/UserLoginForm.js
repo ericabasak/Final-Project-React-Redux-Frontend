@@ -36,7 +36,8 @@ class UserLoginForm extends Component {
           console.log(response)
           alert(response.error)
         } else {
-          localStorage.setItem('token', response.token);
+          // localStorage.setItem('token', response.token);
+          this.props.setToken(response.token)
           this.props.history.push("/")
           this.props.setCurrentUser(response.user);
         }
@@ -106,18 +107,17 @@ class UserLoginForm extends Component {
 
 const mapStateToProps = state => {
   return { 
-    user: state.user
+    user: state.user,
+    token: state.token
+
   };
 };
  
 const mapDispatchToProps = (dispatch) => {
   return {
-    setCurrentUser: (user) => dispatch({type: 'ADD_CURRENT_USER', user: user})
+    setCurrentUser: (user) => dispatch({type: 'ADD_CURRENT_USER', user: user}),
+    setToken: (token) => dispatch({type: 'LOGIN_SUCCESS', token: token})
   };
 };
-
-// const mapDispatchToProps = dispatch => {
-//   return { increaseCount: () => dispatch({ type: 'INCREASE_COUNT' })};
-// };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserLoginForm);

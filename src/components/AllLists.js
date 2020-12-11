@@ -11,11 +11,7 @@ class AllLists extends Component {
   }
 
   componentDidMount() {
-    this.get_lists();
-  }
-
-  get_lists = () => {
-    this.props.fetchData();
+    this.props.fetchLists(this.props.token)
   }
 
   // make a fetch call to is_complete
@@ -67,13 +63,14 @@ class AllLists extends Component {
 const mapStateToProps = state => {
   return { 
     lists: state.lists,
-    loading: state.loading
+    loading: state.loading,
+    token: state.token
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      fetchData: () => dispatch(fetchLists())
+      fetchLists: (token) => dispatch(fetchLists(token))
   };
 };
 

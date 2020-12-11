@@ -5,6 +5,7 @@ export default function index(
     todoItems: [],
     isComplete: false,
     user: {},
+    token: ""
   },
   action
 ) {
@@ -64,12 +65,21 @@ export default function index(
         user: action.user
       };
     case "LOGOUT_USER":
-        return {
-          ...state,
-          user: {}
+      return {
+        ...state,
+        user: {}
+        };
+    case "LOGIN_SUCCESS":
+      return {
+        ...state,
+        token: action.token
         };
     default:
       return state;
   }
 }
  
+// reducers are functions that take a state and an action as arguments
+// and return a new state.
+// reducers are pure functions - only return a value & no side effects
+// reducer always creates a new state object
