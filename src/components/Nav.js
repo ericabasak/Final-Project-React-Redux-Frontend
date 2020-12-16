@@ -1,29 +1,23 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, IconButton, Box, Button } from '@material-ui/core';
-import { connect } from 'react-redux';
+import { AppBar, Toolbar, Typography, IconButton, Box } from '@material-ui/core';
 
 class Nav extends Component {
 
-  logout = () => {
-    localStorage.removeItem("token");
-    this.props.logoutUser();
-  }
-
   // DO THIS --
   // auth token passed in every function and store in redux instead of local storage
-  // redux for state management
+  // redux for state
   
   render() {
     return (
       <div>
         <AppBar 
-        postion="static"
-          style={{
-            postion: "static",
-            backgroundColor: "#bcaaa4", 
-            color: "#484030",
-            boxShadow: "0px 0px 0px 0px"
+          postion="static"
+            style={{
+              postion: "static",
+              backgroundColor: "#bcaaa4", 
+              color: "#484030",
+              boxShadow: "0px 0px 0px 0px"
             }}>
           <Toolbar>
             <IconButton edge="start" aria-label="menu">
@@ -36,11 +30,9 @@ class Nav extends Component {
                   <Link to="/homepage">Home</Link>
                 </Box>
                 &nbsp;
-                {!this.props.user.username &&
-                (<Box color="primary" padding={2} position="right">
+                <Box color="primary" padding={2} position="right">
                   <Link to="/userloginform">Login</Link> 
-                </Box>)
-                }
+                </Box>
                 &nbsp;
                 <Box color="primary" padding={2} position="right">
                   <Link to="/">Lists</Link>
@@ -50,10 +42,7 @@ class Nav extends Component {
                   <Link to="/usersignupform">Signup</Link>
                 </Box>
             
-                <Box pl={70}>
-                    {this.props.user.username && <h4>Hi, {this.props.user.username}</h4>}
-                  <Button onClick={this.logout} type="submit" label="Logout">Logout</Button>
-                </Box>
+                
           </Toolbar>
         </AppBar>
       </div>      
@@ -61,17 +50,7 @@ class Nav extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.user,
-  };
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    logoutUser: () => dispatch({type: 'LOGOUT_USER'})
-  };
-};
+// {!this.props.user.username && line 33}
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(Nav);
+export default Nav;

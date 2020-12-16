@@ -33,7 +33,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getCurrentUser: () => dispatch(fetchCurrentUser())
+    fetchCurrentUser: () => dispatch(fetchCurrentUser())
   };
 };
 

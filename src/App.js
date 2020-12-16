@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import Nav from './components/Nav';
+import Logout from './components/Logout';
 import UserLoginForm from './components/UserLoginForm';
 import UserSignupForm from './components/UserSignupForm';
 import MainComponent from './components/MainComponent';
@@ -35,7 +36,6 @@ class App extends Component {
         <div className="App">
           <div className="container">
             <Nav />
-            {/* <h1>{this.props.user.username}</h1> */}
             <Route exact path="/homepage" component={HomePage} />
             <Route exact path="/userloginform" 
               component={UserLoginForm} 
@@ -44,12 +44,9 @@ class App extends Component {
               username={this.state.loginForm.username}
               password={this.state.loginForm.password} 
               />
-            <Route exact path="/usersignupform" 
-              component={UserSignupForm} 
-            />
-            <Route exact path="/" 
-              component={MainComponent} 
-            />
+            <Route exact path="/usersignupform" component={UserSignupForm} />
+            <Route exact path="/" component={MainComponent} />
+            <Logout />
           </div>
         </div>
       </BrowserRouter>
@@ -60,7 +57,7 @@ class App extends Component {
 const mapStateToProps = state => {
   return { 
     todos: state.todos,
-    user: state.user,
+    user: state.user
   };
 };
  
