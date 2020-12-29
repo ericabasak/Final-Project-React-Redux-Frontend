@@ -5,6 +5,7 @@ import { Box, Button } from '@material-ui/core';
 class Logout extends Component {
 
   logout = () => {
+    console.log("this logout is being called")
     localStorage.removeItem("token");
     this.props.logoutUser();
   }
@@ -12,12 +13,10 @@ class Logout extends Component {
   render() {
     return(
       <div>
-      
-         
-            <Box pl={70}>
-              {this.props.user.username && <h4>Hi, {this.props.user.username}</h4>}
-              <Button onClick={this.logout} type="submit" label="Logout">Logout</Button>
-            </Box>
+        <Box pl={70}>
+          {this.props.user.username && <h4>Hi, {this.props.user.username}</h4>}
+          <Button onClick={this.logout} type="submit" label="Logout">Logout</Button>
+        </Box>
          
       </div>
     );

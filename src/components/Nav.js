@@ -41,8 +41,6 @@ class Nav extends Component {
                 <Box color="primary" padding={2} position="right">
                   <Link to="/usersignupform">Signup</Link>
                 </Box>
-            
-                
           </Toolbar>
         </AppBar>
       </div>      
