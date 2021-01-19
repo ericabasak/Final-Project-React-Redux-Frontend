@@ -15,7 +15,6 @@ class HomePage extends Component {
         <h2>Organize your life with TodoApp</h2>
         {this.props.user.username &&
           <h4>Welcome, {this.props.user.username}</h4>}
-
         {!this.props.user.username &&
           <h5>You are not currently logged in</h5>}
       </div>

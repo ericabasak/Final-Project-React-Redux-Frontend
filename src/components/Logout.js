@@ -17,7 +17,6 @@ class Logout extends Component {
           {this.props.user.username && <h4>Hi, {this.props.user.username}</h4>}
           <Button onClick={this.logout} type="submit" label="Logout">Logout</Button>
         </Box>
-         
       </div>
     );
   }
@@ -34,6 +33,5 @@ const mapDispatchToProps = (dispatch) => {
     logoutUser: () => dispatch({type: 'LOGOUT_USER'})
   };
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Logout);

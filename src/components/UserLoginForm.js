@@ -18,10 +18,9 @@ class UserLoginForm extends Component {
     console.log("it this login form being called?")
     fetch("http://localhost:3001/api/v1/login", {
       method: "POST",
-      credentials: "include",
+      // credentials: "include",
       headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
+        'content-type': 'application/json',
       },
       body: JSON.stringify({
           username: this.state.username,
@@ -32,8 +31,10 @@ class UserLoginForm extends Component {
       .then(response => {
         // set user to state
         //redirect user
+        console.log('receieved response from login');
+        console.log(response);
         if (response.errors) {
-          console.log(response)
+          console.log(response);
           alert(response.error)
         } else {
           // localStorage.setItem('token', response.token);
@@ -44,13 +45,18 @@ class UserLoginForm extends Component {
       })
   }
 
-
   handleUsernameChange = e => {
-    this.setState({username: e.target.value, password: this.state.password })
+    this.setState({
+      username: e.target.value, 
+      password: this.state.password 
+    })
   }
 
   handlePasswordChange = e => {
-    this.setState({password: e.target.value, username: this.state.username })
+    this.setState({
+      password: e.target.value, 
+      username: this.state.username 
+    })
   }
 
   render() {
@@ -67,7 +73,6 @@ class UserLoginForm extends Component {
             <Typography variant="h4" align="center">
               Login
             </Typography> 
-  
         </div>
           <form onSubmit={this.handleLoginForm} style={{ textAlign: "center" }}>
             <div>
@@ -102,14 +107,12 @@ class UserLoginForm extends Component {
       </div>
     )
   }
-  
 }
 
 const mapStateToProps = state => {
   return { 
     user: state.user,
     token: state.token
-
   };
 };
  

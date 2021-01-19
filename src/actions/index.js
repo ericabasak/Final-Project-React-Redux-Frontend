@@ -8,7 +8,8 @@
 // fetching all todos AKA lists
 export const fetchLists = (token) => {
   return (dispatch) => {
-    console.log("loading lists")
+    console.log("loading lists");
+    console.log(token);
     dispatch({ type: 'LOAD_LISTS' })
     fetch('http://localhost:3001/api/v1/lists',
       {
@@ -20,19 +21,23 @@ export const fetchLists = (token) => {
       .then(response => {
         return response.json()
       })
-      .then(lists => {
-        console.log(lists)
-        dispatch({ type: 'ADD_LISTS', lists: lists })
+      .then(response => {
+        if (response.error) {
+          console.log('ERROR: failed to fetch list');
+          return;
+        }
+        console.log(response);
+        dispatch({ type: 'ADD_LISTS', lists: response })
       })
   }
 }
 
 // fetching all items from each todo
-export const fetchTodoItems = (token) => {
+export const fetchTodoItems = (listId, token) => {
   return (dispatch) => {
     console.log("loading todo items")
     // dispatch({ type: 'LOAD_TODO_ITEMS' })
-    fetch(`http://localhost:3001/api/v1/lists/${token}`,
+    fetch(`http://localhost:3001/api/v1/lists/${listId}`,
       {
         headers:
         {
@@ -91,7 +96,7 @@ export const fetchDeleteTodoItem = (token) => {
 }
 
 
-export const fetchCurrentUser = () => {
+export const fetchCurrentUser = (token) => {
   return (dispatch) => {
     console.log("loading current user")
     dispatch({ type: 'LOAD_GET_CURRENT_USER' })
@@ -99,7 +104,7 @@ export const fetchCurrentUser = () => {
       {
         headers:
         {
-          "Authorization": "Bearer " + localStorage.getItem("token")
+          "Authorization": "Bearer " + token
         }
       })
       .then(response => {
@@ -109,7 +114,7 @@ export const fetchCurrentUser = () => {
         console.log(response);
         if (response.user) {
           dispatch({ type: 'ADD_CURRENT_USER', user: response.user })
-        } 
+        } // ELSE REDIRECT USER TO LOGIN PAGE
       })
   }
 }

@@ -48,7 +48,6 @@ class Nav extends Component {
   }
 }
 
-
 // {!this.props.user.username && line 33}
 
 export default Nav;

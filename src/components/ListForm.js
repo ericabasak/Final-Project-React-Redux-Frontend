@@ -12,9 +12,12 @@ class ListForm extends Component {
 
   // update the state by rerendering
   onChangeList = (e) => {
-    this.setState({ title: e.target.value });
+    this.setState({ 
+      title: e.target.value 
+    });
   }
 
+  // convert token for redux, there is no more local storage
   onSubmitList = (e) => {
     e.preventDefault();
     fetch("http://localhost:3001/api/v1/lists", {
