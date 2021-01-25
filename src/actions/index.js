@@ -118,3 +118,25 @@ export const fetchCurrentUser = (token) => {
       })
   }
 }
+
+// to be finished for the listform component - finish converting to redux
+// listform to redux
+export const fetchListForm = (token) => {
+  return (dispatch) => {
+    console.log("loading list form")
+    dispatch({ type: 'LOAD_LIST_FORM' })
+    fetch(`http://localhost:3001/api/v1/lists`,
+      {
+        headers:
+        {
+          "Authorization": "Bearer " + token
+        }
+      })
+      .then(response => {
+        return response.json()
+      })
+      .then(isComplete => {
+        dispatch({ type: 'ADD_LIST_FORM', isComplete: isComplete })
+      })
+  }
+}

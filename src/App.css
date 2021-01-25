@@ -18,9 +18,10 @@ a {
 
 .container {
   color: #484030;
-  background-image: url("./components/image4.jpg");
+  /* background-image: url("./components/image4.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
+  /* opacity: 0.5; */
 }
 
 .btn {

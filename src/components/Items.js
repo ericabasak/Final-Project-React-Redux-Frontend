@@ -72,7 +72,9 @@ class Items extends Component {
               onChange={this.checkboxHandler}
             />
           </Grid>
+
           &nbsp; {this.props.name} {this.props.id}  &nbsp;
+          
           <Grid container justify="flex-end" >
             <Button onClick={this.deleteHandler}
               type="submit" 

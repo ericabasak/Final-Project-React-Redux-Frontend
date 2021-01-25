@@ -9,6 +9,7 @@ class Nav extends Component {
   // redux for state
   
   render() {
+    
     return (
       <div>
         <AppBar 

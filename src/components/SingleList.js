@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import Items from './Items';
-import { Button, Checkbox, TextField, Grid, Paper, Box } from '@material-ui/core';
+import { Button, Checkbox, TextField } from '@material-ui/core';
 
 class SingleList extends Component {
 
   render() {
     return (
-      <Grid container direction="column" justify="center" alignItems="center">
-        <Grid item xm={12}>
-        
+      <div>
             <h2>
               <Checkbox
                 name="is_complete"
@@ -18,7 +16,8 @@ class SingleList extends Component {
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
               />
               <div style={{textDecoration: this.props.is_complete ? "line-through" : "" }}>
-                {this.props.name} {this.props.id}
+                {this.props.name} 
+                {/* {this.props.id} */}
               </div>
             </h2>
             <h4> Items </h4>
@@ -44,9 +43,7 @@ class SingleList extends Component {
                     is_complete={e.is_complete} 
                     />
                   ))}
-  
-        </Grid>
-      </Grid>
+      </div>
     )
   }
 }

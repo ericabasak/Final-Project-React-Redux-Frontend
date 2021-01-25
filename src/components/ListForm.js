@@ -1,5 +1,7 @@
 import { TextField } from '@material-ui/core';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchListForm } from '../actions/index';
 import { Button } from '@material-ui/core';
 
 class ListForm extends Component {
@@ -18,6 +20,7 @@ class ListForm extends Component {
   }
 
   // convert token for redux, there is no more local storage
+  // finish converting to redux store
   onSubmitList = (e) => {
     e.preventDefault();
     fetch("http://localhost:3001/api/v1/lists", {
@@ -68,4 +71,19 @@ class ListForm extends Component {
   };
 }
 
-export default ListForm;
+
+const mapStateToProps = state => {
+  return { 
+    // lists: state.lists,
+    // loading: state.loading,
+    // token: state.token
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchListForm: (token) => dispatch(fetchListForm(token))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListForm);
