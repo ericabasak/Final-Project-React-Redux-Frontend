@@ -19,8 +19,10 @@ class UserLoginForm extends Component {
     fetch("http://localhost:3001/api/v1/login", {
       method: "POST",
       // credentials: "include",
-      headers: {
-        'content-type': 'application/json',
+      headers: 
+      {
+        "Content-type": "application/json",
+        "Accept": "application/json"      
       },
       body: JSON.stringify({
           username: this.state.username,

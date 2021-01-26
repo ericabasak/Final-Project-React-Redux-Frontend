@@ -12,6 +12,10 @@ class ListForm extends Component {
     title: ""
   }
 
+  componentDidMount() {
+    this.props.fetchListForm(this.props.id, this.props.token);
+  }
+
   // update the state by rerendering
   onChangeList = (e) => {
     this.setState({ 
@@ -19,6 +23,7 @@ class ListForm extends Component {
     });
   }
 
+  
   // convert token for redux, there is no more local storage
   // finish converting to redux store
   onSubmitList = (e) => {
@@ -27,6 +32,7 @@ class ListForm extends Component {
       method: "POST",
       headers:
       {
+        "Accept": "application/json",
         "Content-Type": "application/json",
         "Authorization": "Bearer " + localStorage.getItem("token")
       },
@@ -74,15 +80,15 @@ class ListForm extends Component {
 
 const mapStateToProps = state => {
   return { 
-    // lists: state.lists,
-    // loading: state.loading,
-    // token: state.token
+    listForm: state.listForm,
+    loading: state.loading,
+    token: state.token
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchListForm: (token) => dispatch(fetchListForm(token))
+    fetchListForm: (listFormId, token) => dispatch(fetchListForm(listFormId, token))
   };
 };
 

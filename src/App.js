@@ -27,9 +27,9 @@ class App extends Component {
     }
   }
 
-  // componentDidMount() {
-  //   this.props.fetchCurrentUser(this.props.token);
-  // }
+  componentDidMount() {
+    this.props.fetchCurrentUser(this.props.token);
+  }
 
   render() {
     return (
@@ -58,9 +58,9 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return { 
-    todos: state.todos,
-    user: state.user,
-    token: state.token
+    // todos: state.todos,
+    // user: state.user,
+    // token: state.token
   };
 };
  
@@ -69,5 +69,6 @@ const mapDispatchToProps = (dispatch) => {
     fetchCurrentUser: (token) => dispatch(fetchCurrentUser(token))
   };
 };
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

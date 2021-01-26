@@ -74,6 +74,17 @@ export default function index(
         ...state,
         token: action.token
         };
+// write redux for the ListForm page
+    case "LOAD_LIST_FORM":
+      return {
+        ...state,
+        loading: true
+      };
+    case "ADD_LIST_FORM":
+      return {
+        ...state,
+        lists: action.lists,
+      };
     default:
       return state;
   }
