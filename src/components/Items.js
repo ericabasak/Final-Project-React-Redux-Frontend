@@ -1,74 +1,72 @@
 import React, { Component } from 'react';
 import { Grid, Button, Checkbox } from '@material-ui/core';
-import { fetchDeleteTodoItem } from '../actions/index';
-import { connect } from 'react-redux';
 
 class Items extends Component {
-  // initialize state from db
-  // here we are using the constructor method to initialize
-  // state from the parent component - props
-  constructor(props) {
-    super(props); 
-      this.state = {
-        name: props.name,
-        is_complete: props.is_complete,
-        id: props.id
-    }
-  }
+  // // initialize state from db
+  // // here we are using the constructor method to initialize
+  // // state from the parent component - props
+  // constructor(props) {
+  //   super(props); 
+  //     this.state = {
+  //       name: props.name,
+  //       is_complete: props.is_complete,
+  //       id: props.id
+  //   }
+  // }
 
-  getStyle = () => {
-    return {
-      background: '#f4f4f4',
-      padding: '10px',
-      borderBottom: '1px #ccc dotted',
-    }
-  }
+  // getStyle = () => {
+  //   return {
+  //     background: '#f4f4f4',
+  //     padding: '10px',
+  //     borderBottom: '1px #ccc dotted',
+  //   }
+  // }
 
-  checkboxHandler = (e) => {
-    console.log("the the checkbox is being called")
-    fetch(`http://localhost:3001/api/v1/items/${this.props.id}`, {
-      method: "PATCH",
-      headers: 
-      {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("token")
-      },
-      body: JSON.stringify({
-        name: this.state.name,
-        list_id: this.props.id,
-        is_complete: e.target.checked
-      })
-    })
-    .then(response => response.json())
-      .then(data => console.log(data))
-        this.setState({ 
-          is_complete : !this.state.is_complete
-        });
-  }
+  // checkboxHandler = (e) => {
+  //   console.log("the the checkbox is being called")
+  //   fetch(`http://localhost:3001/api/v1/items/${this.props.id}`, {
+  //     method: "PATCH",
+  //     headers: 
+  //     {
+  //       "Content-Type": "application/json",
+  //       "Authorization": "Bearer " + localStorage.getItem("token")
+  //     },
+  //     body: JSON.stringify({
+  //       name: this.state.name,
+  //       list_id: this.props.id,
+  //       is_complete: e.target.checked
+  //     })
+  //   })
+  //   .then(response => response.json())
+  //     .then(data => console.log(data))
+  //       this.setState({ 
+  //         is_complete : !this.state.is_complete
+  //       });
+  // }
 
-  // handler for onclick to delete item
-  // fetch request to delete the inidivual item
-  fetchDeleteTodoItem = (token) => {
-    console.log("this button is being clicked")
-    fetch(`http://localhost:3001/api/v1/items/${token}`, {
-      method: "DELETE",
-      headers:
-      {
-        "Authorization": "Bearer " + localStorage.getItem("token")
-      }
-    })
-    .then(response => response.json())
-  }
+  // // handler for onclick to delete item
+  // // fetch request to delete the inidivual item
+  // fetchDeleteTodoItem = (token) => {
+  //   console.log("this button is being clicked")
+  //   fetch(`http://localhost:3001/api/v1/items/${token}`, {
+  //     method: "DELETE",
+  //     headers:
+  //     {
+  //       "Authorization": "Bearer " + localStorage.getItem("token")
+  //     }
+  //   })
+  //   .then(response => response.json())
+  // }
 
   render() {
     return (
-      <div style={this.getStyle()} >
+      <div>
           <Grid container item xs={12}>
             <Checkbox 
               name="is_complete"
               type="checkbox"
               color="default"
-              checked={this.state.is_complete}
+              checked={this.props.is_complete}
               onChange={this.checkboxHandler}
             />
           </Grid>
@@ -85,18 +83,18 @@ class Items extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return { 
-    todos: state.todos,
-    loading: state.loading,
-    token: state.token
-  };
-};
+// const mapStateToProps = state => {
+//   return { 
+//     todos: state.todos,
+//     loading: state.loading,
+//     token: state.token
+//   };
+// };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchDeleteTodoItem: (token) => dispatch(fetchDeleteTodoItem(token))
-  };
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     fetchDeleteTodoItem: (token) => dispatch(fetchDeleteTodoItem(token))
+//   };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Items);
+export default Items;
