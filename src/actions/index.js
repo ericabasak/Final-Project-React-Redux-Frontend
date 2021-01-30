@@ -105,6 +105,7 @@ export const fetchCurrentUser = (token) => {
         headers:
         {
           "Authorization": "Bearer " + token
+          // token: localStorage.getItem('token')
         }
       })
       .then(response => {
@@ -114,7 +115,10 @@ export const fetchCurrentUser = (token) => {
         console.log(response);
         if (response.user) {
           dispatch({ type: 'ADD_CURRENT_USER', user: response.user })
-        } // ELSE REDIRECT USER TO LOGIN PAGE
+        }
+        // } else {
+        //   dispatch.push("/userloginform")
+        // }
       })
   }
 }
