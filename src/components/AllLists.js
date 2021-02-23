@@ -6,7 +6,6 @@ import { fetchLists } from '../actions/index';
 class AllLists extends Component {
   
   state = {
-    lists: [],
     todos: ""
   }
 
@@ -50,6 +49,7 @@ class AllLists extends Component {
     return(
       <div>
         <h3>All Todos</h3>
+        
         {this.props.lists && this.props.lists.map((e, index) => <SingleListContainer 
           key={index} 
           name={e.title} 

@@ -6,7 +6,6 @@ class Logout extends Component {
 
   logout = () => {
     // console.log("this logout is being called")
-    localStorage.removeItem("token");
     this.props.logoutUser();
   }
 

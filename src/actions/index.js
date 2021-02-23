@@ -35,7 +35,7 @@ export const fetchLists = (token) => {
 // fetching all items from each todo
 export const fetchTodoItems = (listId, token) => {
   return (dispatch) => {
-    console.log("loading todo items")
+    console.log("loading todo items " + listId);
     // dispatch({ type: 'LOAD_TODO_ITEMS' })
     fetch(`http://localhost:3001/api/v1/lists/${listId}`,
       {

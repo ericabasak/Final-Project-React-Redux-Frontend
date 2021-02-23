@@ -10,8 +10,10 @@ class SingleListContainer extends Component {
     is_complete: false
   }
 
+
   // retrieve all items from the backend
   componentDidMount() {
+    console.log(this.props.id)
     this.props.fetchTodoItems(this.props.id, this.props.token);
   }
 

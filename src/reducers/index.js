@@ -5,7 +5,7 @@ export default function index(
     todoItems: [],
     isComplete: false,
     user: {},
-    token: ""
+    token: localStorage.getItem("token")
   },
   action
 ) {
@@ -65,14 +65,18 @@ export default function index(
         user: action.user
       };
     case "LOGOUT_USER":
-      return {
-        ...state,
-        user: {}
+        localStorage.removeItem('token');
+        return {
+          ...state,
+          user: {},
+          token: undefined
         };
     case "LOGIN_SUCCESS":
+      localStorage.setItem("token", action.token)
       return {
         ...state,
         token: action.token
+        // token: localStorage.getItem("token")
         };
 // write redux for the ListForm page
     case "LOAD_LIST_FORM":

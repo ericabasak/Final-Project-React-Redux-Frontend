@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Button, Typography } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
+import { Button, Typography, TextField } from '@material-ui/core';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 class UserLoginForm extends Component {
-
+ 
   state = {
     username: "",
     password: ""
@@ -41,8 +41,10 @@ class UserLoginForm extends Component {
         } else {
           // localStorage.setItem('token', response.token);
           this.props.setToken(response.token)
-          this.props.history.push("/")
           this.props.setCurrentUser(response.user);
+          // const { history } = this.props;
+          // history.push("/")
+          this.props.history.push("/")
         }
       })
   }
@@ -62,8 +64,11 @@ class UserLoginForm extends Component {
   }
 
   render() {
+    // const { history } = this.props;
+    console.log(this.props);
+    
     if (this.props.user.username) {
-      this.props.history.push('/');
+      this.props.history.push("/")
     }
 
     return (
@@ -111,7 +116,9 @@ class UserLoginForm extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, props) => {
+  console.log(props);
+  
   return { 
     user: state.user,
     token: state.token
@@ -125,4 +132,5 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
+// export default withRouter(connect(mapStateToProps, mapDispatchToProps))(UserLoginForm);
 export default connect(mapStateToProps, mapDispatchToProps)(UserLoginForm);

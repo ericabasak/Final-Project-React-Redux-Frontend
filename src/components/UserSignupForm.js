@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
+import { Button, TextField } from '@material-ui/core';
 
 class UserSignupForm extends Component {
 

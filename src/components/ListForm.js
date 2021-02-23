@@ -1,8 +1,7 @@
-import { TextField } from '@material-ui/core';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchListForm } from '../actions/index';
-import { Button } from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
 
 class ListForm extends Component {
 
@@ -12,9 +11,9 @@ class ListForm extends Component {
     title: ""
   }
 
-  componentDidMount() {
-    this.props.fetchListForm(this.props.id, this.props.token);
-  }
+  // componentDidMount() {
+  //   this.props.fetchListForm(this.props.id, this.props.token);
+  // }
 
   // update the state by rerendering
   onChangeList = (e) => {
