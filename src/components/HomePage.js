@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCurrentUser } from '../actions/index';
-
 import Logout from './Logout';
 import UserLoginForm from './UserLoginForm';
 
