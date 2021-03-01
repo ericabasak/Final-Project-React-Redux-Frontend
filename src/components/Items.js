@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Button, Checkbox } from '@material-ui/core';
+import { Button, Checkbox } from '@material-ui/core';
 
 class Items extends Component {
   // // initialize state from db
@@ -59,25 +59,25 @@ class Items extends Component {
   // }
 
   render() {
+    console.log("the delete is being clicked")
+    console.log("the checkbox is being clicked")
+
     return (
+
       <div>
-          <Grid container item xs={12}>
             <Checkbox 
               name="is_complete"
               type="checkbox"
               color="default"
-              checked={this.props.is_complete}
+              checked={this.is_complete}
               onChange={this.checkboxHandler}
             />
-          </Grid>
 
           &nbsp; {this.props.name} {this.props.id}  &nbsp;
           
-          <Grid container justify="flex-end" >
             <Button onClick={this.deleteHandler}
               type="submit" 
               label="Delete">Delete</Button>
-          </Grid>
       </div>
     )
   }
