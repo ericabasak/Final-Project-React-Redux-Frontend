@@ -75,12 +75,13 @@ export const fetchIsComplete = (token) => {
 }
 
 // deleting an individual todo item
-export const fetchDeleteTodoItem = (token) => {
+export const fetchDeleteTodoItem = (id, token) => {
   return (dispatch) => {
     console.log("load delete todo items")
     dispatch({ type: 'LOAD_DELETE_TODO_ITEM' })
-    fetch(`http://localhost:3001/api/v1/items/${token}`,
+    fetch(`http://localhost:3001/api/v1/items/${id}`,
       {
+        method: "DELETE",
         headers:
         {
           "Authorization": "Bearer " + token
@@ -89,8 +90,9 @@ export const fetchDeleteTodoItem = (token) => {
       .then(response => {
         return response.json()
       })
-      .then(todos => {
-        dispatch({ type: 'DELETE_TODO_ITEM', todos: todos })
+      .then(response => {
+        console.log(response);
+        dispatch({ type: 'DELETE_TODO_ITEM', todo: response })
       })
   }
 }

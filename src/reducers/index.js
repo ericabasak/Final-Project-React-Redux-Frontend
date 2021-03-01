@@ -50,9 +50,12 @@ export default function index(
         loading: true
       };
     case "DELETE_TODO_ITEM":
+      const todoItems = state.todoItems.filter(i => i.id !== action.todo.id);
+      console.log(todoItems);
       return {
         ...state,
-        todoItems: action.loading
+        loading: false,
+        todoItems: []
       };
       case "LOAD_GET_CURRENT_USER":
       return {

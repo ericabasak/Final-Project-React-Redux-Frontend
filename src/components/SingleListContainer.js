@@ -13,7 +13,7 @@ class SingleListContainer extends Component {
 
   // retrieve all items from the backend
   componentDidMount() {
-    console.log(this.props.id)
+    console.log(this.props.id);
     this.props.fetchTodoItems(this.props.id, this.props.token);
   }
 
@@ -89,7 +89,7 @@ class SingleListContainer extends Component {
   //   is_complete: e.target.checked
   //   });
   // }
-  
+
 
   render() {
     // console.log(this.state)
@@ -99,7 +99,7 @@ class SingleListContainer extends Component {
       return x.list_id === this.props.id
     });
     // console.log(items)
-
+    
     return ( 
       <SingleList 
         items={items} 
@@ -108,7 +108,7 @@ class SingleListContainer extends Component {
         id={this.props.id}
         is_complete={this.state.is_complete}
         onChange={this.onChange}
-      checkboxHandlerList={this.checkboxHandlerList}/>)  
+        checkboxHandlerList={this.checkboxHandlerList}/>)  
   }
 }
 
@@ -125,6 +125,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchTodoItems: (listId, token) => dispatch(fetchTodoItems(listId, token)),
     fetchIsComplete: (token) => dispatch(fetchIsComplete(token))
+
   };
 };
 
