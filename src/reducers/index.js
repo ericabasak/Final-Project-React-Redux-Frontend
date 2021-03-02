@@ -81,7 +81,18 @@ export default function index(
         token: action.token
         // token: localStorage.getItem("token")
         };
-// write redux for the ListForm page
+        // this is when an item or todo is added or created to a list
+    case "LOAD_TODO_ITEM_SUBMIT":
+      return {
+        ...state,
+        loading: true
+      };
+    case "ADD_TODO_ITEM_SUBMIT":
+      return {
+        ...state,
+        todoItems: state.todoItems.concat(action.todo),
+        loading: false
+      };
     case "LOAD_LIST_FORM":
       return {
         ...state,
@@ -90,7 +101,7 @@ export default function index(
     case "ADD_LIST_FORM":
       return {
         ...state,
-        lists: action.lists,
+        lists: action.lists
       };
     default:
       return state;

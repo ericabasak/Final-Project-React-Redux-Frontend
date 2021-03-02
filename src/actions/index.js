@@ -146,3 +146,25 @@ export const fetchListForm = (listFormId, token) => {
       })
   }
 }
+
+// adding a item(todo) 
+export const fetchTodoHandleSubmit = (id, name, token) => {
+  return (dispatch) => {
+    console.log("creating todo items");
+    // dispatch({ type: 'LOAD_TODO_ITEM_SUBMIT' })
+    fetch("http://localhost:3001/api/v1/items", {
+      method: "POST",
+      headers:
+      {
+        "Authorization": "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ item: { list_id: id, name: name, is_complete: false }} )
+    }).then(response => {
+        return response.json()
+      }).then(item => {
+        console.log(item);
+        dispatch({ type: 'ADD_TODO_ITEM_SUBMIT', todo: item });
+      })
+  }
+}

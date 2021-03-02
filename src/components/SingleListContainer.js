@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchTodoItems, fetchIsComplete } from '../actions/index';
+import { fetchTodoItems, fetchIsComplete, fetchTodoHandleSubmit } from '../actions/index';
 import { connect } from 'react-redux';
 import SingleList from './SingleList';
 
@@ -10,7 +10,6 @@ class SingleListContainer extends Component {
     is_complete: false
   }
 
-
   // retrieve all items from the backend
   componentDidMount() {
     console.log(this.props.id);
@@ -18,34 +17,43 @@ class SingleListContainer extends Component {
   }
 
   onChange = (e) => {
+    console.log(e.target.value);
     this.setState({ name: e.target.value });
   }
 
-  // create a item associated to a list
+
+// handler for when an item or todo is created within a list
   handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:3001/api/v1/items", {
-      method: "POST",
-      headers:
-      {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("token")
-      },
-      body: JSON.stringify({
-        name: this.state.name,
-        list_id: this.props.id,
-        is_complete: false
-      })
-    })
-      .then(response => response.json())
-      .then(data => console.log(data))
-    this.listTodo(this.state.name);
-    this.setState({
-      name: "",
-      is_complete: false
-    });
+    console.log("this todo handle is being submited");
+    this.props.fetchTodoHandleSubmit(this.props.id, this.state.name, this.props.token);
   }
+
+  // create a item associated to a list
+  // handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   fetch("http://localhost:3001/api/v1/items", {
+  //     method: "POST",
+  //     headers:
+  //     {
+  //       "Accept": "application/json",
+  //       "Content-Type": "application/json",
+  //       "Authorization": "Bearer " + localStorage.getItem("token")
+  //     },
+  //     body: JSON.stringify({
+  //       name: this.state.name,
+  //       list_id: this.props.id,
+  //       is_complete: false
+  //     })
+  //   })
+  //     .then(response => response.json())
+  //     .then(data => console.log(data))
+  //   this.listTodo(this.state.name);
+  //   this.setState({
+  //     name: "",
+  //     is_complete: false
+  //   });
+  // }
 
   listTodo = (name) => {
     const newItem = {
@@ -108,7 +116,8 @@ class SingleListContainer extends Component {
         id={this.props.id}
         is_complete={this.state.is_complete}
         onChange={this.onChange}
-        checkboxHandlerList={this.checkboxHandlerList}/>)  
+        value={this.state.name}
+        checkboxHandlerList={this.checkboxHandlerList} />)  
   }
 }
 
@@ -124,8 +133,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchTodoItems: (listId, token) => dispatch(fetchTodoItems(listId, token)),
-    fetchIsComplete: (token) => dispatch(fetchIsComplete(token))
-
+    fetchIsComplete: (token) => dispatch(fetchIsComplete(token)),
+    fetchTodoHandleSubmit: (id, name, token) =>dispatch(fetchTodoHandleSubmit(id, name, token))
   };
 };
 
