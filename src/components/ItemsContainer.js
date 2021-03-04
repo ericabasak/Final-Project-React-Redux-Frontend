@@ -25,6 +25,7 @@ class ItemsContainer extends Component {
     }
   }
 
+
   checkboxHandler = (e) => {
     console.log("the the checkbox is being called")
     fetch(`http://localhost:3001/api/v1/items/${this.props.id}`, {
@@ -63,7 +64,7 @@ class ItemsContainer extends Component {
 
   render() {
     return (
-      <div style={this.getStyle()} >
+     <div style={this.getStyle()} >
           &nbsp; {this.props.name} {this.props.id}  &nbsp;
       </div>
     )

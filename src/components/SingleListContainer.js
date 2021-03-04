@@ -29,6 +29,8 @@ class SingleListContainer extends Component {
     this.props.fetchTodoHandleSubmit(this.props.id, this.state.name, this.props.token);
   }
 
+
+
   // create a item associated to a list
   // handleSubmit = (e) => {
   //   e.preventDefault();
@@ -68,8 +70,10 @@ class SingleListContainer extends Component {
     });
   }
 
+
+  // get this to work and then convert to redux
   checkboxHandlerList = (e) => {
-    console.log("the the checkbox is being called")
+    console.log("the the checkbox is being called for list")
     fetch(`http://localhost:3001/api/v1/lists/${this.props.id}`, {
       method: "PATCH",
       headers: 
@@ -117,7 +121,9 @@ class SingleListContainer extends Component {
         is_complete={this.state.is_complete}
         onChange={this.onChange}
         value={this.state.name}
-        checkboxHandlerList={this.checkboxHandlerList} />)  
+        checkboxHandlerList={this.checkboxHandlerList} 
+      />
+    )  
   }
 }
 

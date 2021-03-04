@@ -7,44 +7,32 @@ class Items extends Component {
   // // initialize state from db
   // // here we are using the constructor method to initialize
   // // state from the parent component - props
-  // constructor(props) {
-  //   super(props); 
-  //     this.state = {
-  //       name: props.name,
-  //       is_complete: props.is_complete,
-  //       id: props.id
-  //   }
-  // }
+  constructor(props) {
+    super(props); 
+      this.state = {
+        is_complete: props.is_complete
+    }
+  }
 
-  // getStyle = () => {
-  //   return {
-  //     background: '#f4f4f4',
-  //     padding: '10px',
-  //     borderBottom: '1px #ccc dotted',
-  //   }
-  // }
-
-  // checkboxHandler = (e) => {
-  //   console.log("the the checkbox is being called")
-  //   fetch(`http://localhost:3001/api/v1/items/${this.props.id}`, {
-  //     method: "PATCH",
-  //     headers: 
-  //     {
-  //       "Content-Type": "application/json",
-  //       "Authorization": "Bearer " + localStorage.getItem("token")
-  //     },
-  //     body: JSON.stringify({
-  //       name: this.state.name,
-  //       list_id: this.props.id,
-  //       is_complete: e.target.checked
-  //     })
-  //   })
-  //   .then(response => response.json())
-  //     .then(data => console.log(data))
-  //       this.setState({ 
-  //         is_complete : !this.state.is_complete
-  //       });
-  // }
+  checkboxHandler = (e) => {
+    console.log("the the checkbox is being called")
+    fetch(`http://localhost:3001/api/v1/items/${this.props.id}`, {
+      method: "PATCH",
+      headers: 
+      {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("token")
+      },
+      body: JSON.stringify({
+        is_complete: e.target.checked
+      })
+    })
+    .then(response => response.json())
+      .then(data => console.log(data));
+        this.setState({ 
+          is_complete : !this.state.is_complete
+        });
+  }
 
   // handler for onclick to delete item
   // fetch request to delete the inidivual item
@@ -79,9 +67,9 @@ class Items extends Component {
     //   })
     this.props.fetchDeleteTodoItem(this.props.id, localStorage.getItem("token"));
   }
-
+  
   render() {
-    console.log(this.props);
+    // console.log(this.props);
 
     return(
       <div>
@@ -89,7 +77,7 @@ class Items extends Component {
           name="is_complete"
           type="checkbox"
           color="default"
-          checked={this.is_complete}
+          checked={this.state.is_complete}
           onChange={this.checkboxHandler}
         />
           &nbsp; {this.props.name} {this.props.id}  &nbsp;
@@ -116,4 +104,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Items);
-// export default Items;

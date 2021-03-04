@@ -6,7 +6,8 @@ import { fetchLists } from '../actions/index';
 class AllLists extends Component {
   
   state = {
-    todos: ""
+    todos: "",
+    is_complete: false
   }
 
   componentDidMount() {
@@ -16,16 +17,18 @@ class AllLists extends Component {
   // make a fetch call to is_complete
   // making an update to item
   isCompleteHandler = (e) => {
-    const id = e.target.value;
-    const url = `http://localhost:3001/api/v1/items/${id}`;
-    fetch(url, {
+    console.log("the the checkbox is being called for an item")
+    // const id = e.target.value;
+    // const url = `http://localhost:3001/api/v1/items/${id}`;
+    fetch(`http://localhost:3001/api/v1/items/${this.props.id}`, {
       method: "PATCH",
       headers:
       {
+        "Content-Type": "application/json",
         "Authorization": "Bearer " + localStorage.getItem("token")
       },
       body: JSON.stringify({
-        id: e.target.value,
+        id: this.props.id,
         is_complete: e.target.checked
       })
     })
@@ -39,6 +42,14 @@ class AllLists extends Component {
         this.setState({ todos: oldTodos })
       })
   }
+
+
+  isCompleteItemHandler = (e) => {
+    console.log("the checkbox for the item is being clicked");
+    e.preventDefault();
+    this.props.isCompleteHandler(this.props.id)
+  }
+
   
   render() {
     if (this.props.loading) {
@@ -49,11 +60,12 @@ class AllLists extends Component {
     return(
       <div>
         <h3>All Todos</h3>
-        
-        {this.props.lists && this.props.lists.map((e, index) => <SingleListContainer 
-          key={index} 
-          name={e.title} 
-          id={e.id} /> 
+        {this.props.lists && this.props.lists.map((e, index) => 
+         <SingleListContainer 
+            key={index} 
+            name={e.title} 
+            id={e.id} 
+          /> 
         )}
       </div>
     )
