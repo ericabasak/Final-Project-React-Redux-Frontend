@@ -34,12 +34,12 @@ export default function index(
         todoItems: state.todoItems.concat(action.todoItems),
         loading: false
       };
-    case "LOAD_IS_COMPLETE_CHECKBOX":
+    case "LOAD_IS_COMPLETE_CHECKBOX_LIST":
       return {
         ...state,
         loading: true
       };
-    case "ADD_IS_COMPLETE_CHECKBOX":
+    case "ADD_IS_COMPLETE_CHECKBOX_LIST":
       return {
         ...state,
         isComplete: action.isComplete
@@ -102,6 +102,17 @@ export default function index(
       return {
         ...state,
         lists: action.lists
+      };
+// update the checkbox for an item
+    case "LOAD_IS_COMPLETE_TODO_ITEM":
+      return {
+        ...state,
+        loading: true
+      };
+    case "ADD_IS_COMPLETE_TODO_ITEM":
+      return {
+        ...state,
+        isComplete: action.isComplete
       };
     default:
       return state;

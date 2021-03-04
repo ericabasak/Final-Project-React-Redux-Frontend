@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { fetchDeleteTodoItem } from '../actions/index';
 import { connect } from 'react-redux';
-import Items from './Items';
-
 
 class ItemsContainer extends Component {
   // initialize state from db
@@ -23,29 +21,6 @@ class ItemsContainer extends Component {
       padding: '10px',
       borderBottom: '1px #ccc dotted',
     }
-  }
-
-
-  checkboxHandler = (e) => {
-    console.log("the the checkbox is being called")
-    fetch(`http://localhost:3001/api/v1/items/${this.props.id}`, {
-      method: "PATCH",
-      headers: 
-      {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("token")
-      },
-      body: JSON.stringify({
-        name: this.state.name,
-        list_id: this.props.id,
-        is_complete: e.target.checked
-      })
-    })
-    .then(response => response.json())
-      .then(data => console.log(data))
-        this.setState({ 
-          is_complete : !this.state.is_complete
-        });
   }
 
   // handler for onclick to delete item

@@ -57,7 +57,7 @@ export const fetchTodoItems = (listId, token) => {
 export const fetchIsComplete = (token) => {
   return (dispatch) => {
     console.log("loading is_complete lists")
-    dispatch({ type: 'LOAD_IS_COMPLETE_CHECKBOX' })
+    dispatch({ type: 'LOAD_IS_COMPLETE_CHECKBOX_LIST' })
     fetch(`http://localhost:3001/api/v1/lists/${token}`,
       {
         headers:
@@ -69,7 +69,7 @@ export const fetchIsComplete = (token) => {
         return response.json()
       })
       .then(isComplete => {
-        dispatch({ type: 'ADD_IS_COMPLETE_CHECKBOX', isComplete: isComplete })
+        dispatch({ type: 'ADD_IS_COMPLETE_CHECKBOX_LIST', isComplete: isComplete })
       })
   }
 }
@@ -96,6 +96,35 @@ export const fetchDeleteTodoItem = (id, token) => {
       })
   }
 }
+
+
+// this is for updating an item/todo's checkbox 
+export const fetchUpdateCheckboxHandler = (id) => {
+  return (dispatch) => {
+    console.log("updating a checkbox for an item")
+    dispatch({ type: 'LOAD_IS_COMPLETE_TODO_ITEM' })
+    fetch(`http://localhost:3001/api/v1/items/${id}`, {
+      method: "PATCH",
+      headers: 
+      {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("token")
+      },
+      body: JSON.stringify({
+        item: { is_complete: false }
+      })
+    })
+    .then(response => {
+      return response.json()
+    })
+    .then(isComplete => {
+      dispatch({ type: "ADD_IS_COMPLETE_TODO_ITEM", isComplete: isComplete })
+    })
+  }
+}
+
+
+
 
 
 export const fetchCurrentUser = (token) => {
@@ -159,7 +188,13 @@ export const fetchTodoHandleSubmit = (id, name, token) => {
         "Authorization": "Bearer " + token,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ item: { list_id: id, name: name, is_complete: false }} )
+      body: JSON.stringify({ 
+        item: { 
+          list_id: id, 
+          name: name, 
+          is_complete: false 
+        }} 
+      )
     }).then(response => {
         return response.json()
       }).then(item => {

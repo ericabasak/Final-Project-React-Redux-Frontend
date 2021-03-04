@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Checkbox } from '@material-ui/core';
-import { fetchDeleteTodoItem } from '../actions';
+import { fetchDeleteTodoItem, fetchUpdateCheckboxHandler } from '../actions';
 import { connect } from 'react-redux';
 
 class Items extends Component {
@@ -14,24 +14,27 @@ class Items extends Component {
     }
   }
 
+  // put this into the redux action
   checkboxHandler = (e) => {
-    console.log("the the checkbox is being called")
-    fetch(`http://localhost:3001/api/v1/items/${this.props.id}`, {
-      method: "PATCH",
-      headers: 
-      {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("token")
-      },
-      body: JSON.stringify({
-        is_complete: e.target.checked
-      })
-    })
-    .then(response => response.json())
-      .then(data => console.log(data));
-        this.setState({ 
-          is_complete : !this.state.is_complete
-        });
+    console.log("the the checkbox is being called for an item")
+    e.preventDefault();
+    // fetch(`http://localhost:3001/api/v1/items/${this.props.id}`, {
+    //   method: "PATCH",
+    //   headers: 
+    //   {
+    //     "Content-Type": "application/json",
+    //     "Authorization": "Bearer " + localStorage.getItem("token")
+    //   },
+    //   body: JSON.stringify({
+    //     is_complete: e.target.checked
+    //   })
+    // })
+    // .then(response => response.json())
+    //   .then(data => console.log(data));
+    //     this.setState({ 
+    //       is_complete : !this.state.is_complete
+    //     });
+    this.props.fetchUpdateCheckboxHandler(this.props.id, this.props.token);
   }
 
   // handler for onclick to delete item
@@ -93,13 +96,15 @@ const mapStateToProps = state => {
   return { 
     todos: state.todos,
     loading: state.loading,
+    isComplete: state.isComplete,
     token: state.token
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchDeleteTodoItem: (id, token) => dispatch(fetchDeleteTodoItem(id, token))
+    fetchDeleteTodoItem: (id, token) => dispatch(fetchDeleteTodoItem(id, token)),
+    fetchUpdateCheckboxHandler: (token) => dispatch(fetchUpdateCheckboxHandler(token))
   };
 };
 

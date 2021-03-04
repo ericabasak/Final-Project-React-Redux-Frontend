@@ -58,7 +58,7 @@ class App extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(ownProps);
+  // console.log(ownProps);
   return { 
     // todos: state.todos,
     // user: state.user,
