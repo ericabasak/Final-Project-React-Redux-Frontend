@@ -18,23 +18,10 @@ class Items extends Component {
   checkboxHandler = (e) => {
     console.log("the the checkbox is being called for an item")
     e.preventDefault();
-    // fetch(`http://localhost:3001/api/v1/items/${this.props.id}`, {
-    //   method: "PATCH",
-    //   headers: 
-    //   {
-    //     "Content-Type": "application/json",
-    //     "Authorization": "Bearer " + localStorage.getItem("token")
-    //   },
-    //   body: JSON.stringify({
-    //     is_complete: e.target.checked
-    //   })
-    // })
-    // .then(response => response.json())
-    //   .then(data => console.log(data));
-    //     this.setState({ 
-    //       is_complete : !this.state.is_complete
-    //     });
-    this.props.fetchUpdateCheckboxHandler(this.props.id, this.props.token);
+    this.setState({is_complete: !this.state.is_complete}, () => {
+      this.props.fetchUpdateCheckboxHandler(
+        this.props.id, this.props.token, this.state.is_complete);
+    });
   }
 
   // handler for onclick to delete item
@@ -104,7 +91,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchDeleteTodoItem: (id, token) => dispatch(fetchDeleteTodoItem(id, token)),
-    fetchUpdateCheckboxHandler: (token) => dispatch(fetchUpdateCheckboxHandler(token))
+    fetchUpdateCheckboxHandler: (id, token, is_complete) => dispatch(fetchUpdateCheckboxHandler(id, token, is_complete))
   };
 };
 

@@ -104,15 +104,16 @@ export default function index(
         lists: action.lists
       };
 // update the checkbox for an item
-    case "LOAD_IS_COMPLETE_TODO_ITEM":
+    case "UPDATE_TODO_ITEM":
+      console.log(action);
+      const updateItem = state.todoItems.filter((item) => item.id === action.todo.id);
+      console.log(updateItem);
       return {
-        ...state,
-        loading: true
-      };
-    case "ADD_IS_COMPLETE_TODO_ITEM":
-      return {
-        ...state,
-        isComplete: action.isComplete
+            ...state,
+            isComplete: action.todo,
+            loading: false,
+      //   // updateItem: action.updateItem
+      //   // isComplete: action.todo
       };
     default:
       return state;

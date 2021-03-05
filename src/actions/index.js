@@ -99,10 +99,9 @@ export const fetchDeleteTodoItem = (id, token) => {
 
 
 // this is for updating an item/todo's checkbox 
-export const fetchUpdateCheckboxHandler = (id) => {
+export const fetchUpdateCheckboxHandler = (id, token, is_complete) => {
   return (dispatch) => {
-    console.log("updating a checkbox for an item")
-    dispatch({ type: 'LOAD_IS_COMPLETE_TODO_ITEM' })
+    console.log("updating a checkbox for an item - " + is_complete);
     fetch(`http://localhost:3001/api/v1/items/${id}`, {
       method: "PATCH",
       headers: 
@@ -111,14 +110,14 @@ export const fetchUpdateCheckboxHandler = (id) => {
         "Authorization": "Bearer " + localStorage.getItem("token")
       },
       body: JSON.stringify({
-        item: { is_complete: false }
+        item: { is_complete: is_complete }
       })
     })
     .then(response => {
       return response.json()
     })
-    .then(isComplete => {
-      dispatch({ type: "ADD_IS_COMPLETE_TODO_ITEM", isComplete: isComplete })
+    .then(response => {
+      dispatch({ type: "UPDATE_TODO_ITEM", todo: response })
     })
   }
 }
@@ -136,7 +135,6 @@ export const fetchCurrentUser = (token) => {
         headers:
         {
           "Authorization": "Bearer " + token
-          // token: localStorage.getItem('token')
         }
       })
       .then(response => {
@@ -198,7 +196,6 @@ export const fetchTodoHandleSubmit = (id, name, token) => {
     }).then(response => {
         return response.json()
       }).then(item => {
-        console.log(item);
         dispatch({ type: 'ADD_TODO_ITEM_SUBMIT', todo: item });
       })
   }
