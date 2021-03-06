@@ -3,7 +3,7 @@ import { Button, Typography, TextField } from '@material-ui/core';
 import { connect } from 'react-redux';
 
 class UserLoginForm extends Component {
- 
+
   state = {
     username: "",
     password: ""
@@ -32,10 +32,10 @@ class UserLoginForm extends Component {
       .then(response => {
         // set user to state
         //redirect user
-        console.log('receieved response from login');
-        console.log(response);
+        // console.log('receieved response from login');
+        // console.log(response);
         if (response.errors) {
-          console.log(response);
+          // console.log(response);
           alert(response.error)
         } else {
           // localStorage.setItem('token', response.token);
@@ -116,8 +116,7 @@ class UserLoginForm extends Component {
 }
 
 const mapStateToProps = (state, props) => {
-  console.log(props);
-
+  // console.log(props);
   return { 
     user: state.user,
     token: state.token

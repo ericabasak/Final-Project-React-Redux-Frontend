@@ -104,16 +104,25 @@ export default function index(
         lists: action.lists
       };
 // update the checkbox for an item
+// [{id:1},{id:1}, {id:2modified},{id:3}]
+//1. [{id:1},{id:1}]
+//2. [{id:1},{id:1}, {id:2modified}]
+//3. [{id:1},{id:1}, {id:2modified}, ,{id:3}]
+// [{id:1},{id:1}, {id:2modified},{id:3}]
+// [{id:1},{id:2},{id:3}]
     case "UPDATE_TODO_ITEM":
       console.log(action);
-      const updateItem = state.todoItems.filter((item) => item.id === action.todo.id);
-      console.log(updateItem);
+      const itemIndex = state.todoItems.findIndex((item) => item.id === action.todo.id);
+      state.todoItems.splice(itemIndex, 1, action.todo);
+      // prevItems = prevItems.concat(action.todo);
+      // const postItems = state.todoItems.splice(itemIndex + 1);
+      console.log(state.todoItems);
+      // const updatedItems = prevItems.concat(state.todoItems);
+      // console.log(updatedItems);
       return {
-            ...state,
-            isComplete: action.todo,
-            loading: false,
-      //   // updateItem: action.updateItem
-      //   // isComplete: action.todo
+        ...state,
+        todoItems: state.todoItems,
+        loading: false
       };
     default:
       return state;
@@ -124,3 +133,6 @@ export default function index(
 // and return a new state.
 // reducers are pure functions - only return a value & no side effects
 // reducer always creates a new state object
+
+
+// state + action = newState

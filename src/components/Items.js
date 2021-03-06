@@ -15,9 +15,8 @@ class Items extends Component {
   }
 
   // put this into the redux action
-  checkboxHandler = (e) => {
+  checkboxHandler = () => {
     console.log("the the checkbox is being called for an item")
-    e.preventDefault();
     this.setState({is_complete: !this.state.is_complete}, () => {
       this.props.fetchUpdateCheckboxHandler(
         this.props.id, this.props.token, this.state.is_complete);

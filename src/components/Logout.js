@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Box, Button } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 
 class Logout extends Component {
 
@@ -12,10 +12,15 @@ class Logout extends Component {
   render() {
     return(
       <div>
-        <Box pl={70}>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <div>
           {this.props.user.username && <h4>Hi, {this.props.user.username}</h4>}
           <Button onClick={this.logout} type="submit" label="Logout">Logout</Button>
-        </Box>
+        </div>
       </div>
     );
   }

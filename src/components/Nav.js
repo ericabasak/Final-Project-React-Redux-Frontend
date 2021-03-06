@@ -31,15 +31,11 @@ class Nav extends Component {
                   <Link to="/homepage">Home</Link>
                 </Box>
                 &nbsp;
-                {/* <Box color="primary" padding={2} position="right">
-                  <Link to="/userloginform">Login</Link> 
-                </Box>
-                &nbsp; */}
                 <Box color="primary" padding={2} position="right">
                   <Link to="/">Lists</Link>
                 </Box>
                 &nbsp;
-                <Box color="primary" padding={2} position="right">
+\                <Box color="primary" padding={2} position="right">
                   <Link to="/usersignupform">Signup</Link>
                 </Box>
           </Toolbar>

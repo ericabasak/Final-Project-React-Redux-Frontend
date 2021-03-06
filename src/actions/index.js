@@ -123,9 +123,6 @@ export const fetchUpdateCheckboxHandler = (id, token, is_complete) => {
 }
 
 
-
-
-
 export const fetchCurrentUser = (token) => {
   return (dispatch) => {
     console.log("loading current user")
@@ -196,7 +193,10 @@ export const fetchTodoHandleSubmit = (id, name, token) => {
     }).then(response => {
         return response.json()
       }).then(item => {
-        dispatch({ type: 'ADD_TODO_ITEM_SUBMIT', todo: item });
+        dispatch({ 
+          type: 'ADD_TODO_ITEM_SUBMIT', 
+          todo: item 
+        });
       })
   }
 }

@@ -19,7 +19,6 @@ class SingleList extends Component {
             {this.props.name}
           </span>
         </h2>
-        {/* <h4> Items </h4> */}
         <div>
           <form onSubmit={this.props.handleSubmit} style={{ display: 'flex' }}>
             <TextField
