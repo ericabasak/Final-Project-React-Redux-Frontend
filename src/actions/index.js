@@ -54,7 +54,7 @@ export const fetchTodoItems = (listId, token) => {
 }
 
 // is_complete update for lists
-export const fetchIsComplete = (token) => {
+export const updateListCheckbox = (token) => {
   return (dispatch) => {
     console.log("loading is_complete lists")
     dispatch({ type: 'LOAD_IS_COMPLETE_CHECKBOX_LIST' })
@@ -75,7 +75,7 @@ export const fetchIsComplete = (token) => {
 }
 
 // deleting an individual todo item
-export const fetchDeleteTodoItem = (id, token) => {
+export const deleteTodoItem = (id, token) => {
   return (dispatch) => {
     console.log("load delete todo items")
     dispatch({ type: 'LOAD_DELETE_TODO_ITEM' })
@@ -99,7 +99,7 @@ export const fetchDeleteTodoItem = (id, token) => {
 
 
 // this is for updating an item/todo's checkbox 
-export const fetchUpdateCheckboxHandler = (id, token, is_complete) => {
+export const updateItemCheckbox = (id, token, is_complete) => {
   return (dispatch) => {
     console.log("updating a checkbox for an item - " + is_complete);
     fetch(`http://localhost:3001/api/v1/items/${id}`, {

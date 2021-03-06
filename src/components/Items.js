@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Checkbox } from '@material-ui/core';
-import { fetchDeleteTodoItem, fetchUpdateCheckboxHandler } from '../actions';
+import { deleteTodoItem, updateItemCheckbox } from '../actions';
 import { connect } from 'react-redux';
 
 class Items extends Component {
@@ -18,24 +18,11 @@ class Items extends Component {
   checkboxHandler = () => {
     console.log("the the checkbox is being called for an item")
     this.setState({is_complete: !this.state.is_complete}, () => {
-      this.props.fetchUpdateCheckboxHandler(
+      this.props.updateItemCheckbox(
         this.props.id, this.props.token, this.state.is_complete);
     });
   }
 
-  // handler for onclick to delete item
-  // fetch request to delete the inidivual item
-  // fetchDeleteTodoItem = (token) => {
-  //   console.log("this button is being clicked")
-  //   fetch(`http://localhost:3001/api/v1/items/${token}`, {
-  //     method: "DELETE",
-  //     headers:
-  //     {
-  //       "Authorization": "Bearer " + localStorage.getItem("token")
-  //     }
-  //   })
-  //   .then(response => response.json())
-  // }
 
   deleteHandlerItem = (e) => {
     console.log("the delete is being clicked")
@@ -54,7 +41,7 @@ class Items extends Component {
     //     // this.props.removeTodo(this.props.id);
     //     this.r
     //   })
-    this.props.fetchDeleteTodoItem(this.props.id, localStorage.getItem("token"));
+    this.props.deleteTodoItem(this.props.id, localStorage.getItem("token"));
   }
   
   render() {
@@ -69,7 +56,11 @@ class Items extends Component {
           checked={this.state.is_complete}
           onChange={this.checkboxHandler}
         />
-          &nbsp; {this.props.name} {this.props.id}  &nbsp;
+        <span
+          style={{ textDecoration: this.props.is_complete ? "line-through" : ""}}>
+          {this.props.name}
+        </span>
+          {/* &nbsp; {this.props.name} {this.props.id}  &nbsp; */}
         <Button onClick={this.deleteHandlerItem}
           type="submit" 
           label="Delete">Delete</Button>
@@ -89,8 +80,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchDeleteTodoItem: (id, token) => dispatch(fetchDeleteTodoItem(id, token)),
-    fetchUpdateCheckboxHandler: (id, token, is_complete) => dispatch(fetchUpdateCheckboxHandler(id, token, is_complete))
+    deleteTodoItem: (id, token) => dispatch(deleteTodoItem(id, token)),
+    updateItemCheckbox: (id, token, is_complete) => dispatch(updateItemCheckbox(id, token, is_complete))
   };
 };
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchTodoItems, fetchIsComplete, fetchTodoHandleSubmit } from '../actions/index';
+import { fetchTodoItems, updateListCheckbox, fetchTodoHandleSubmit } from '../actions/index';
 import { connect } from 'react-redux';
 import SingleList from './SingleList';
 
@@ -110,7 +110,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchTodoItems: (listId, token) => dispatch(fetchTodoItems(listId, token)),
-    fetchIsComplete: (token) => dispatch(fetchIsComplete(token)),
+    updateListCheckbox: (token) => dispatch(updateListCheckbox(token)),
     fetchTodoHandleSubmit: (id, name, token) =>dispatch(fetchTodoHandleSubmit(id, name, token))
   };
 };
