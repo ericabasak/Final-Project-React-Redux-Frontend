@@ -63,6 +63,7 @@ class AllLists extends Component {
          <SingleListContainer 
             key={index} 
             name={e.title} 
+            is_complete={e.is_complete}
             id={e.id} 
           /> 
         )}

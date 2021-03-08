@@ -3,6 +3,34 @@ import Items from './Items';
 import { Button, Checkbox, TextField } from '@material-ui/core';
 
 class SingleList extends Component {
+  state = {
+    is_complete: this.props.is_complete
+  }
+
+
+  // get this to work and then convert to redux
+  updateListStatus = (e) => {
+    console.log("the the checkbox is being called for list")
+    fetch(`http://localhost:3001/api/v1/lists/${this.props.id}`, {
+      method: "PATCH",
+      headers: 
+      {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("token")
+      },
+      body: JSON.stringify({
+        id: this.props.id,
+        is_complete: e.target.checked
+      })
+    })
+    .then(response => response.json())
+      .then(data => {
+        this.setState({ 
+          is_complete : !this.state.is_complete
+        });
+      }
+      );
+  }
 
   render() {
     return (
@@ -12,10 +40,11 @@ class SingleList extends Component {
             name="is_complete"
             type="checkbox"
             color="default"
-            onChange={this.props.checkboxHandlerList}
+            checked={this.state.is_complete}
+            onChange={this.updateListStatus}
             inputProps={{ 'aria-label': 'secondary checkbox' }}
           />
-          <span style={{ textDecoration: this.props.is_complete ? "line-through" : "" }}>
+          <span style={{ textDecoration: this.state.is_complete ? "line-through" : "" }}>
             {this.props.name}
           </span>
         </h2>

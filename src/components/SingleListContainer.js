@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import SingleList from './SingleList';
 
 class SingleListContainer extends Component {
-  state = {
-    todoItems: [],
-    name: "",
-    is_complete: false
-  }
+  // state = {
+  //   todoItems: [],
+  //   name: "",
+  //   is_complete: false
+  // }
 
   // retrieve all items from the backend
   componentDidMount() {
@@ -21,11 +21,14 @@ class SingleListContainer extends Component {
     this.setState({ name: e.target.value });
   }
 
-
 // handler for when an item or todo is created within a list
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.fetchTodoHandleSubmit(this.props.id, this.state.name, this.props.token);
+    this.props.fetchTodoHandleSubmit(
+      this.props.id, 
+      this.state.name, 
+      this.props.token
+    );
   }
 
   listTodo = (name) => {
@@ -33,29 +36,6 @@ class SingleListContainer extends Component {
     this.setState({ 
       name: [...this.state.name, newItem] 
     });
-  }
-
-  // get this to work and then convert to redux
-  checkboxHandlerList = (e) => {
-    console.log("the the checkbox is being called for list")
-    fetch(`http://localhost:3001/api/v1/lists/${this.props.id}`, {
-      method: "PATCH",
-      headers: 
-      {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("token")
-      },
-      body: JSON.stringify({
-        name: this.props.name,
-        id: this.props.id,
-        is_complete: e.target.checked
-      })
-    })
-    .then(response => response.json())
-      .then(data => console.log(data))
-        this.setState({ 
-          is_complete : e.target.checked
-        });
   }
 
   render() {
@@ -73,9 +53,8 @@ class SingleListContainer extends Component {
         name={this.props.name}
         handleSubmit={this.handleSubmit}
         id={this.props.id}
-        is_complete={this.state.is_complete}
+        is_complete={this.props.is_complete}
         onChange={this.onChange}
-        value={this.state.name}
         checkboxHandlerList={this.checkboxHandlerList} 
       />
     )  
