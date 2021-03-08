@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchTodoItems, updateListCheckbox, fetchTodoHandleSubmit } from '../actions/index';
+import { getTodoItems, updateListCheckbox, fetchTodoHandleSubmit } from '../actions/index';
 import { connect } from 'react-redux';
 import SingleList from './SingleList';
 
@@ -13,7 +13,7 @@ class SingleListContainer extends Component {
   // retrieve all items from the backend
   componentDidMount() {
     console.log(this.props.id);
-    this.props.fetchTodoItems(this.props.id, this.props.token);
+    this.props.getTodoItems(this.props.id, this.props.token);
   }
 
   onChange = (e) => {
@@ -25,20 +25,13 @@ class SingleListContainer extends Component {
 // handler for when an item or todo is created within a list
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log("this todo handle is being submited");
     this.props.fetchTodoHandleSubmit(this.props.id, this.state.name, this.props.token);
   }
 
   listTodo = (name) => {
-    const newItem = {
-      name,
-      is_complete: false
-    }
+    const newItem = { name, is_complete: false}
     this.setState({ 
-      name: [
-        ...this.state.name, 
-        newItem
-      ] 
+      name: [...this.state.name, newItem] 
     });
   }
 
@@ -76,7 +69,7 @@ class SingleListContainer extends Component {
 
   render() {
     // console.log(this.state)
-    // filter toditems over lists with list id
+    // filter todoitems over lists with list id
     const items = this.props.todoItems.filter(x => {
       // console.log(x);
       return x.list_id === this.props.id
@@ -109,7 +102,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchTodoItems: (listId, token) => dispatch(fetchTodoItems(listId, token)),
+    getTodoItems: (listId, token) => dispatch(getTodoItems(listId, token)),
     updateListCheckbox: (token) => dispatch(updateListCheckbox(token)),
     fetchTodoHandleSubmit: (id, name, token) =>dispatch(fetchTodoHandleSubmit(id, name, token))
   };

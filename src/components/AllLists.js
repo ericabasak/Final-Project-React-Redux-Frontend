@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SingleListContainer from './SingleListContainer';
 import { connect } from 'react-redux';
-import { fetchLists } from '../actions/index';
+import { getLists } from '../actions/index';
 
 class AllLists extends Component {
   
@@ -11,7 +11,7 @@ class AllLists extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchLists(this.props.token)
+    this.props.getLists(this.props.token)
   }
 
   // make a fetch call to is_complete
@@ -82,7 +82,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      fetchLists: (token) => dispatch(fetchLists(token))
+      getLists: (token) => dispatch(getLists(token))
   };
 };
 

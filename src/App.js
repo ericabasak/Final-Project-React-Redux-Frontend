@@ -7,7 +7,7 @@ import UserSignupForm from './components/UserSignupForm';
 import MainComponent from './components/MainComponent';
 import { connect } from 'react-redux';
 import './App.css';
-import { fetchCurrentUser } from './actions/index';
+import { getCurrentUser } from './actions/index';
 
 class App extends Component {
 
@@ -26,7 +26,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchCurrentUser(this.props.token);
+    this.props.getCurrentUser(this.props.token);
   }
 
   render() {
@@ -68,7 +68,7 @@ const mapStateToProps = (state, ownProps) => {
  
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchCurrentUser: (token) => dispatch(fetchCurrentUser(token))
+    getCurrentUser: (token) => dispatch(getCurrentUser(token))
   };
 };
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCurrentUser } from '../actions/index';
+import { getCurrentUser } from '../actions/index';
 import Logout from './Logout';
 import UserLoginForm from './UserLoginForm';
 
@@ -36,7 +36,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchCurrentUser: () => dispatch(fetchCurrentUser())
+    getCurrentUser: () => dispatch(getCurrentUser())
   };
 };
 

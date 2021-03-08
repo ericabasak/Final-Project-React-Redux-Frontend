@@ -6,10 +6,9 @@
 // think of an action as an event that describes something that happend on the frontend
 
 // fetching all todos AKA lists
-export const fetchLists = (token) => {
+export const getLists = (token) => {
   return (dispatch) => {
     console.log("loading lists");
-    console.log(token);
     dispatch({ type: 'LOAD_LISTS' })
     fetch('http://localhost:3001/api/v1/lists',
       {
@@ -33,7 +32,7 @@ export const fetchLists = (token) => {
 }
 
 // fetching all items from each todo
-export const fetchTodoItems = (listId, token) => {
+export const getTodoItems = (listId, token) => {
   return (dispatch) => {
     console.log("loading todo items " + listId);
     // dispatch({ type: 'LOAD_TODO_ITEMS' })
@@ -58,11 +57,13 @@ export const updateListCheckbox = (token) => {
   return (dispatch) => {
     console.log("loading is_complete lists")
     dispatch({ type: 'LOAD_IS_COMPLETE_CHECKBOX_LIST' })
-    fetch(`http://localhost:3001/api/v1/lists/${token}`,
-      {
-        headers:
+    fetch(`http://localhost:3001/api/v1/lists/${token}`, {
+      method: "PATCH",
+      headers:
         {
-          "Authorization": "Bearer " + token
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + localStorage.getItem("token")
+          // "Authorization": "Bearer " + token
         }
       })
       .then(response => {
@@ -91,7 +92,6 @@ export const deleteTodoItem = (id, token) => {
         return response.json()
       })
       .then(response => {
-        console.log(response);
         dispatch({ type: 'DELETE_TODO_ITEM', todo: response })
       })
   }
@@ -123,13 +123,12 @@ export const updateItemCheckbox = (id, token, is_complete) => {
 }
 
 
-export const fetchCurrentUser = (token) => {
+export const getCurrentUser = (token) => {
   return (dispatch) => {
     console.log("loading current user")
     dispatch({ type: 'LOAD_GET_CURRENT_USER' })
-    fetch('http://localhost:3001/api/v1/get_current_user',
-      {
-        headers:
+    fetch('http://localhost:3001/api/v1/get_current_user', {
+      headers:
         {
           "Authorization": "Bearer " + token
         }
@@ -142,9 +141,6 @@ export const fetchCurrentUser = (token) => {
         if (response.user) {
           dispatch({ type: 'ADD_CURRENT_USER', user: response.user })
         }
-        // } else {
-        //   dispatch.push("/userloginform")
-        // }
       })
   }
 }
@@ -193,10 +189,7 @@ export const fetchTodoHandleSubmit = (id, name, token) => {
     }).then(response => {
         return response.json()
       }).then(item => {
-        dispatch({ 
-          type: 'ADD_TODO_ITEM_SUBMIT', 
-          todo: item 
-        });
+        dispatch({ type: 'ADD_TODO_ITEM_SUBMIT', todo: item });
       })
   }
 }

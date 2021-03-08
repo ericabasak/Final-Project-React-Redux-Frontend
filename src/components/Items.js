@@ -14,39 +14,24 @@ class Items extends Component {
     }
   }
 
-  // put this into the redux action
   checkboxHandler = () => {
     console.log("the the checkbox is being called for an item")
     this.setState({is_complete: !this.state.is_complete}, () => {
       this.props.updateItemCheckbox(
-        this.props.id, this.props.token, this.state.is_complete);
+        this.props.id, 
+        this.props.token, 
+        this.state.is_complete
+      );
     });
   }
 
-
   deleteHandlerItem = (e) => {
     console.log("the delete is being clicked")
-    e.preventDefault();
-    // fetch(`http://localhost:3001/api/v1/items/${this.props.id}`, {
-    //   method: "DELETE",
-    //   headers:
-    //   {
-    //     "Accept": "application/json",
-    //     "Content-Type": "application/json",
-    //     "Authorization": "Bearer " + localStorage.getItem("token")
-    //   },
-    // })
-    //   .then(response => {
-    //     // response.json()
-    //     // this.props.removeTodo(this.props.id);
-    //     this.r
-    //   })
     this.props.deleteTodoItem(this.props.id, localStorage.getItem("token"));
   }
   
   render() {
     // console.log(this.props);
-
     return(
       <div>
         <Checkbox 
