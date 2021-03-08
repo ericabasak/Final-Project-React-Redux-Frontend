@@ -34,7 +34,8 @@ class SingleList extends Component {
           </form>
         </div>
 
-        {this.props.items.map((e, index) => (<Items
+        {this.props.items.map((e, index) => 
+        (<Items
           key={index}
           name={e.name}
           id={e.id}

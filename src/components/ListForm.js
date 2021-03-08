@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchListForm } from '../actions/index';
+import { getListForm } from '../actions/index';
 import { Button, TextField } from '@material-ui/core';
 
 class ListForm extends Component {
@@ -92,7 +92,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchListForm: (listFormId, token) => dispatch(fetchListForm(listFormId, token))
+    getListForm: (listFormId, token) => dispatch(getListForm(listFormId, token))
   };
 };
 

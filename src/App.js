@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 import HomePage from './components/HomePage';
 import Nav from './components/Nav';
 import UserLoginForm from './components/UserLoginForm';
 import UserSignupForm from './components/UserSignupForm';
 import MainComponent from './components/MainComponent';
-import { connect } from 'react-redux';
-import './App.css';
 import { getCurrentUser } from './actions/index';
+import './App.css';
 
 class App extends Component {
 
@@ -30,23 +30,13 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props);
-
+    // console.log(this.props);
     return (
       <BrowserRouter>
         <div className="App">
           <div className="container">
             <Nav />
             <Route exact path="/homepage" render={props => <HomePage {...props} />} />
-            {/* <Route exact path="/userloginform" 
-              component={UserLoginForm} 
-              getCurrentUser={this.getCurrentUser}
-              handleLoginFormChange={this.handleLoginFormChange}
-              username={this.state.loginForm.username}
-              password={this.state.loginForm.password} 
-              history={this.props.history}
-              {...this.props}
-              /> */}
             <Route exact path="/userloginform" render={props => <UserLoginForm {...props} />} />
             <Route exact path="/usersignupform" component={UserSignupForm} />
             <Route exact path="/" component={MainComponent} />

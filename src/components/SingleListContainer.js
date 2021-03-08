@@ -58,15 +58,6 @@ class SingleListContainer extends Component {
         });
   }
 
-  // handleCheckbox = (e) => { 
-  //   console.log("this box is clicked")
-  //   // console.log(e.target.checked)
-  //   this.setState({
-  //   is_complete: e.target.checked
-  //   });
-  // }
-
-
   render() {
     // console.log(this.state)
     // filter todoitems over lists with list id

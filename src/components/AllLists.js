@@ -50,7 +50,6 @@ class AllLists extends Component {
     this.props.isCompleteHandler(this.props.id)
   }
 
-  
   render() {
     if (this.props.loading) {
       return (<div>Loading...</div>);

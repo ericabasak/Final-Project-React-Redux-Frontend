@@ -147,7 +147,7 @@ export const getCurrentUser = (token) => {
 
 // to be finished for the listform component - finish converting to redux
 // listform to redux
-export const fetchListForm = (listFormId, token) => {
+export const getListForm = (listFormId, token) => {
   return (dispatch) => {
     console.log("loading list form")
     dispatch({ type: 'LOAD_LIST_FORM' })
