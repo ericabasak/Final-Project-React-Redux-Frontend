@@ -23,6 +23,8 @@ class ItemsContainer extends Component {
     }
   }
 
+
+  // IS THIS USELESS? DELETE ITEM IS ALREADY IN ACTIONS
   // handler for onclick to delete item
   // fetch request to delete the inidivual item
   fetchDeleteTodoItem = (token) => {

@@ -16,7 +16,8 @@ class HomePage extends Component {
           {!this.props.user.username &&
             <h5>You are not currently logged in</h5>}
           <Logout />
-        </div>)
+        </div>
+      )
     } else {
       return (
         <UserLoginForm />

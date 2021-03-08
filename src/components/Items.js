@@ -42,7 +42,7 @@ class Items extends Component {
           onChange={this.checkboxHandler}
         />
         <span
-          style={{ textDecoration: this.props.is_complete ? "line-through" : ""}}>
+          style={{ textDecoration: this.state.is_complete ? "line-through" : ""}}>
           {this.props.name}
         </span>
           {/* &nbsp; {this.props.name} {this.props.id}  &nbsp; */}

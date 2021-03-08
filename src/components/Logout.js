@@ -5,7 +5,6 @@ import { Button } from '@material-ui/core';
 class Logout extends Component {
 
   logout = () => {
-    // console.log("this logout is being called")
     this.props.logoutUser();
   }
 

@@ -116,7 +116,6 @@ class UserLoginForm extends Component {
 }
 
 const mapStateToProps = (state, props) => {
-  // console.log(props);
   return { 
     user: state.user,
     token: state.token
