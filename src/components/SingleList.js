@@ -9,7 +9,9 @@ class SingleList extends Component {
 
   updateListStatus = (e) => {
     console.log("the the checkbox is being called for list")
-    this.props.updateListStatus(this.props.id, this.state.is_complete);
+    this.setState({ is_complete: !this.state.is_complete}, () =>
+    this.props.updateListStatus(this.props.id, this.state.is_complete) 
+    )
   }
 
   render() {

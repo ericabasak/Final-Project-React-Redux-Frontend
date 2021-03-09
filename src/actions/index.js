@@ -57,27 +57,29 @@ export const getTodoItems = (listId, token) => {
 // updateListCheckbox
 export const updateListStatus = (listId, is_complete) => {
   return (dispatch) => {
-  console.log("the the checkbox is being called for list")
-  // dispatch({ type: "LOAD_UPDATE_LIST_STATUS"})
-  fetch(`http://localhost:3001/api/v1/lists/${listId}`, {
-    method: "PATCH",
-    headers: 
-    {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer " + localStorage.getItem("token")
-    },
-    body: JSON.stringify({
-      id: listId,
-      is_complete: is_complete
+    console.log("the the checkbox is being called for list")
+    // dispatch({ type: "LOAD_UPDATE_LIST_STATUS"})
+    fetch(`http://localhost:3001/api/v1/lists/${listId}`, {
+      method: "PATCH",
+      headers: 
+      {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("token")
+      },
+      body: JSON.stringify({
+        id: listId,
+        is_complete: is_complete
+      })
     })
-  })
-  .then(response => {
-    return response.json()
-  })
-  .then(response => {
-    dispatch({ type: "UPDATE_LIST_STATUS", list: response })
-  })
-
+    .then(response => {
+      return response.json()
+    })
+    .then(response => {
+      dispatch({ 
+        type: "UPDATE_LIST_STATUS", 
+        list: response 
+      })
+    })
   }
 }
 
