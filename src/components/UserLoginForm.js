@@ -32,8 +32,6 @@ class UserLoginForm extends Component {
       .then(response => {
         // set user to state
         //redirect user
-        // console.log('receieved response from login');
-        // console.log(response);
         if (response.errors) {
           // console.log(response);
           alert(response.error)
@@ -41,8 +39,6 @@ class UserLoginForm extends Component {
           // localStorage.setItem('token', response.token);
           this.props.setToken(response.token)
           this.props.setCurrentUser(response.user);
-          // const { history } = this.props;
-          // history.push("/")
           this.props.history.push("/")
         }
       })

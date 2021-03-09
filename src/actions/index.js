@@ -52,28 +52,37 @@ export const getTodoItems = (listId, token) => {
   }
 }
 
+
 // is_complete update for lists
-export const updateListCheckbox = (token) => {
+// updateListCheckbox
+export const updateListStatus = (listId, is_complete) => {
   return (dispatch) => {
-    console.log("loading is_complete lists")
-    dispatch({ type: 'LOAD_IS_COMPLETE_CHECKBOX_LIST' })
-    fetch(`http://localhost:3001/api/v1/lists/${token}`, {
-      method: "PATCH",
-      headers:
-        {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + localStorage.getItem("token")
-          // "Authorization": "Bearer " + token
-        }
-      })
-      .then(response => {
-        return response.json()
-      })
-      .then(isComplete => {
-        dispatch({ type: 'ADD_IS_COMPLETE_CHECKBOX_LIST', isComplete: isComplete })
-      })
+  console.log("the the checkbox is being called for list")
+  // dispatch({ type: "LOAD_UPDATE_LIST_STATUS"})
+  fetch(`http://localhost:3001/api/v1/lists/${listId}`, {
+    method: "PATCH",
+    headers: 
+    {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + localStorage.getItem("token")
+    },
+    body: JSON.stringify({
+      id: listId,
+      is_complete: is_complete
+    })
+  })
+  .then(response => {
+    return response.json()
+  })
+  .then(response => {
+    dispatch({ type: "UPDATE_LIST_STATUS", list: response })
+  })
+
   }
 }
+
+
+
 
 // deleting an individual todo item
 export const deleteTodoItem = (id, token) => {

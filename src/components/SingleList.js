@@ -7,29 +7,9 @@ class SingleList extends Component {
     is_complete: this.props.is_complete
   }
 
-
-  // get this to work and then convert to redux
   updateListStatus = (e) => {
     console.log("the the checkbox is being called for list")
-    fetch(`http://localhost:3001/api/v1/lists/${this.props.id}`, {
-      method: "PATCH",
-      headers: 
-      {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("token")
-      },
-      body: JSON.stringify({
-        id: this.props.id,
-        is_complete: e.target.checked
-      })
-    })
-    .then(response => response.json())
-      .then(data => {
-        this.setState({ 
-          is_complete : !this.state.is_complete
-        });
-      }
-      );
+    this.props.updateListStatus(this.props.id, this.state.is_complete);
   }
 
   render() {

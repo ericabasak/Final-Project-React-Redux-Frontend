@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getTodoItems, updateListCheckbox, fetchTodoHandleSubmit } from '../actions/index';
+import { getTodoItems, updateListStatus, fetchTodoHandleSubmit } from '../actions/index';
 import { connect } from 'react-redux';
 import SingleList from './SingleList';
 
@@ -15,6 +15,8 @@ class SingleListContainer extends Component {
     console.log(this.props.id);
     this.props.getTodoItems(this.props.id, this.props.token);
   }
+
+
 
   onChange = (e) => {
     // console.log(e.target.value);
@@ -46,7 +48,6 @@ class SingleListContainer extends Component {
       return x.list_id === this.props.id
     });
     // console.log(items)
-    
     return ( 
       <SingleList 
         items={items} 
@@ -55,6 +56,7 @@ class SingleListContainer extends Component {
         id={this.props.id}
         is_complete={this.props.is_complete}
         onChange={this.onChange}
+        updateListStatus={this.props.updateListStatus}
         checkboxHandlerList={this.checkboxHandlerList} 
       />
     )  
@@ -73,7 +75,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getTodoItems: (listId, token) => dispatch(getTodoItems(listId, token)),
-    updateListCheckbox: (token) => dispatch(updateListCheckbox(token)),
+    updateListStatus: (id, is_complete) => dispatch(updateListStatus(id, is_complete)),
     fetchTodoHandleSubmit: (id, name, token) =>dispatch(fetchTodoHandleSubmit(id, name, token))
   };
 };

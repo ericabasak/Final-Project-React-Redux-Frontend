@@ -1,3 +1,5 @@
+// REDUCERS ARE PURE FUNCTIONS
+// takes two parameters - initial state, action
 export default function index(
   state = {
     lists: [],
@@ -34,12 +36,12 @@ export default function index(
         todoItems: state.todoItems.concat(action.todoItems),
         loading: false
       };
-    case "LOAD_IS_COMPLETE_CHECKBOX_LIST":
+    case "LOAD_UPDATE_LIST_STATUS":
       return {
         ...state,
         loading: true
       };
-    case "ADD_IS_COMPLETE_CHECKBOX_LIST":
+    case "UPDATE_LIST_STATUS":
       return {
         ...state,
         isComplete: action.isComplete

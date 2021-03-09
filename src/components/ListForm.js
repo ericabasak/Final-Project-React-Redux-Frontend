@@ -11,10 +11,6 @@ class ListForm extends Component {
     title: ""
   }
 
-  // componentDidMount() {
-  //   this.props.fetchListForm(this.props.id, this.props.token);
-  // }
-
   // update the state by rerendering
   onChangeList = (e) => {
     this.setState({ 
@@ -22,7 +18,6 @@ class ListForm extends Component {
     });
   }
 
-  
   // convert token for redux, there is no more local storage
   // finish converting to redux store
   onSubmitList = (e) => {
