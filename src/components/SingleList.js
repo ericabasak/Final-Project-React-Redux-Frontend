@@ -7,6 +7,7 @@ class SingleList extends Component {
     is_complete: this.props.is_complete
   }
 
+  // WHY DOES THIS NEED TO BE LOCATED IN HERE VERSES SINGLELISTCONTAINER??????
   updateListStatus = (e) => {
     console.log("the the checkbox is being called for list")
     this.setState({ is_complete: !this.state.is_complete}, () =>

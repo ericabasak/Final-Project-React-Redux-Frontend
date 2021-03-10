@@ -18,11 +18,18 @@ export default function index(
         lists: [],
         loading: true
       };
+
       // sort through lists
+      // SORT THROUGH ALL LISTS IN ALPHEBETICAL ORDER
+      // action represents what you get back from server
+      // action.lists is lists from server but unsorted
+      // action contains all the input data
     case "ADD_LISTS":
+      const sortedList = action.lists.sort((a, b) => (a.title > b.title) ? 1 : -1)
+      console.log(sortedList);
       return {
         ...state,
-        lists: action.lists,
+        lists: sortedList,
         loading: false
       };
     case "LOAD_TODO_ITEMS":
@@ -37,6 +44,8 @@ export default function index(
         todoItems: state.todoItems.concat(action.todoItems),
         loading: false
       };
+
+
       // update the list checkbox status
     case "UPDATE_LIST_STATUS":
       const listIndex = state.lists.filter(l => l.id === action.list.id);
@@ -81,7 +90,6 @@ export default function index(
       return {
         ...state,
         token: action.token
-        // token: localStorage.getItem("token")
         };
         // this is when an item or todo is added or created to a list
     case "LOAD_TODO_ITEM_SUBMIT":
@@ -126,6 +134,9 @@ export default function index(
         todoItems: state.todoItems,
         loading: false
       };
+
+
+  
     default:
       return state;
   }

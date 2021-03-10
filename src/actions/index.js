@@ -53,6 +53,9 @@ export const getTodoItems = (listId, token) => {
 }
 
 
+
+
+// WWHEN DO YOU USE DISPATCH AND WHEN NOT?????????? line 64
 // is_complete update for lists
 // updateListCheckbox
 export const updateListStatus = (listId, is_complete) => {
@@ -82,6 +85,8 @@ export const updateListStatus = (listId, is_complete) => {
     })
   }
 }
+
+
 
 
 
