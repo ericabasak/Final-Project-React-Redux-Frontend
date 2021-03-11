@@ -104,7 +104,9 @@ class UserLoginForm extends Component {
               label="Login">Enter</Button>
             <br></br>
             <br></br>
-            <Button onClick={() => this.props.history.push("/usersignupform")}>Create Account</Button>
+            <Button onClick={() => this.props.history.push("/usersignupform")}>
+              Create Account
+            </Button>
           </form>
       </div>
     )
