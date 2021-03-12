@@ -8,12 +8,8 @@ class Nav extends Component {
   // DO THIS --
   // auth token passed in every function and store in redux instead of local storage
   // redux for state
-
-  
   
   render() {
-    // code in a render is curly braces
-    // 
     return (
       <div>
         <AppBar 
@@ -35,14 +31,11 @@ class Nav extends Component {
                   <Link to="/homepage">Home</Link>
                 </Box>
                 &nbsp;
+
                 {this.props.token && <Box color="primary" padding={2} position="right">
                   <Link to="/">Lists</Link>
                   </Box>}
-{/* 
 
-                {!this.props.token && <Box>
-                  "HIIIIII"
-                </Box>} */}
           </Toolbar>
         </AppBar>
       </div>      
@@ -56,7 +49,7 @@ const mapStatetoProps = state => {
   }
 }
 
-const mapDispatchToProps = () => {
+const mapDispatchToProps = (dispatch) => {
   return {}
 }
 

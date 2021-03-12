@@ -72,7 +72,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getTodoItems: (listId, token) => dispatch(getTodoItems(listId, token)),
-    updateListStatus: (id, is_complete, token) => dispatch(updateListStatus(id, is_complete, token)),
+    updateListStatus: (id, is_complete) => dispatch(updateListStatus(id, is_complete)),
     fetchTodoHandleSubmit: (id, name, token) =>dispatch(fetchTodoHandleSubmit(id, name, token))
   };
 };

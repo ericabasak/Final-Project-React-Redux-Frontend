@@ -9,14 +9,12 @@ class SingleList extends Component {
 
   // WHY DOES THIS NEED TO BE LOCATED IN HERE VERSES SINGLELISTCONTAINER??????
   // in the parameter, why is e there and not is_complete?
-
   updateListStatus = (e) => {
     console.log("the the checkbox is being called for list")
     this.setState({ is_complete: !this.state.is_complete}, () =>
     this.props.updateListStatus(this.props.id, this.state.is_complete) 
     )
   }
-
 
   render() {
     return (

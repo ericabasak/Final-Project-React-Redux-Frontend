@@ -14,7 +14,6 @@ class MainComponent extends Component {
       return <Redirect to="/userloginform" />
     }
 
-    
     return (
       <div>
         <ListForm />
