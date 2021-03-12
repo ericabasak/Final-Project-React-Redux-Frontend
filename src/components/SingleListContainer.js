@@ -16,8 +16,6 @@ class SingleListContainer extends Component {
     this.props.getTodoItems(this.props.id, this.props.token);
   }
 
-
-
   onChange = (e) => {
     this.setState({ name: e.target.value });
   }
@@ -74,7 +72,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getTodoItems: (listId, token) => dispatch(getTodoItems(listId, token)),
-    updateListStatus: (id, is_complete) => dispatch(updateListStatus(id, is_complete)),
+    updateListStatus: (id, is_complete, token) => dispatch(updateListStatus(id, is_complete, token)),
     fetchTodoHandleSubmit: (id, name, token) =>dispatch(fetchTodoHandleSubmit(id, name, token))
   };
 };

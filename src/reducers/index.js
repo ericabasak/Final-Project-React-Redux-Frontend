@@ -47,14 +47,16 @@ export default function index(
 
 
       // update the list checkbox status
-    case "UPDATE_LIST_STATUS":
-      const listIndex = state.lists.filter(l => l.id === action.list.id);
-      state.lists.splice(listIndex, 1, action.list)
-      return {
-        ...state,
-        lists: state.lists,
-        loading: false
-      };
+      case "UPDATE_LIST_STATUS":
+        const listIndex = state.lists.filter(l => l.id === action.list.id);
+        state.lists.splice(listIndex, 1, action.list)
+        return {
+          ...state,
+          lists: state.lists,
+          loading: false
+        };
+
+
     case "LOAD_DELETE_TODO_ITEM":
       return {
         ...state,

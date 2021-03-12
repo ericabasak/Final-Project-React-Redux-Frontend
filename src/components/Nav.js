@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, IconButton, Box } from '@material-ui/core';
+import { connect } from 'react-redux';
 
 class Nav extends Component {
 
   // DO THIS --
   // auth token passed in every function and store in redux instead of local storage
   // redux for state
+
+  
   
   render() {
+    // code in a render is curly braces
+    // 
     return (
       <div>
         <AppBar 
@@ -30,13 +35,14 @@ class Nav extends Component {
                   <Link to="/homepage">Home</Link>
                 </Box>
                 &nbsp;
-                <Box color="primary" padding={2} position="right">
+                {this.props.token && <Box color="primary" padding={2} position="right">
                   <Link to="/">Lists</Link>
-                </Box>
-                &nbsp;
-\                <Box color="primary" padding={2} position="right">
-                  <Link to="/usersignupform">Signup</Link>
-                </Box>
+                  </Box>}
+{/* 
+
+                {!this.props.token && <Box>
+                  "HIIIIII"
+                </Box>} */}
           </Toolbar>
         </AppBar>
       </div>      
@@ -44,4 +50,14 @@ class Nav extends Component {
   }
 }
 
-export default Nav;
+const mapStatetoProps = state => {
+  return {
+    token: state.token
+  }
+}
+
+const mapDispatchToProps = () => {
+  return {}
+}
+
+export default connect(mapStatetoProps, mapDispatchToProps)(Nav);

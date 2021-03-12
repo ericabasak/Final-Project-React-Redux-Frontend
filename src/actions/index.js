@@ -58,16 +58,15 @@ export const getTodoItems = (listId, token) => {
 // WWHEN DO YOU USE DISPATCH AND WHEN NOT?????????? line 64
 // is_complete update for lists
 // updateListCheckbox
-export const updateListStatus = (listId, is_complete) => {
+export const updateListStatus = (listId, is_complete, token) => {
+  console.log("this checkbox for the list is getting updated!!!!")
   return (dispatch) => {
-    console.log("the the checkbox is being called for list")
-    // dispatch({ type: "LOAD_UPDATE_LIST_STATUS"})
     fetch(`http://localhost:3001/api/v1/lists/${listId}`, {
       method: "PATCH",
       headers: 
       {
         "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("token")
+        "Authorization": "Bearer " + token
       },
       body: JSON.stringify({
         id: listId,
@@ -78,14 +77,10 @@ export const updateListStatus = (listId, is_complete) => {
       return response.json()
     })
     .then(response => {
-      dispatch({ 
-        type: "UPDATE_LIST_STATUS", 
-        list: response 
-      })
+      dispatch({ type: "UPDATE_LIST_STATUS", list: response })
     })
   }
 }
-
 
 
 

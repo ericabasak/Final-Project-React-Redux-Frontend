@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Typography, TextField } from '@material-ui/core';
 import { connect } from 'react-redux';
+import {withRouter} from 'react-router-dom';
 
 class UserLoginForm extends Component {
 
@@ -127,4 +128,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserLoginForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserLoginForm));
