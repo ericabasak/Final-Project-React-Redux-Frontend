@@ -28,13 +28,13 @@ class SingleListContainer extends Component {
 
    return (
      <SingleList 
-      name={this.props.name}
-      id={this.props.id}
-      token={this.props.token}
-      is_complete={this.props.isComplete}
-      updateListStatus={this.props.updateListStatus}
-      addTodoItemToList={this.props.addTodoItemToList}
-      todoItems={filteredItems}
+        name={this.props.name}
+        id={this.props.id}
+        isComplete={this.props.is_complete}
+        token={this.props.token}
+        addTodoItemToList={this.props.addTodoItemToList}
+        updateListStatus={this.props.updateListStatus}
+        todos={filteredItems}
      />
    )
   }

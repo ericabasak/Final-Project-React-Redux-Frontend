@@ -6,27 +6,31 @@ class SingleList extends Component {
   
   state = {
     name: "",
-    is_complete: this.props.is_complete
+    isComplete: this.props.isComplete
   }
 
   // WHY DOES THIS NEED TO BE LOCATED IN HERE VERSES SINGLELISTCONTAINER??????
   // in the parameter, why is e there and not is_complete?
   updateListStatus = (e) => {
     console.log("the the checkbox is being called for list")
-    this.setState({ is_complete: !this.state.is_complete}, () =>
-    this.props.updateListStatus(this.props.id, this.state.is_complete) 
+    this.setState({ isComplete: !this.state.isComplete }, () =>
+      this.props.updateListStatus(this.props.id, this.state.isComplete) 
     )
   }
 
 
   // handler for when an item or todo is created within a list
   handleSubmit = (e) => {
-    e.preventDefault();
+   e.preventDefault();
     this.props.addTodoItemToList(
       this.props.id, 
       this.state.name, 
       this.props.token
-    );
+    )
+    this.setState({ 
+      ...this.state, 
+      name: "" 
+    })
   }
 
   onChange = (e) => {
@@ -36,18 +40,20 @@ class SingleList extends Component {
   }
 
   render() {
+    console.log(this.props);
+    
     return (
       <div>
         <h2>
           <Checkbox
-            name="is_complete"
+            name="isComplete"
             type="checkbox"
             color="default"
-            checked={this.state.is_complete}
-            onChange={this.yyyyyyy}
+            checked={this.state.isComplete}
+            onChange={this.updateListStatus}
             inputProps={{ 'aria-label': 'secondary checkbox' }}
           />
-          <span style={{ textDecoration: this.state.is_complete ? "line-through" : "" }}>
+          <span style={{ textDecoration: this.state.isComplete ? "line-through" : "" }}>
             {this.props.name}
           </span>
         </h2>
@@ -57,6 +63,7 @@ class SingleList extends Component {
               label="Add todo item"
               type="text"
               name="name"
+              value={this.state.name}
               onChange={this.onChange}
             />
             <br></br>
@@ -65,7 +72,7 @@ class SingleList extends Component {
           </form>
         </div>
 
-        {this.props.todoItems.map((e, index) => 
+        {this.props.todos.map((e, index) => 
         (<Items
           key={index}
           name={e.name}
