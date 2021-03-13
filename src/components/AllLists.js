@@ -18,8 +18,6 @@ class AllLists extends Component {
   // making an update to item
   isCompleteHandler = (e) => {
     console.log("the the checkbox is being called for an item")
-    // const id = e.target.value;
-    // const url = `http://localhost:3001/api/v1/items/${id}`;
     fetch(`http://localhost:3001/api/v1/items/${this.props.id}`, {
       method: "PATCH",
       headers:
@@ -42,7 +40,6 @@ class AllLists extends Component {
         this.setState({ todos: oldTodos })
       })
   }
-
 
   isCompleteItemHandler = (e) => {
     console.log("the checkbox for the item is being clicked");

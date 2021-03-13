@@ -3,7 +3,9 @@ import Items from './Items';
 import { Button, Checkbox, TextField } from '@material-ui/core';
 
 class SingleList extends Component {
+  
   state = {
+    name: "",
     is_complete: this.props.is_complete
   }
 
@@ -16,6 +18,23 @@ class SingleList extends Component {
     )
   }
 
+
+  // handler for when an item or todo is created within a list
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.addTodoItemToList(
+      this.props.id, 
+      this.state.name, 
+      this.props.token
+    );
+  }
+
+  onChange = (e) => {
+    this.setState({ 
+      name: e.target.value 
+    });
+  }
+
   render() {
     return (
       <div>
@@ -25,7 +44,7 @@ class SingleList extends Component {
             type="checkbox"
             color="default"
             checked={this.state.is_complete}
-            onChange={this.updateListStatus}
+            onChange={this.yyyyyyy}
             inputProps={{ 'aria-label': 'secondary checkbox' }}
           />
           <span style={{ textDecoration: this.state.is_complete ? "line-through" : "" }}>
@@ -33,13 +52,12 @@ class SingleList extends Component {
           </span>
         </h2>
         <div>
-          <form onSubmit={this.props.handleSubmit} style={{ display: 'flex' }}>
+          <form onSubmit={this.handleSubmit} style={{ display: 'flex' }}>
             <TextField
               label="Add todo item"
               type="text"
               name="name"
-              value={this.props.value}
-              onChange={this.props.onChange}
+              onChange={this.onChange}
             />
             <br></br>
             <br></br>
@@ -47,7 +65,7 @@ class SingleList extends Component {
           </form>
         </div>
 
-        {this.props.items.map((e, index) => 
+        {this.props.todoItems.map((e, index) => 
         (<Items
           key={index}
           name={e.name}

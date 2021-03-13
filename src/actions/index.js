@@ -179,7 +179,7 @@ export const getListForm = (listFormId, token) => {
 }
 
 // adding a item(todo) 
-export const fetchTodoHandleSubmit = (id, name, token) => {
+export const addTodoItemToList = (id, name, token) => {
   return (dispatch) => {
     console.log("creating todo items");
     // dispatch({ type: 'LOAD_TODO_ITEM_SUBMIT' })
