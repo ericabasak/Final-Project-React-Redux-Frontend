@@ -102,7 +102,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addAList: (id, title, token) => dispatch(addAList(id, title, token)),
+    addAList: (title, token) => dispatch(addAList(title, token)),
     getListForm: (listFormId, token) => dispatch(getListForm(listFormId, token))
   };
 };

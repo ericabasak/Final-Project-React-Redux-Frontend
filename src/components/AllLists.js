@@ -53,6 +53,7 @@ class AllLists extends Component {
     }
 
     console.log(this.props.lists);
+    
     return(
       <div>
         <h3>All Todos</h3>

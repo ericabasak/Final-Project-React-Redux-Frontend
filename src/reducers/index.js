@@ -138,11 +138,13 @@ export default function index(
       };
 
     case 'ADD_A_LIST':
+      console.log(action);
       return {
         ...state,
-        lists: action.lists,
-        laoding: false
+        lists: state.lists.concat(action.list),
+        loading: false
       }
+     
 
   
     default:
