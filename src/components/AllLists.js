@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import SingleListContainer from './SingleListContainer';
 import { connect } from 'react-redux';
 import { getLists } from '../actions/index';
+import { Grid } from '@material-ui/core';
 
 class AllLists extends Component {
-  
+
   state = {
     todos: "",
     isComplete: false
@@ -53,25 +54,33 @@ class AllLists extends Component {
     }
 
     console.log(this.props.lists);
-    
-    return(
-      <div>
-        <h3>All Todos</h3>
-        {this.props.lists && this.props.lists.map((e, index) => 
-         <SingleListContainer 
-            key={index} 
-            name={e.title} 
-            isComplete={e.isComplete}
-            id={e.id} 
-          /> 
-        )}
-      </div>
+
+    return (
+      <Grid
+        container
+        spacing={2}
+        direction="column"
+      >
+        <Grid item xs={4} class="title">
+          <h4>All Todos</h4>
+        </Grid>
+        <Grid item xs={12}>
+          {this.props.lists && this.props.lists.map((e, index) =>
+            <SingleListContainer
+              key={index}
+              name={e.title}
+              isComplete={e.isComplete}
+              id={e.id}
+            />
+          )}
+        </Grid>
+      </Grid>
     )
   }
 }
 
 const mapStateToProps = state => {
-  return { 
+  return {
     lists: state.lists,
     loading: state.loading,
     token: state.token
@@ -80,7 +89,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      getLists: (token) => dispatch(getLists(token))
+    getLists: (token) => dispatch(getLists(token))
   };
 };
 

@@ -18,7 +18,6 @@ class UserLoginForm extends Component {
     console.log("it this login form being called?")
     fetch("http://localhost:3001/api/v1/login", {
       method: "POST",
-      // credentials: "include",
       headers: 
       {
         "Content-type": "application/json",
@@ -114,7 +113,7 @@ class UserLoginForm extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = (state) => {
   return { 
     user: state.user,
     token: state.token

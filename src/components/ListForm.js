@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getListForm, addAList } from '../actions/index';
-import { Button, TextField } from '@material-ui/core';
+import { Grid, Button, TextField } from '@material-ui/core';
 
 class ListForm extends Component {
 
@@ -13,45 +13,21 @@ class ListForm extends Component {
 
   // update the state by rerendering
   onChangeList = (e) => {
-    this.setState({ 
-      title: e.target.value 
+    this.setState({
+      title: e.target.value
     });
   }
-
-  // convert token for redux, there is no more local storage
-  // finish converting to redux store
-  // onSubmitList
-  // addAList = (e) => {
-  //   e.preventDefault();
-  //   fetch("http://localhost:3001/api/v1/lists", {
-  //     method: "POST",
-  //     headers:
-  //     {
-  //       "Accept": "application/json",
-  //       "Content-Type": "application/json",
-  //       "Authorization": "Bearer " + localStorage.getItem("token")
-  //     },
-  //     body: JSON.stringify({
-  //       title: this.state.title
-  //     })
-  //   }).then(response => response.json())
-  //   .then(response => console.log(response));
-  //   this.todoForm(this.state.title);
-  //   this.setState({ 
-  //     title: "" 
-  //   });
-  // }
 
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.addAList(
-      this.state.title, 
+      this.state.title,
       this.props.token
-      )
-      this.setState({ 
-        ...this.state, 
-        title: "" 
-      })
+    )
+    this.setState({
+      ...this.state,
+      title: ""
+    })
   }
 
   // add form for todo item
@@ -60,41 +36,41 @@ class ListForm extends Component {
       title,
       isComplete: false
     }
-    this.setState({ 
+    this.setState({
       title: [...this.state.title, newTodo]
     });
   }
 
   render() {
     return (
-      <>
-        <form onSubmit={this.handleSubmit} style={{ display: 'flex' }}>
-          <TextField
-            label="Create List"
-            type="text"
-            name="create list"
-            fullWidth
-            style={{ flex: '30', padding: '20px' }}
-            value={this.state.title}
-            onChange={this.onChangeList}
-          />
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
+         <Grid
+          container
+          spacing={2}
+          direction="column"
+        >
+          <Grid item xs={12}>
+            <form onSubmit={this.handleSubmit} class="createListForm">
+              <TextField
+                label="Create List"
+                type="text"
+                name="create list"
+                fullWidth
+                value={this.state.title}
+                onChange={this.onChangeList}
+              /><br/><br/>
 
-          <Button type="submit" label="Submit">Submit</Button>
-        </form>
-      </>
+              <Button type="submit" variant="contained" size="small" color="primary" label="Submit">Submit</Button>
+            </form>
+          </Grid>
+        </Grid>
     );
   };
 }
 
 
 const mapStateToProps = state => {
-  return { 
-    listForm: state.listForm,
+  return {
+          listForm: state.listForm,
     loading: state.loading,
     token: state.token
   };
@@ -102,7 +78,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addAList: (title, token) => dispatch(addAList(title, token)),
+          addAList: (title, token) => dispatch(addAList(title, token)),
     getListForm: (listFormId, token) => dispatch(getListForm(listFormId, token))
   };
 };

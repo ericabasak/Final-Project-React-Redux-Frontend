@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import { getTodoItems, updateListStatus, addTodoItemToList } from '../actions/index';
 import { connect } from 'react-redux';
 import SingleList from './SingleList';
-// import { List } from '@material-ui/core';
 
 class SingleListContainer extends Component {
   // retrieve all items from the backend
   componentDidMount() {
-    console.log("THE COMPONENTDIDMOUNT is being called here")
+    // console.log("THE COMPONENTDIDMOUNT is being called here")
     console.log(this.props.id);
     this.props.getTodoItems(
       this.props.id, 
@@ -23,10 +22,9 @@ class SingleListContainer extends Component {
   }
 
   render() {
-    console.log("this is the singlelistcontainer")
     console.log(this.props);
 
-   const filteredItems = this.props.todos.filter(item => item.list_id === this.props.id)
+    const filteredItems = this.props.todos.filter(item => item.list_id === this.props.id)
 
    return (
      <SingleList 

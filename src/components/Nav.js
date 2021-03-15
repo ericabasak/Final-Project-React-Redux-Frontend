@@ -35,7 +35,6 @@ class Nav extends Component {
                 {this.props.token && <Box color="primary" padding={2} position="right">
                   <Link to="/">Lists</Link>
                   </Box>}
-
           </Toolbar>
         </AppBar>
       </div>      

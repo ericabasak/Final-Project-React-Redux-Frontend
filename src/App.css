@@ -6,34 +6,36 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.4;
-  margin-top: 90px;
-  /* background-image: url("image4.jpg"); */
-}
-
-a {
   color: #333;
-  text-decoration: none;
+  margin-top: 120px;
 }
 
 .container {
   color: #484030;
-  /* background-image: url("./components/image4.jpg");
+  /* background-image: url("./components/image4.jpg"); */
   background-repeat: no-repeat;
-  background-size: cover; */
-  /* opacity: 0.5; */
-
+  background-size: cover;
+  /* height: 800px; */
 }
 
-.btn {
-  display: inline-block;
-  border: none;
-  background: #555;
-  color: #fff;
-  padding: 7px 20px; 
-  cursor: pointer;
+.debug {
+  padding: 16px;
+  margin: 32px 8px;
+  box-shadow: 1px 1px 1px 1px #888;
 }
 
-.btn:hover {
-  background: #666;
+.createListForm {
+  padding: 16px;
+  margin: 8px;
+  box-shadow: 1px 1px 1px 1px #888;
+}
+
+.todoItem {
+  padding: 4px;
+  margin: 4px;
+  background: #f9f9f9;
+  box-shadow: 1px 1px 1px 1px #a2a2a2;
+}
+.singleListContainer {
+  margin-bottom: 16px;
 }

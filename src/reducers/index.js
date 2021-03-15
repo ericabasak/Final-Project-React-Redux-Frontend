@@ -59,7 +59,7 @@ export default function index(
           loading: false
         };
 
-
+// deleting a todo item from a list
     case "LOAD_DELETE_TODO_ITEM":
       return {
         ...state,
