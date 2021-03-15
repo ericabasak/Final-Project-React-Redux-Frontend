@@ -137,6 +137,12 @@ export default function index(
         loading: false
       };
 
+    case 'ADD_A_LIST':
+      return {
+        ...state,
+        lists: action.lists,
+        laoding: false
+      }
 
   
     default:

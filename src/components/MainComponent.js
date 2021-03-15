@@ -16,7 +16,9 @@ class MainComponent extends Component {
 
     return (
       <div>
-        <ListForm />
+        <ListForm 
+          token={this.props.token}
+        />
         <AllLists />
       </div>
     )
@@ -25,7 +27,8 @@ class MainComponent extends Component {
 
 const mapStateToProps = state => {
   return { 
-    user: state.user
+    user: state.user,
+    token: state.token
   };
 };
  

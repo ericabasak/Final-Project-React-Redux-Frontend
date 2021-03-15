@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getListForm } from '../actions/index';
+import { getListForm, addAList } from '../actions/index';
 import { Button, TextField } from '@material-ui/core';
 
 class ListForm extends Component {
@@ -20,25 +20,38 @@ class ListForm extends Component {
 
   // convert token for redux, there is no more local storage
   // finish converting to redux store
-  onSubmitList = (e) => {
+  // onSubmitList
+  // addAList = (e) => {
+  //   e.preventDefault();
+  //   fetch("http://localhost:3001/api/v1/lists", {
+  //     method: "POST",
+  //     headers:
+  //     {
+  //       "Accept": "application/json",
+  //       "Content-Type": "application/json",
+  //       "Authorization": "Bearer " + localStorage.getItem("token")
+  //     },
+  //     body: JSON.stringify({
+  //       title: this.state.title
+  //     })
+  //   }).then(response => response.json())
+  //   .then(response => console.log(response));
+  //   this.todoForm(this.state.title);
+  //   this.setState({ 
+  //     title: "" 
+  //   });
+  // }
+
+  handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:3001/api/v1/lists", {
-      method: "POST",
-      headers:
-      {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("token")
-      },
-      body: JSON.stringify({
-        title: this.state.title
+    this.props.addAList(
+      this.state.title, 
+      this.props.token
+      )
+      this.setState({ 
+        ...this.state, 
+        title: "" 
       })
-    }).then(response => response.json())
-    .then(response => console.log(response));
-    this.todoForm(this.state.title);
-    this.setState({ 
-      title: "" 
-    });
   }
 
   // add form for todo item
@@ -55,7 +68,7 @@ class ListForm extends Component {
   render() {
     return (
       <>
-        <form onSubmit={this.onSubmitList} style={{ display: 'flex' }}>
+        <form onSubmit={this.handleSubmit} style={{ display: 'flex' }}>
           <TextField
             label="Create List"
             type="text"
@@ -89,6 +102,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    addAList: (id, title, token) => dispatch(addAList(id, title, token)),
     getListForm: (listFormId, token) => dispatch(getListForm(listFormId, token))
   };
 };

@@ -204,3 +204,26 @@ export const addTodoItemToList = (id, name, token) => {
       })
   }
 }
+
+// this is for when a list is created in the listform component
+export const addAList = (id, title, token) => {
+  return (dispatch) => {
+    console.log("this is creating a new list");
+    fetch("http://localhost:3001/api/v1/lists", {
+      method: "POST",
+      headers:
+      {
+        "Authorization": "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: id,
+        title: title
+      })
+    }).then(response => {
+      return response.json()
+    }).then(response => {
+      dispatch({ type: 'ADD_A_LIST', list: response})
+    })
+  }
+}
