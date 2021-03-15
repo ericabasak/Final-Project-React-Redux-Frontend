@@ -1,68 +1,50 @@
 import React, { Component } from 'react';
-import { fetchDeleteTodoItem } from '../actions/index';
 import { connect } from 'react-redux';
+import Items from './Items';
+import { deleteTodoItem, updateItemCheckbox } from '../actions/index';
+
 
 class ItemsContainer extends Component {
   // initialize state from db
   // here we are using the constructor method to initialize
   // state from the parent component - props
-  constructor(props) {
-    super(props); 
-      this.state = {
-        name: props.name,
-        isComplete: props.isComplete,
-        id: props.id
-    }
-  }
+  // gets data , connecting to redux, get data to send to container(child)
 
-  getStyle = () => {
-    return {
-      background: '#f4f4f4',
-      padding: '10px',
-      borderBottom: '1px #ccc dotted',
-    }
-  }
-
-
-  // IS THIS USELESS? DELETE ITEM IS ALREADY IN ACTIONS
-  // handler for onclick to delete item
-  // fetch request to delete the inidivual item
-  fetchDeleteTodoItem = (token) => {
-    console.log("this button is being clicked")
-    fetch(`http://localhost:3001/api/v1/items/${token}`, {
-      method: "DELETE",
-      headers:
-      {
-        "Authorization": "Bearer " + localStorage.getItem("token")
-      }
-    })
-    .then(response => response.json())
-  }
+  // <div>
+  // &nbsp; {this.props.name} {this.props.id}  &nbsp;
+  // </div>
 
   render() {
-    console.log("this is for the itemscontainer")
     console.log(this.props)
 
     return (
-     <div style={this.getStyle()} >
-          &nbsp; {this.props.name} {this.props.id}  &nbsp;
-      </div>
+      <Items 
+        id={this.props.id}
+        name={this.props.name}
+        token={this.props.token}
+        isComplete={this.props.isComplete}
+        deleteTodoItem={this.props.deleteTodoItem}
+        updateItemCheckbox={this.props.updateItemCheckbox}
+      />
     )
   }
 }
 
 const mapStateToProps = state => {
-  return { 
+  return {
     todos: state.todos,
     loading: state.loading,
+    isComplete: state.isComplete,
     token: state.token
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchDeleteTodoItem: (token) => dispatch(fetchDeleteTodoItem(token))
+    deleteTodoItem: (id, token) => dispatch(deleteTodoItem(id, token)),
+    updateItemCheckbox: (id, token, isComplete) => dispatch(updateItemCheckbox(id, token, isComplete))
   };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemsContainer);
+

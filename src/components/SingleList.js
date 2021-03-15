@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Items from './Items';
+import ItemsContainer from './ItemsContainer';
 import { Grid, Button, Checkbox, TextField } from '@material-ui/core';
 
 class SingleList extends Component {
@@ -91,7 +91,7 @@ class SingleList extends Component {
 
         <Grid item xs={12} class="singleListContainer">
           {this.props.todos.map((e, index) =>
-          (<Items
+          (<ItemsContainer
             key={index}
             name={e.name}
             id={e.id}

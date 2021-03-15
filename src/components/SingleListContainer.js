@@ -27,7 +27,7 @@ class SingleListContainer extends Component {
     const filteredItems = this.props.todos.filter(item => item.list_id === this.props.id)
 
    return (
-     <SingleList 
+     <SingleList
         name={this.props.name}
         id={this.props.id}
         isComplete={this.props.isComplete}
