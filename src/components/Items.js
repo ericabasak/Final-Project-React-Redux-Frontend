@@ -37,7 +37,7 @@ class Items extends Component {
     return(
       <div>
         <Checkbox 
-          name="is_complete"
+          name="isComplete"
           type="checkbox"
           color="default"
           checked={this.state.isComplete}

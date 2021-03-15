@@ -17,7 +17,7 @@ class App extends Component {
       currentUser: null,
       name: "",
       title: "",
-      is_complete: false,
+      isComplete: false,
       loginForm: {
         email: "",
         password: ""
