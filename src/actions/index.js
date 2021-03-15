@@ -47,7 +47,7 @@ export const getTodoItems = (listId, token) => {
         return response.json()
       })
       .then(todoItems => {
-        dispatch({ type: 'ADD_TODO_ITEMS', todoItems: todoItems })
+        dispatch({ type: "ADD_TODO_ITEMS", todoItems: todoItems })
       })
   }
 }

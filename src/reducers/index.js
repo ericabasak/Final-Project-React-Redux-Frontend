@@ -15,7 +15,7 @@ export default function index(
     case "LOAD_LISTS":
       return {
         ...state,
-        lists: [],
+        
         loading: true
       };
 
@@ -39,9 +39,12 @@ export default function index(
         loading: true
       };
     case "ADD_TODO_ITEMS":
+      const newItems = action.todoItems.filter(todo => {
+        return !state.todoItems.find(e => e.id === todo.id);
+      })
       return {
         ...state,
-        todoItems: state.todoItems.concat(action.todoItems),
+        todoItems: state.todoItems.concat(newItems),
         loading: false
       };
 

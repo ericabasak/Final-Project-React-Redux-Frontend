@@ -7,6 +7,7 @@ import SingleList from './SingleList';
 class SingleListContainer extends Component {
   // retrieve all items from the backend
   componentDidMount() {
+    console.log("THE COMPONENTDIDMOUNT is being called here")
     console.log(this.props.id);
     this.props.getTodoItems(
       this.props.id, 
