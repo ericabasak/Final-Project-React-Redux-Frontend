@@ -10,17 +10,17 @@ class Items extends Component {
   constructor(props) {
     super(props); 
       this.state = {
-        is_complete: props.is_complete
+        isComplete: props.isComplete
     }
   }
 
   checkboxHandler = () => {
     console.log("the the checkbox is being called for an item")
-    this.setState({is_complete: !this.state.is_complete}, () => {
+    this.setState({isComplete: !this.state.isComplete}, () => {
       this.props.updateItemCheckbox(
         this.props.id, 
         this.props.token, 
-        this.state.is_complete
+        this.state.isComplete
       );
     });
   }
@@ -31,18 +31,20 @@ class Items extends Component {
   }
   
   render() {
-    // console.log(this.props);
+    console.log("this is for items")
+    console.log(this.props);
+
     return(
       <div>
         <Checkbox 
           name="is_complete"
           type="checkbox"
           color="default"
-          checked={this.state.is_complete}
+          checked={this.state.isComplete}
           onChange={this.checkboxHandler}
         />
         <span
-          style={{ textDecoration: this.state.is_complete ? "line-through" : ""}}>
+          style={{ textDecoration: this.state.isComplete ? "line-through" : ""}}>
           {this.props.name}
         </span>
           {/* &nbsp; {this.props.name} {this.props.id}  &nbsp; */}
@@ -66,7 +68,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
   return {
     deleteTodoItem: (id, token) => dispatch(deleteTodoItem(id, token)),
-    updateItemCheckbox: (id, token, is_complete) => dispatch(updateItemCheckbox(id, token, is_complete))
+    updateItemCheckbox: (id, token, isComplete) => dispatch(updateItemCheckbox(id, token, isComplete))
   };
 };
 

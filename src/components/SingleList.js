@@ -14,10 +14,12 @@ class SingleList extends Component {
   updateListStatus = (e) => {
     console.log("the the checkbox is being called for list")
     this.setState({ isComplete: !this.state.isComplete }, () =>
-      this.props.updateListStatus(this.props.id, this.state.isComplete) 
+      this.props.updateListStatus(
+        this.props.id, 
+        this.state.isComplete
+      ) 
     )
   }
-
 
   // handler for when an item or todo is created within a list
   handleSubmit = (e) => {
@@ -40,6 +42,7 @@ class SingleList extends Component {
   }
 
   render() {
+    console.log("this is for singlelist")
     console.log(this.props);
     
     return (
@@ -77,7 +80,7 @@ class SingleList extends Component {
           key={index}
           name={e.name}
           id={e.id}
-          is_complete={e.is_complete}
+          isComplete={e.isComplete}
         />
         ))}
       </div>

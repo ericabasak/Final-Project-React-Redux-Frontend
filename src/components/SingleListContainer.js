@@ -15,14 +15,15 @@ class SingleListContainer extends Component {
   }
   
   listTodo = (name) => {
-    const newItem = { name, is_complete: false}
+    const newItem = { name, isComplete: false}
     this.setState({ 
       name: [...this.state.name, newItem] 
     });
   }
 
   render() {
-   console.log(this.props);
+    console.log("this is the singlelistcontainer")
+    console.log(this.props);
 
    const filteredItems = this.props.todos.filter(item => item.list_id === this.props.id)
 
@@ -30,7 +31,7 @@ class SingleListContainer extends Component {
      <SingleList 
         name={this.props.name}
         id={this.props.id}
-        isComplete={this.props.is_complete}
+        isComplete={this.props.isComplete}
         token={this.props.token}
         addTodoItemToList={this.props.addTodoItemToList}
         updateListStatus={this.props.updateListStatus}
@@ -52,7 +53,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getTodoItems: (listId, token) => dispatch(getTodoItems(listId, token)),
-    updateListStatus: (id, is_complete) => dispatch(updateListStatus(id, is_complete)),
+    updateListStatus: (id, isComplete) => dispatch(updateListStatus(id, isComplete)),
     addTodoItemToList: (id, name, token) =>dispatch(addTodoItemToList(id, name, token))
   };
 };

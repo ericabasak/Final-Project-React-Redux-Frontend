@@ -7,7 +7,7 @@ class AllLists extends Component {
   
   state = {
     todos: "",
-    is_complete: false
+    isComplete: false
   }
 
   componentDidMount() {
@@ -27,7 +27,7 @@ class AllLists extends Component {
       },
       body: JSON.stringify({
         id: this.props.id,
-        is_complete: e.target.checked
+        isComplete: e.target.checked
       })
     })
       .then(response => {
@@ -60,7 +60,7 @@ class AllLists extends Component {
          <SingleListContainer 
             key={index} 
             name={e.title} 
-            is_complete={e.is_complete}
+            isComplete={e.isComplete}
             id={e.id} 
           /> 
         )}

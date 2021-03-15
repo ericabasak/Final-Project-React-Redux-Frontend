@@ -61,7 +61,7 @@ class UserLoginForm extends Component {
 
   render() {
     // const { history } = this.props;
-    console.log(this.props);
+    // console.log(this.props);
     
     if (this.props.user.username) {
       this.props.history.push("/")

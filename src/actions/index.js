@@ -58,7 +58,7 @@ export const getTodoItems = (listId, token) => {
 // WWHEN DO YOU USE DISPATCH AND WHEN NOT?????????? line 64
 // is_complete update for lists
 // updateListCheckbox
-export const updateListStatus = (listId, is_complete) => {
+export const updateListStatus = (listId, isComplete) => {
   console.log("this checkbox for the list is getting updated!!!!")
   return (dispatch) => {
     fetch(`http://localhost:3001/api/v1/lists/${listId}`, {
@@ -70,7 +70,7 @@ export const updateListStatus = (listId, is_complete) => {
       },
       body: JSON.stringify({
         id: listId,
-        is_complete: is_complete
+        isComplete: isComplete
       })
     })
     .then(response => {
@@ -110,9 +110,9 @@ export const deleteTodoItem = (id, token) => {
 
 
 // this is for updating an item/todo's checkbox 
-export const updateItemCheckbox = (id, token, is_complete) => {
+export const updateItemCheckbox = (id, token, isComplete) => {
   return (dispatch) => {
-    console.log("updating a checkbox for an item - " + is_complete);
+    console.log("updating a checkbox for an item - " + isComplete);
     fetch(`http://localhost:3001/api/v1/items/${id}`, {
       method: "PATCH",
       headers: 
@@ -121,7 +121,7 @@ export const updateItemCheckbox = (id, token, is_complete) => {
         "Authorization": "Bearer " + localStorage.getItem("token")
       },
       body: JSON.stringify({
-        item: { is_complete: is_complete }
+        item: { isComplete: isComplete }
       })
     })
     .then(response => {
@@ -194,7 +194,7 @@ export const addTodoItemToList = (id, name, token) => {
         item: { 
           list_id: id, 
           name: name, 
-          is_complete: false 
+          isComplete: false 
         }} 
       )
     }).then(response => {

@@ -7,7 +7,7 @@ class ListForm extends Component {
 
   state = {
     name: "",
-    is_complete: false,
+    isComplete: false,
     title: ""
   }
 
@@ -36,14 +36,16 @@ class ListForm extends Component {
     }).then(response => response.json())
     .then(response => console.log(response));
     this.todoForm(this.state.title);
-    this.setState({ title: "" });
+    this.setState({ 
+      title: "" 
+    });
   }
 
   // add form for todo item
   todoForm = (title) => {
     const newTodo = {
       title,
-      is_complete: false
+      isComplete: false
     }
     this.setState({ 
       title: [...this.state.title, newTodo]

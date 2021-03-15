@@ -10,7 +10,7 @@ class ItemsContainer extends Component {
     super(props); 
       this.state = {
         name: props.name,
-        is_complete: props.is_complete,
+        isComplete: props.isComplete,
         id: props.id
     }
   }
@@ -40,6 +40,9 @@ class ItemsContainer extends Component {
   }
 
   render() {
+    console.log("this is for the itemscontainer")
+    console.log(this.props)
+
     return (
      <div style={this.getStyle()} >
           &nbsp; {this.props.name} {this.props.id}  &nbsp;
