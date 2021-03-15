@@ -66,12 +66,15 @@ export default function index(
         loading: true
       };
     case "DELETE_TODO_ITEM":
+      // filter - filters goes through and array of items and looks to
+      // see if it meets a condition given
+      // action.todo.id is the deleted item
       const todoItems = state.todoItems.filter(i => i.id !== action.todo.id);
       console.log(todoItems);
       return {
         ...state,
         loading: false,
-        todoItems: []
+        todoItems: todoItems
       };
       case "LOAD_GET_CURRENT_USER":
       return {

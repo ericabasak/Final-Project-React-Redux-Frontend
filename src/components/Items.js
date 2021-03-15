@@ -11,9 +11,9 @@ class Items extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isComplete: props.isComplete,
-      name: props.name,
-      id: props.id
+      isComplete: this.props.isComplete,
+      // name: props.name,
+      // id: props.id
     }
   }
 

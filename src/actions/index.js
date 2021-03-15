@@ -90,7 +90,7 @@ export const updateListStatus = (listId, isComplete) => {
 export const deleteTodoItem = (id, token) => {
   return (dispatch) => {
     console.log("load delete todo items")
-    dispatch({ type: 'LOAD_DELETE_TODO_ITEM' })
+    // dispatch({ type: 'LOAD_DELETE_TODO_ITEM' })
     fetch(`http://localhost:3001/api/v1/items/${id}`,
       {
         method: "DELETE",

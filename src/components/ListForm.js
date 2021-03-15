@@ -54,6 +54,7 @@ class ListForm extends Component {
                 label="Create List"
                 type="text"
                 name="create list"
+                required
                 fullWidth
                 value={this.state.title}
                 onChange={this.onChangeList}
