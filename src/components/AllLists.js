@@ -45,7 +45,9 @@ class AllLists extends Component {
   isCompleteItemHandler = (e) => {
     console.log("the checkbox for the item is being clicked");
     e.preventDefault();
-    this.props.isCompleteHandler(this.props.id)
+    this.props.isCompleteHandler(
+      this.props.id
+    )
   }
 
   render() {
@@ -69,7 +71,7 @@ class AllLists extends Component {
             <SingleListContainer
               key={index}
               name={e.title}
-              isComplete={e.isComplete}
+              isComplete={e.is_complete}
               id={e.id}
             />
           )}

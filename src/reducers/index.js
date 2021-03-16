@@ -5,7 +5,6 @@ export default function index(
     lists: [],
     loading: false,
     todoItems: [],
-    isComplete: false,
     user: {},
     token: localStorage.getItem("token")
   },
@@ -15,11 +14,8 @@ export default function index(
     case "LOAD_LISTS":
       return {
         ...state,
-        
         loading: true
       };
-
-      // sort through lists
       // SORT THROUGH ALL LISTS IN ALPHEBETICAL ORDER
       // action represents what you get back from server
       // action.lists is lists from server but unsorted
@@ -47,10 +43,8 @@ export default function index(
         todoItems: state.todoItems.concat(newItems),
         loading: false
       };
-
-
-      // update the list checkbox status
-      case "UPDATE_LIST_STATUS":
+    // update the list checkbox status
+    case "UPDATE_LIST_STATUS":
         const listIndex = state.lists.filter(l => l.id === action.list.id);
         state.lists.splice(listIndex, 1, action.list)
         return {
@@ -58,8 +52,7 @@ export default function index(
           lists: state.lists,
           loading: false
         };
-
-// deleting a todo item from a list
+    // deleting a todo item from a list
     case "LOAD_DELETE_TODO_ITEM":
       return {
         ...state,
@@ -76,7 +69,7 @@ export default function index(
         loading: false,
         todoItems: todoItems
       };
-      case "LOAD_GET_CURRENT_USER":
+    case "LOAD_GET_CURRENT_USER":
       return {
         ...state,
         loading: true
@@ -142,17 +135,13 @@ export default function index(
         todoItems: state.todoItems,
         loading: false
       };
-
     case 'ADD_A_LIST':
       console.log(action);
       return {
         ...state,
         lists: state.lists.concat(action.list),
         loading: false
-      }
-     
-
-  
+      };
     default:
       return state;
   }

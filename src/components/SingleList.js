@@ -43,6 +43,7 @@ class SingleList extends Component {
   render() {
     console.log("this is for singlelist");
     console.log(this.props);
+    console.log(this.props.todos);
 
     return (
       <Grid
@@ -90,14 +91,16 @@ class SingleList extends Component {
         </Grid>
 
         <Grid item xs={12} className="singleListContainer">
-          {this.props.todos.map((e, index) =>
-          (<ItemsContainer
+          {this.props.todos.map((e, index) => {
+            console.log(e);
+          return (<ItemsContainer
             key={index}
             name={e.name}
             id={e.id}
-            isComplete={e.isComplete}
+            isComplete={e.is_complete}
           />
-          ))}
+          )}
+          )}
         </Grid>
       </Grid>
     )

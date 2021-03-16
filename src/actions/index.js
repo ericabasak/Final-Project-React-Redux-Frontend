@@ -70,7 +70,7 @@ export const updateListStatus = (listId, isComplete) => {
       },
       body: JSON.stringify({
         id: listId,
-        isComplete: isComplete
+        is_complete: isComplete
       })
     })
     .then(response => {
@@ -118,10 +118,10 @@ export const updateItemCheckbox = (id, token, isComplete) => {
       headers: 
       {
         "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("token")
+        "Authorization": "Bearer " + token 
       },
       body: JSON.stringify({
-        item: { isComplete: isComplete }
+        item: { is_complete: isComplete }
       })
     })
     .then(response => {
@@ -194,7 +194,7 @@ export const addTodoItemToList = (id, name, token) => {
         item: { 
           list_id: id, 
           name: name, 
-          isComplete: false 
+          is_complete: false 
         }} 
       )
     }).then(response => {

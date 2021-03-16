@@ -8,7 +8,6 @@ class Nav extends Component {
   // DO THIS --
   // auth token passed in every function and store in redux instead of local storage
   // redux for state
-  
   render() {
     return (
       <div>

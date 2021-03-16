@@ -15,7 +15,7 @@ class ItemsContainer extends Component {
   // </div>
 
   render() {
-    console.log(this.props)
+    console.log(this.props);
 
     return (
       <Items 
@@ -34,7 +34,6 @@ const mapStateToProps = state => {
   return {
     todos: state.todos,
     loading: state.loading,
-    isComplete: state.isComplete,
     token: state.token
   };
 };
