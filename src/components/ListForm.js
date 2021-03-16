@@ -49,7 +49,7 @@ class ListForm extends Component {
           direction="column"
         >
           <Grid item xs={12}>
-            <form onSubmit={this.handleSubmit} class="createListForm">
+            <form onSubmit={this.handleSubmit} className="createListForm">
               <TextField
                 label="Create List"
                 type="text"

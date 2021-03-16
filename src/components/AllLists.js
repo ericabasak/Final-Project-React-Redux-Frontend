@@ -61,7 +61,7 @@ class AllLists extends Component {
         spacing={2}
         direction="column"
       >
-        <Grid item xs={4} class="title">
+        <Grid item xs={4} className="title">
           <h4>All Todos</h4>
         </Grid>
         <Grid item xs={12}>

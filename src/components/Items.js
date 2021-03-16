@@ -45,7 +45,7 @@ class Items extends Component {
         container
         spacing={0}
         direction="column"
-        class="todoItem"
+        className="todoItem"
       >
         <Grid item xs={12}>
           <Grid container>

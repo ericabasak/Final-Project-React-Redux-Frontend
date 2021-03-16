@@ -41,7 +41,7 @@ class SingleList extends Component {
   }
 
   render() {
-    console.log("this is for singlelist")
+    console.log("this is for singlelist");
     console.log(this.props);
 
     return (
@@ -49,7 +49,7 @@ class SingleList extends Component {
         container
         spacing={2}
         direction="column"
-        class="debug"
+        className="debug"
       >
       <Grid item xs={10}>
           <h4>
@@ -89,7 +89,7 @@ class SingleList extends Component {
           </form>
         </Grid>
 
-        <Grid item xs={12} class="singleListContainer">
+        <Grid item xs={12} className="singleListContainer">
           {this.props.todos.map((e, index) =>
           (<ItemsContainer
             key={index}
