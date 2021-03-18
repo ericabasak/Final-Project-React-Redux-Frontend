@@ -93,7 +93,7 @@ class SingleList extends Component {
         <Grid item xs={12} className="singleListContainer">
           {this.props.todos.map((e, index) => {
             console.log(e);
-          return (<ItemsContainer
+            return (<ItemsContainer
             key={index}
             name={e.name}
             id={e.id}

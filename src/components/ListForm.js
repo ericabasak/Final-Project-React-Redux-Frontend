@@ -71,7 +71,7 @@ class ListForm extends Component {
 
 const mapStateToProps = state => {
   return {
-          listForm: state.listForm,
+    listForm: state.listForm,
     loading: state.loading,
     token: state.token
   };
@@ -79,7 +79,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-          addAList: (title, token) => dispatch(addAList(title, token)),
+    addAList: (title, token) => dispatch(addAList(title, token)),
     getListForm: (listFormId, token) => dispatch(getListForm(listFormId, token))
   };
 };

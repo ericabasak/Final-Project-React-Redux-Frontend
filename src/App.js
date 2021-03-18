@@ -6,6 +6,7 @@ import Nav from './components/Nav';
 import UserLoginForm from './components/UserLoginForm';
 import UserSignupForm from './components/UserSignupForm';
 import MainComponent from './components/MainComponent';
+import SearchBar from './components/SearchBar';
 import { getCurrentUser } from './actions/index';
 import './App.css';
 import Grid from '@material-ui/core/Grid';
@@ -45,6 +46,7 @@ class App extends Component {
         >
           <Grid item xs={6}>
             <Nav />
+            <SearchBar />
             <Route exact path="/homepage" render={props => <HomePage {...props} />} />
             <Route exact path="/userloginform" render={props => <UserLoginForm {...props} />} />
             <Route exact path="/usersignupform" component={UserSignupForm} />
