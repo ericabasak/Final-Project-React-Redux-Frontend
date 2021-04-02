@@ -7,6 +7,7 @@ import thunk from 'redux-thunk';
 import reducer from './reducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
+// middleware like thunk is used for dealing with asynchroinous actions in your app
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(

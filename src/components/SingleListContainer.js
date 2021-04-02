@@ -14,9 +14,15 @@ class SingleListContainer extends Component {
   }
   
   listTodo = (name) => {
-    const newItem = { name, isComplete: false}
+    const newItem = { 
+      name, 
+      isComplete: false
+    }
     this.setState({ 
-      name: [...this.state.name, newItem] 
+      name: [
+        ...this.state.name, 
+        newItem
+      ] 
     });
   }
 
@@ -46,6 +52,15 @@ const mapStateToProps = state => {
     token: state.token
   };
 };
+
+
+// mapDispatchToProps() function receives dispatch function 
+// as a parameter and returns you callback props as plain object 
+// that you pass to your react component
+
+// mapDispatchToProps() is used to dispatch an action to store.
+// In react-redux, components cannot access the store directly. The 
+// only way is to use connect().
 
 const mapDispatchToProps = (dispatch) => {
   return {

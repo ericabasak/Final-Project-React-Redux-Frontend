@@ -9,7 +9,6 @@ class SingleList extends Component {
     isComplete: this.props.isComplete
   }
 
-  // in the parameter, why is e there and not is_complete?
   updateListStatus = (e) => {
     console.log("the the checkbox is being called for list")
     this.setState({ isComplete: !this.state.isComplete }, () =>

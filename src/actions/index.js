@@ -5,17 +5,18 @@
 // actions are plain javascript objects that have a type field
 // think of an action as an event that describes something that happend on the frontend
 
+// async action creators
+
 // fetching all todos AKA lists
 export const getLists = (token) => {
   return (dispatch) => {
     console.log("loading lists");
     dispatch({ type: 'LOAD_LISTS' })
-    fetch('http://localhost:3001/api/v1/lists',
+    fetch('http://localhost:3001/api/v1/lists', {
+      headers:
       {
-        headers:
-        {
-          "Authorization": "Bearer " + token
-        }
+       "Authorization": "Bearer " + token
+      }
       })
       .then(response => {
         return response.json()
@@ -36,28 +37,27 @@ export const getTodoItems = (listId, token) => {
   return (dispatch) => {
     console.log("loading todo items " + listId);
     // dispatch({ type: 'LOAD_TODO_ITEMS' })
-    fetch(`http://localhost:3001/api/v1/lists/${listId}`,
+    fetch(`http://localhost:3001/api/v1/lists/${listId}`, {
+      headers:
       {
-        headers:
-        {
-          "Authorization": "Bearer " + token
-        }
+        "Authorization": "Bearer" + token
+      }
       })
       .then(response => {
-        return response.json()
+        return response.json();
       })
-      .then(todoItems => {
-        dispatch({ type: "ADD_TODO_ITEMS", todoItems: todoItems })
+      .then(response => {
+        if (response.error) {
+          return;
+        }
+        dispatch({ type: 'ADD_TODO_ITEMS', todoItems: response })
       })
   }
 }
 
 
-
-
 // WWHEN DO YOU USE DISPATCH AND WHEN NOT?????????? line 64
 // is_complete update for lists
-// updateListCheckbox
 export const updateListStatus = (listId, isComplete) => {
   console.log("this checkbox for the list is getting updated!!!!")
   return (dispatch) => {
@@ -77,12 +77,10 @@ export const updateListStatus = (listId, isComplete) => {
       return response.json()
     })
     .then(response => {
-      dispatch({ type: "UPDATE_LIST_STATUS", list: response })
+      dispatch({ type: 'UPDATE_LIST_STATUS', list: response })
     })
   }
 }
-
-
 
 
 
@@ -91,13 +89,12 @@ export const deleteTodoItem = (id, token) => {
   return (dispatch) => {
     console.log("load delete todo items")
     // dispatch({ type: 'LOAD_DELETE_TODO_ITEM' })
-    fetch(`http://localhost:3001/api/v1/items/${id}`,
+    fetch(`http://localhost:3001/api/v1/items/${id}`,{
+      method: "DELETE",
+      headers:
       {
-        method: "DELETE",
-        headers:
-        {
-          "Authorization": "Bearer " + token
-        }
+        "Authorization": "Bearer " + token
+      }
       })
       .then(response => {
         return response.json()
@@ -128,7 +125,7 @@ export const updateItemCheckbox = (id, token, isComplete) => {
       return response.json()
     })
     .then(response => {
-      dispatch({ type: "UPDATE_TODO_ITEM", todo: response })
+      dispatch({ type: 'UPDATE_TODO_ITEM', todo: response })
     })
   }
 }
@@ -140,9 +137,9 @@ export const getCurrentUser = (token) => {
     dispatch({ type: 'LOAD_GET_CURRENT_USER' })
     fetch('http://localhost:3001/api/v1/get_current_user', {
       headers:
-        {
-          "Authorization": "Bearer " + token
-        }
+      {
+        "Authorization": "Bearer " + token
+      }
       })
       .then(response => {
         return response.json()
@@ -156,18 +153,19 @@ export const getCurrentUser = (token) => {
   }
 }
 
+
+
 // to be finished for the listform component - finish converting to redux
 // listform to redux
 export const getListForm = (listFormId, token) => {
   return (dispatch) => {
     console.log("loading list form")
     dispatch({ type: 'LOAD_LIST_FORM' })
-    fetch(`http://localhost:3001/api/v1/lists/${listFormId}`,
+    fetch(`http://localhost:3001/api/v1/lists/${listFormId}`, {
+      headers:
       {
-        headers:
-        {
-          "Authorization": "Bearer " + token
-        }
+        "Authorization": "Bearer " + token
+      }
       })
       .then(response => {
         return response.json()
@@ -183,7 +181,7 @@ export const addTodoItemToList = (id, name, token) => {
   return (dispatch) => {
     console.log("creating todo items");
     // dispatch({ type: 'LOAD_TODO_ITEM_SUBMIT' })
-    fetch("http://localhost:3001/api/v1/items", {
+    fetch('http://localhost:3001/api/v1/items', {
       method: "POST",
       headers:
       {
@@ -200,7 +198,11 @@ export const addTodoItemToList = (id, name, token) => {
     }).then(response => {
         return response.json()
       }).then(item => {
-        dispatch({ type: 'ADD_TODO_ITEM_SUBMIT', todo: item });
+        const obj = { 
+          type: 'ADD_TODO_ITEM_SUBMIT', 
+          todo: item 
+        };
+        dispatch(obj);
       })
   }
 }
@@ -209,7 +211,7 @@ export const addTodoItemToList = (id, name, token) => {
 export const addAList = (title, token) => {
   return (dispatch) => {
     console.log("this is creating a new list");
-    fetch("http://localhost:3001/api/v1/lists", {
+    fetch('http://localhost:3001/api/v1/lists', {
       method: "POST",
       headers:
       {

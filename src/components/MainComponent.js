@@ -16,9 +16,7 @@ class MainComponent extends Component {
 
     return (
       <div>
-        <ListForm 
-          token={this.props.token}
-        />
+        <ListForm token={this.props.token} />
         <AllLists />
       </div>
     )
@@ -38,4 +36,5 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainComponent);
+
 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getListForm, addAList } from '../actions/index';
 import { Grid, Button, TextField } from '@material-ui/core';
 
+
 class ListForm extends Component {
 
   state = {
@@ -68,7 +69,9 @@ class ListForm extends Component {
   };
 }
 
-
+// this is a function mapStateToProps
+// here we specify which state we need to provide to our react component
+// we provide these store states as prop to our react component.
 const mapStateToProps = state => {
   return {
     listForm: state.listForm,
@@ -77,6 +80,9 @@ const mapStateToProps = state => {
   };
 };
 
+// mapDispatchToProps() function receives dispatch function as a parameter 
+// and returns you callback props as plain object that you pass 
+// to your react component.
 const mapDispatchToProps = (dispatch) => {
   return {
     addAList: (title, token) => dispatch(addAList(title, token)),
@@ -84,4 +90,5 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
+// connect is how we connect our app state to react component
 export default connect(mapStateToProps, mapDispatchToProps)(ListForm);
