@@ -28,15 +28,22 @@ class SingleListContainer extends Component {
 
   render() {
     console.log(this.props);
+    
+    const { 
+      name, 
+      id, 
+      isComplete, 
+      token 
+    } = this.props
 
     const filteredItems = this.props.todos.filter(item => item.list_id === this.props.id)
 
    return (
      <SingleList
-        name={this.props.name}
-        id={this.props.id}
-        isComplete={this.props.isComplete}
-        token={this.props.token}
+        name={name}
+        id={id}
+        isComplete={isComplete}
+        token={token}
         addTodoItemToList={this.props.addTodoItemToList}
         updateListStatus={this.props.updateListStatus}
         todos={filteredItems}

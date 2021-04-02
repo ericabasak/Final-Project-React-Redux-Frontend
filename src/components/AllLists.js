@@ -57,6 +57,8 @@ class AllLists extends Component {
 
     console.log(this.props.lists);
 
+    const { lists } = this.props
+
     return (
       <Grid
         container
@@ -67,7 +69,7 @@ class AllLists extends Component {
           <h4>All Todos</h4>
         </Grid>
         <Grid item xs={12}>
-          {this.props.lists && this.props.lists.map((e, index) =>
+          { lists && lists.map((e, index) =>
             <SingleListContainer
               key={index}
               name={e.title}

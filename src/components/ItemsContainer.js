@@ -17,12 +17,19 @@ class ItemsContainer extends Component {
   render() {
     console.log(this.props);
 
+    const { 
+      id,
+      name,
+      token,
+      isComplete
+    } = this.props
+
     return (
       <Items 
-        id={this.props.id}
-        name={this.props.name}
-        token={this.props.token}
-        isComplete={this.props.isComplete}
+        id={id}
+        name={name}
+        token={token}
+        isComplete={isComplete}
         deleteTodoItem={this.props.deleteTodoItem}
         updateItemCheckbox={this.props.updateItemCheckbox}
       />
