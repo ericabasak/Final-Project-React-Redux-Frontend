@@ -17,38 +17,38 @@ class AllLists extends Component {
 
   // make a fetch call to is_complete
   // making an update to item
-  isCompleteHandler = (e) => {
-    console.log("the the checkbox is being called for an item")
-    fetch(`http://localhost:3001/api/v1/items/${this.props.id}`, {
-      method: "PATCH",
-      headers:
-      {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("token")
-      },
-      body: JSON.stringify({
-        id: this.props.id,
-        isComplete: e.target.checked
-      })
-    })
-      .then(response => {
-        return response.json()
-      })
-      .then(r => {
-        let oldTodos = this.state.todos;
-        let oldTodoIndex = oldTodos.findIndex(e => e.id === r.id)
-        oldTodos[oldTodoIndex] = r
-        this.setState({ todos: oldTodos })
-      })
-  }
+  // isCompleteHandler = (e) => {
+  //   console.log("the the checkbox is being called for an item")
+  //   fetch(`http://localhost:3001/api/v1/items/${this.props.id}`, {
+  //     method: "PATCH",
+  //     headers:
+  //     {
+  //       "Content-Type": "application/json",
+  //       "Authorization": "Bearer " + localStorage.getItem("token")
+  //     },
+  //     body: JSON.stringify({
+  //       id: this.props.id,
+  //       isComplete: e.target.checked
+  //     })
+  //   })
+  //     .then(response => {
+  //       return response.json()
+  //     })
+  //     .then(r => {
+  //       let oldTodos = this.state.todos;
+  //       let oldTodoIndex = oldTodos.findIndex(e => e.id === r.id)
+  //       oldTodos[oldTodoIndex] = r
+  //       this.setState({ todos: oldTodos })
+  //     })
+  // }
 
-  isCompleteItemHandler = (e) => {
-    console.log("the checkbox for the item is being clicked");
-    e.preventDefault();
-    this.props.isCompleteHandler(
-      this.props.id
-    )
-  }
+  // isCompleteItemHandler = (e) => {
+  //   console.log("the checkbox for the item is being clicked");
+  //   e.preventDefault();
+  //   this.props.isCompleteHandler(
+  //     this.props.id
+  //   )
+  // }
 
   render() {
     if (this.props.loading) {

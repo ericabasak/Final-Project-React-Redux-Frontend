@@ -39,7 +39,7 @@ class ItemsContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    todos: state.todos,
+    // todos: state.todos,
     loading: state.loading,
     token: state.token
   };

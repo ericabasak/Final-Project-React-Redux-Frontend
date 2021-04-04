@@ -3,11 +3,13 @@ import { getTodoItems, updateListStatus, addTodoItemToList } from '../actions/in
 import { connect } from 'react-redux';
 import SingleList from './SingleList';
 
+// loading all todos for a a list
 class SingleListContainer extends Component {
   // retrieve all items from the backend
   componentDidMount() {
-    console.log(this.props.id);
+    // console.log(this.props.id);
     this.props.getTodoItems(
+      // list id 
       this.props.id, 
       this.props.token
     );
@@ -26,9 +28,7 @@ class SingleListContainer extends Component {
     });
   }
 
-  render() {
-    console.log(this.props);
-    
+  render() {    
     const { 
       name, 
       id, 

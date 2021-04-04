@@ -65,6 +65,7 @@ export default function index(
       };
     case "ADD_TODO_ITEMS":
       console.log(action);
+      // removing duplicates
       const newItems = action.todoItems.filter(todo => {
         return !state.todoItems.find(e => e.id === todo.id);
       });
