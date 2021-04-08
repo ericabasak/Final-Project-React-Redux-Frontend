@@ -21,10 +21,12 @@ class ListForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    console.log('a')
     this.props.addAList(
       this.state.title,
       this.props.token
     )
+    console.log('g')
     this.setState({
       ...this.state,
       title: ""

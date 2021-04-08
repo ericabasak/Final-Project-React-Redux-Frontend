@@ -3,17 +3,12 @@ import { Button, Checkbox } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
 
 class Items extends Component {
-  // // initialize state from db
-  // // here we are using the constructor method to initialize
-  // // state from the parent component - props
-  // renders from the parent component
+
 
   constructor(props) {
     super(props);
     this.state = {
-      isComplete: this.props.isComplete,
-      // name: props.name,
-      // id: props.id
+      isComplete: this.props.isComplete
     }
   }
 
@@ -29,7 +24,8 @@ class Items extends Component {
   }
 
   deleteHandlerItem = (e) => {
-    console.log("the delete is being clicked")
+    console.log("the delete is being clicked");
+    this.state.isComplete = false;
     this.props.deleteTodoItem(
       this.props.id,
       this.props.token
@@ -39,6 +35,7 @@ class Items extends Component {
   render() {
     console.log("this is for items")
     console.log(this.props);
+    console.log(this.state)
 
     return (
       <Grid

@@ -36,11 +36,12 @@ export const getLists = (token) => {
 export const getTodoItems = (listId, token) => {
   return (dispatch) => {
     console.log("loading todo items " + listId);
+    console.log(token);
     // dispatch({ type: 'LOAD_TODO_ITEMS' })
     fetch(`http://localhost:3001/api/v1/lists/${listId}`, {
       headers:
       {
-        "Authorization": "Bearer" + token
+        "Authorization": "Bearer " + token
       }
       })
       .then(response => {
@@ -209,7 +210,9 @@ export const addTodoItemToList = (id, name, token) => {
 
 // this is for when a list is created in the listform component
 export const addAList = (title, token) => {
+  console.log('b')
   return (dispatch) => {
+    console.log('c')
     console.log("this is creating a new list");
     fetch('http://localhost:3001/api/v1/lists', {
       method: "POST",
@@ -225,7 +228,10 @@ export const addAList = (title, token) => {
       return response.json()
     }).then(response => {
       console.log(response);
+      console.log('d')
       dispatch({ type: 'ADD_A_LIST', list: response})
     })
+    console.log('e')
   }
+  console.log('f')
 }

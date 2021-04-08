@@ -8,47 +8,13 @@ class AllLists extends Component {
 
   state = {
     todos: "",
-    isComplete: false
+    isComplete: false,
+    // text: ""
   }
 
   componentDidMount() {
     this.props.getLists(this.props.token)
   }
-
-  // make a fetch call to is_complete
-  // making an update to item
-  // isCompleteHandler = (e) => {
-  //   console.log("the the checkbox is being called for an item")
-  //   fetch(`http://localhost:3001/api/v1/items/${this.props.id}`, {
-  //     method: "PATCH",
-  //     headers:
-  //     {
-  //       "Content-Type": "application/json",
-  //       "Authorization": "Bearer " + localStorage.getItem("token")
-  //     },
-  //     body: JSON.stringify({
-  //       id: this.props.id,
-  //       isComplete: e.target.checked
-  //     })
-  //   })
-  //     .then(response => {
-  //       return response.json()
-  //     })
-  //     .then(r => {
-  //       let oldTodos = this.state.todos;
-  //       let oldTodoIndex = oldTodos.findIndex(e => e.id === r.id)
-  //       oldTodos[oldTodoIndex] = r
-  //       this.setState({ todos: oldTodos })
-  //     })
-  // }
-
-  // isCompleteItemHandler = (e) => {
-  //   console.log("the checkbox for the item is being clicked");
-  //   e.preventDefault();
-  //   this.props.isCompleteHandler(
-  //     this.props.id
-  //   )
-  // }
 
   render() {
     if (this.props.loading) {
@@ -65,6 +31,14 @@ class AllLists extends Component {
         spacing={2}
         direction="column"
       >
+      {/* practice for the final assessment live coding session */}
+      {/* <div>
+        <form>
+          <textarea onChange={(e) => this.setState({text: e.target.value})}>
+          </textarea>
+          <p>{this.state.text}</p>
+        </form>
+      </div> */}
         <Grid item xs={4} className="title">
           <h4>All Todos</h4>
         </Grid>

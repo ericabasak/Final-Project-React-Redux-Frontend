@@ -1,31 +1,3 @@
-// REDUCERS ARE PURE FUNCTIONS - predictable and returns same value
-// same input equals same output
-// dispatch an action into the reducer
-// takes two parameters - initial state, action
-// the reducer takes the action, then changes the 
-// state on the store based on the action. After access to the state, it can be updated.
-// an action a JavaScript object that has type property that describes an action
-// and an optional payload.
-
-// an action is just a plain object with a type key.
-// Redux pattern in which the store dispatches an action to the 
-// reducer, the reducer uses that action to make changes 
-// to the state, and components re-render with new data.
-
-// 1.
-// We hold our application's state in one plain old JavaScript object, 
-// and we update that state by passing both an action 
-// and the old state to our reducer. Our reducer returns to us our new state.
-// 2.
-// So to change our state we (1) create an action (an action is just 
-// a plain object with a type key); and (2) and pass the action 
-// as an argument when we call the reducer (which is just a function 
-// with a switch/case statement). This produces a new state.
-// 3
-// Our reducer is a pure function which means that given the same 
-// arguments of state and action, it will always produce the same 
-// new state. Also it means that our reducer never updates the 
-// previous state, but rather creates a new state object.
 
 export default function index(
   state = {
