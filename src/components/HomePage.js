@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { getCurrentUser } from '../actions/index';
 import Logout from './Logout';
 import UserLoginForm from './UserLoginForm';
 
-class HomePage extends Component {
+// class HomePage extends Component {
+function HomePage(props){
+  // render() {
+    const { username } = props.user
 
-  render() {
-    const { username } = this.props.user
-
-    if (this.props.token) {
+    if (props.token) {
       return (
         <div style={{ textAlign: "center", padding: "90px" }}>
           <h2>Organize your life with TodoApp</h2>
@@ -21,7 +21,6 @@ class HomePage extends Component {
     } else {
       return ( <UserLoginForm /> );
     }
-  }
 }
 
 const mapStateToProps = state => {
