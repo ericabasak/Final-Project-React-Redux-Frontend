@@ -22,11 +22,13 @@ export default function index(
       // action contains all the input data
 
     case "ADD_LISTS":
-      const sortedList = action.lists.sort((a, b) => (a.title > b.title) ? 1 : -1)
-      console.log(sortedList);
+      // sorting lists in backend in index method
+      // const sortedList = action.lists.sort((a, b) => (a.title > b.title) ? 1 : -1)
+      // console.log(sortedList);
       return {
         ...state,
-        lists: sortedList,
+        // lists: sortedList,
+        lists: action.lists,
         loading: false
       };
     case "LOAD_TODO_ITEMS":
