@@ -8,8 +8,7 @@ class AllLists extends Component {
 
   state = {
     todos: "",
-    isComplete: false,
-    // text: ""
+    isComplete: false
   }
 
   componentDidMount() {
@@ -32,13 +31,7 @@ class AllLists extends Component {
         direction="column"
       >
       {/* practice for the final assessment live coding session */}
-      {/* <div>
-        <form>
-          <textarea onChange={(e) => this.setState({text: e.target.value})}>
-          </textarea>
-          <p>{this.state.text}</p>
-        </form>
-      </div> */}
+      
         <Grid item xs={4} className="title">
           <h4>All Todos</h4>
         </Grid>

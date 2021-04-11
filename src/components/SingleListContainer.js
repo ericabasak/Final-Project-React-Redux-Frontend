@@ -52,6 +52,12 @@ class SingleListContainer extends Component {
   }
 }
 
+// keys and objects in mstp
+// these will be props passed down to singleListContainer with the first render.
+// the first time you render the component it will have the return value of mstp in it already.
+// mstp happens before render for singlelistcontainer.
+// connect is actually the file your exporting NOT singlelistcontainer.
+
 const mapStateToProps = state => {
   return { 
     todos: state.todoItems,
@@ -77,4 +83,8 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
+// connect component is the one actually wrapping the SingleListContainer which is the class defined in this component.
+// connect has two arguments - mstp's & mdtp's
+// connected component is the one actually be exported, NOT singleListContainer.
+// SingleListContainer is a child component of the connected component.
 export default connect(mapStateToProps, mapDispatchToProps)(SingleListContainer);

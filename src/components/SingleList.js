@@ -22,11 +22,13 @@ class SingleList extends Component {
   // handler for when an item or todo is created within a list
   handleSubmit = (e) => {
     e.preventDefault();
+    console.log("1")
     this.props.addTodoItemToList(
       this.props.id,
       this.state.name,
       this.props.token
     )
+    console.log("7")
     this.setState({
       ...this.state,
       name: ""
