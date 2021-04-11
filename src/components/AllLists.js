@@ -8,7 +8,8 @@ class AllLists extends Component {
 
   state = {
     todos: "",
-    isComplete: false
+    isComplete: false,
+    searchText: ""
   }
 
   componentDidMount() {
@@ -23,6 +24,8 @@ class AllLists extends Component {
     console.log(this.props.lists);
 
     const { lists } = this.props
+    
+    const filterList = lists.filter((list) => list.title.includes(this.state.searchText))
 
     return (
       <Grid
@@ -31,12 +34,21 @@ class AllLists extends Component {
         direction="column"
       >
       {/* practice for the final assessment live coding session */}
+     
+      <>
+        <form>
+          <textarea
+          onChange={(e) => this.setState({searchText: e.target.value})}>
+          </textarea>
+        </form>
+        <span>{this.state.text}</span>
+      </>
       
         <Grid item xs={4} className="title">
           <h4>All Todos</h4>
         </Grid>
         <Grid item xs={12}>
-          { lists && lists.map((e, index) =>
+          { filterList && filterList.map((e, index) =>
             <SingleListContainer
               key={index}
               name={e.title}
