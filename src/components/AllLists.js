@@ -24,8 +24,18 @@ class AllLists extends Component {
     console.log(this.props.lists);
 
     const { lists } = this.props
-    
+
     const filterList = lists.filter((list) => list.title.includes(this.state.searchText))
+
+
+    // const filterName = name => {
+    //   if (name.startsWith("Adi")) {
+    //     return true;
+    //   }
+    //   return false;
+    // }
+    
+    // person.filter(name => name.startsWith("Adi"));
 
     return (
       <Grid
