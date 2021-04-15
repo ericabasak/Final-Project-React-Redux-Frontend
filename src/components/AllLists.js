@@ -8,8 +8,7 @@ class AllLists extends Component {
 
   state = {
     todos: "",
-    isComplete: false,
-    searchText: ""
+    isComplete: false
   }
 
   componentDidMount() {
@@ -21,21 +20,11 @@ class AllLists extends Component {
       return (<div>Loading...</div>);
     }
 
+    
+
     console.log(this.props.lists);
 
     const { lists } = this.props
-
-    const filterList = lists.filter((list) => list.title.includes(this.state.searchText))
-
-
-    // const filterName = name => {
-    //   if (name.startsWith("Adi")) {
-    //     return true;
-    //   }
-    //   return false;
-    // }
-    
-    // person.filter(name => name.startsWith("Adi"));
 
     return (
       <Grid
@@ -43,22 +32,12 @@ class AllLists extends Component {
         spacing={2}
         direction="column"
       >
-      {/* practice for the final assessment live coding session */}
-     
-      <>
-        <form>
-          <textarea
-          onChange={(e) => this.setState({searchText: e.target.value})}>
-          </textarea>
-        </form>
-        <span>{this.state.text}</span>
-      </>
-      
+
         <Grid item xs={4} className="title">
           <h4>All Todos</h4>
         </Grid>
         <Grid item xs={12}>
-          { filterList && filterList.map((e, index) =>
+          { lists && lists.map((e, index) =>
             <SingleListContainer
               key={index}
               name={e.title}

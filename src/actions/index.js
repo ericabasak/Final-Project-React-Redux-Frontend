@@ -244,7 +244,6 @@ export const addAList = (title, token) => {
         title: title
       })
     }).then(response => {
-      console.log('1st then')
       return response.json()
     }).then(response => {
       console.log(response);

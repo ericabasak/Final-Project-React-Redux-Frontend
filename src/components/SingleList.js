@@ -6,7 +6,8 @@ class SingleList extends Component {
 
   state = {
     name: "",
-    isComplete: this.props.isComplete
+    isComplete: this.props.isComplete,
+    showing: true
   }
 
   updateListStatus = (e) => {
@@ -41,18 +42,47 @@ class SingleList extends Component {
     });
   }
 
+  onClickHideCompletedItems = (e) => {
+    this.setState({
+      // showing: !showing
+    })
+  }
+
   render() {
     console.log("this is for singlelist");
     console.log(this.props);
     console.log(this.props.todos);
 
+    const { showing } = this.state;
+
     return (
+
       <Grid
         container
         spacing={2}
         direction="column"
         className="debug"
       >
+
+      {/* <Button onClick={this.onClickHideCompletedItems} 
+        type="toggle" 
+        label="Toggle">Hide finished task</Button> */}
+
+      {/* <button onClick={() => this.setState({showing: !showing})}>toggle</button>
+      {
+        showing
+        ? <div>{this.props.todos.map((e, index) => {
+            return (<ItemsContainer
+            key={index}
+            name={e.name}
+            id={e.id}
+            isComplete={e.is_complete}
+          />
+          )}
+          )}</div>
+        : null
+      } */}
+     
       <Grid item xs={10}>
           <h4>
             <Checkbox
@@ -92,7 +122,8 @@ class SingleList extends Component {
         </Grid>
 
         <Grid item xs={12} className="singleListContainer">
-          {this.props.todos.map((e, index) => {
+        <button onClick={() => this.setState({showing: !showing})} type="toggle" label="Toggle">Hide finished task</button>
+          {this.state.showing && this.props.todos.map((e, index) => {
             return (<ItemsContainer
             key={index}
             name={e.name}
@@ -101,6 +132,7 @@ class SingleList extends Component {
           />
           )}
           )}
+          
         </Grid>
       </Grid>
     )
