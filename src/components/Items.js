@@ -8,7 +8,8 @@ class Items extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isComplete: this.props.isComplete
+      isComplete: this.props.isComplete,
+      count: 0
     }
   }
 
@@ -30,6 +31,13 @@ class Items extends Component {
       this.props.id,
       this.props.token
     );
+  }
+
+  onClick = () => {
+    console.log("clicking the like button")
+    this.setState({
+      count: this.state.count + 1
+    })
   }
 
   render() {
@@ -66,6 +74,11 @@ class Items extends Component {
                 size="small"
                 label="Delete">Delete</Button>
             </Grid>
+            <div>
+                <span>
+                  <Button onClick={this.onClick}>{this.state.count} ❤️ </Button>
+                </span>
+            </div>
           </Grid>
         </Grid>
       </Grid>

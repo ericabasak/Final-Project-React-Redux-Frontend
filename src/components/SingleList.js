@@ -7,8 +7,6 @@ class SingleList extends Component {
   state = {
     name: "",
     isComplete: this.props.isComplete,
-    // hideCompletedTask: false,
-    // hideButtonText: "Hide"
     hideFinishedTodo: false
   }
 
@@ -42,21 +40,11 @@ class SingleList extends Component {
     });
   }
 
-  // onClick for clicking a button to hide completed items from a list
-  // onClick is an event
+  // onClick for clicking a button to hide completed todos from a list
   onClick = () => {
     this.setState({
       hideFinishedTodo: !this.state.hideFinishedTodo
     })
-    // if (this.state.hideCompletedTask) {
-    //   this.setState({hideButtonText: "Hide", hideCompletedTask: false});
-    // } else {
-    //   this.setState({hideButtonText: "Unhide", hideCompletedTask: true});
-    // }
-
-    // this.setState({
-    //   hideCompletedTask: !this.state.hideCompletedTask,
-    // })
   }
 
   render() {
@@ -64,10 +52,23 @@ class SingleList extends Component {
     console.log(this.props);
     console.log(this.props.todos);
 
-    const { hideFinishedTodo } = this.state;
+    // const { hideFinishedTodo } = this.state;
+
+    // let filteredTodos = undefined;
+    // if (hideFinishedTodo) {
+    //   filteredTodos = this.props.todos.filter(todo => todo.is_complete === false);
+    // } else {
+    //   filteredTodos = this.props.todos;
+    // }
+
+    // const filteredTodos = this.state.hideFinishedTodo ? 
+    // this.props.todos.filter(todo => todo.is_complete === false) 
+    // : this.props.todos;
+
 
     const filterTodo = this.props.todos.filter(todo => todo.is_complete === false);
     console.log(filterTodo);
+
 
     return (
 
@@ -77,19 +78,21 @@ class SingleList extends Component {
         direction="column"
         className="debug"
       >
-      {/* checkbox to hide completed todos */}
-      <>
-            <form>
-              <input
-                name="taskCompleted"
-                type="checkbox"
-                checked={this.state.hideFinishedTodo}
-                onChange={this.onClick}
-              />
-            </form>
-          </>
-     
-      <Grid item xs={10}>
+        {/* checkbox to hide completed todos */}
+        <>
+          <div>
+            <input
+              name="taskCompleted"
+              type="checkbox"
+              checked={this.state.hideFinishedTodo}
+              onChange={this.onClick}
+            />
+            &nbsp;
+            <label for="taskCompleted">Toggle tasks</label>
+          </div>
+        </>
+
+        <Grid item xs={10}>
           <h4>
             <Checkbox
               name="isComplete"
@@ -127,16 +130,16 @@ class SingleList extends Component {
           </form>
         </Grid>
 
-        <Grid item xs={12} className="singleListContainer">
+        <Grid item xs={12} className="singleListContainer" >
 
           {/* react event handlers are written in curly braces */}
-        {/* <button onClick={this.onClick} type="toggle" label="Toggle">Hide or unhide</button> */}
-              
+          {/* <button onClick={this.onClick} type="toggle" label="Toggle">Hide or unhide</button> */}
 
-        {/* hideCompletedTask = true,  hideCompletedTask = false */}
+
+          {/* hideCompletedTask = true,  hideCompletedTask = false */}
           {/* {!hideCompletedTask && <h1>hide</h1>}
           {hideCompletedTask && <h1>unhide</h1>} */}
-          {!hideFinishedTodo && this.props.todos.map((e, index) => {
+          {!this.state.hideFinishedTodo && this.props.todos.map((e, index) => {
             return (<ItemsContainer
             key={index}
             name={e.name}
@@ -146,7 +149,7 @@ class SingleList extends Component {
           )}
           )}
           
-          {hideFinishedTodo && filterTodo.map((e, index) => {
+          {this.state.hideFinishedTodo && filterTodo.map((e, index) => {
             return (<ItemsContainer
             key={index}
             name={e.name}
@@ -155,6 +158,31 @@ class SingleList extends Component {
           />
           )}
           )}
+
+          {/* {!hideFinishedTodo && this.props.todos.map((e, index) => {
+            return (<ItemsContainer
+            key={index}
+            name={e.name}
+            id={e.id}
+            isComplete={e.is_complete}
+            />
+            )}
+          )} */}
+
+          {/* {filteredTodos.map((e, index) => {
+            return (<ItemsContainer
+              key={index}
+              name={e.name}
+              id={e.id}
+              isComplete={e.is_complete}
+            />
+            )
+          }
+          )} */}
+
+
+
+
         </Grid>
       </Grid>
     )
