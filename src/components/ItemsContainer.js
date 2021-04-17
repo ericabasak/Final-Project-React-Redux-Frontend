@@ -10,10 +10,6 @@ class ItemsContainer extends Component {
   // state from the parent component - props
   // gets data , connecting to redux, get data to send to container(child)
 
-  // <div>
-  // &nbsp; {this.props.name} {this.props.id}  &nbsp;
-  // </div>
-
   render() {
     console.log(this.props);
 

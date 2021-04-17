@@ -179,10 +179,8 @@ export const getListForm = (listFormId, token) => {
 
 // adding a item(todo) 
 export const addTodoItemToList = (id, name, token) => {
-  console.log("2")
   // returns a function with an argument of dispatch
   return (dispatch) => {
-    console.log("3")
     console.log("creating todo items");
     // calls dispatch, which passes in an object - not a function
     // dispatch({ type: 'LOAD_TODO_ITEM_SUBMIT' }) synchronous function
@@ -208,23 +206,19 @@ export const addTodoItemToList = (id, name, token) => {
       // that we get back as json()
       // have to wait to go into call stack
       }).then(response => {
-        console.log("4")
         return response.json()
         // then is asynchronous
         // asynchronous callback
         // then returns another promise, attaches a callback and moves on.
         // has to wait to go into call stack
       }).then(item => {
-        console.log("5")
         const obj = { 
           type: 'ADD_TODO_ITEM_SUBMIT', 
           todo: item 
         };
         dispatch(obj);
       })
-      console.log("6")
   }
-  console.log("8")
 }
 
 // this is for when a list is created in the listform component
@@ -252,5 +246,4 @@ export const addAList = (title, token) => {
     })
     console.log('e')
   }
-  console.log('f')
 }

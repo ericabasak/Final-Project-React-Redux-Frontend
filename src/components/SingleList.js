@@ -7,7 +7,8 @@ class SingleList extends Component {
   state = {
     name: "",
     isComplete: this.props.isComplete,
-    showing: true
+    hideCompletedTask: false,
+    hideButtonText: "Hide"
   }
 
   updateListStatus = (e) => {
@@ -23,13 +24,11 @@ class SingleList extends Component {
   // handler for when an item or todo is created within a list
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log("1")
     this.props.addTodoItemToList(
       this.props.id,
       this.state.name,
       this.props.token
     )
-    console.log("7")
     this.setState({
       ...this.state,
       name: ""
@@ -42,10 +41,18 @@ class SingleList extends Component {
     });
   }
 
-  onClickHideCompletedItems = (e) => {
-    this.setState({
-      // showing: !showing
-    })
+  // onClick for clicking a button to hide completed items from a list
+  // onClick is an event
+  onClick = () => {
+    if (this.state.hideCompletedTask) {
+      this.setState({hideButtonText: "Hide", hideCompletedTask: false});
+    } else {
+      this.setState({hideButtonText: "Unhide", hideCompletedTask: true});
+    }
+
+    // this.setState({
+    //   hideCompletedTask: !this.state.hideCompletedTask,
+    // })
   }
 
   render() {
@@ -53,7 +60,10 @@ class SingleList extends Component {
     console.log(this.props);
     console.log(this.props.todos);
 
-    const { showing } = this.state;
+    const { hideCompletedTask } = this.state;
+
+    const filterTodo = this.props.todos.filter(todo => todo.is_complete === false);
+    console.log(filterTodo);
 
     return (
 
@@ -63,25 +73,6 @@ class SingleList extends Component {
         direction="column"
         className="debug"
       >
-
-      {/* <Button onClick={this.onClickHideCompletedItems} 
-        type="toggle" 
-        label="Toggle">Hide finished task</Button> */}
-
-      {/* <button onClick={() => this.setState({showing: !showing})}>toggle</button>
-      {
-        showing
-        ? <div>{this.props.todos.map((e, index) => {
-            return (<ItemsContainer
-            key={index}
-            name={e.name}
-            id={e.id}
-            isComplete={e.is_complete}
-          />
-          )}
-          )}</div>
-        : null
-      } */}
      
       <Grid item xs={10}>
           <h4>
@@ -122,8 +113,10 @@ class SingleList extends Component {
         </Grid>
 
         <Grid item xs={12} className="singleListContainer">
-        <button onClick={() => this.setState({showing: !showing})} type="toggle" label="Toggle">Hide finished task</button>
-          {this.state.showing && this.props.todos.map((e, index) => {
+          {/* react event handlers are written in curly braces */}
+        <button onClick={this.onClick} type="toggle" label="Toggle">{this.state.hideButtonText}</button>
+        {/* hideCompletedTask = true,  hideCompletedTask = false */}
+          {!hideCompletedTask && this.props.todos.map((e, index) => {
             return (<ItemsContainer
             key={index}
             name={e.name}
@@ -132,7 +125,15 @@ class SingleList extends Component {
           />
           )}
           )}
-          
+          {hideCompletedTask && filterTodo.map((e, index) => {
+            return (<ItemsContainer
+            key={index}
+            name={e.name}
+            id={e.id}
+            isComplete={e.is_complete}
+          />
+          )}
+          )}
         </Grid>
       </Grid>
     )
