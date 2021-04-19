@@ -88,9 +88,12 @@ class SingleList extends Component {
               onChange={this.onClick}
             />
             &nbsp;
-            <label for="taskCompleted">Toggle tasks</label>
+            <label for="taskCompleted">Toggle tasks</label>            
           </div>
         </>
+
+
+        
 
         <Grid item xs={10}>
           <h4>

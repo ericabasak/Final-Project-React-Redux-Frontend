@@ -5,12 +5,16 @@ import { Grid } from '@material-ui/core';
 class Items extends Component {
 
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      isComplete: this.props.isComplete,
-      count: 0
-    }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     isComplete: this.props.isComplete
+  //   }
+  // }
+
+  state = {
+    isComplete: this.props.isComplete,
+    count: 0
   }
 
   checkboxHandler = (e) => {
@@ -33,12 +37,15 @@ class Items extends Component {
     );
   }
 
-  onClick = () => {
-    console.log("clicking the like button")
+  // likes counter thats added to each todo item of a list
+  incrementLikes = () => {
+    console.log("the like button is being clicked")
     this.setState({
       count: this.state.count + 1
     })
   }
+
+
 
   render() {
     console.log("this is for items")
@@ -74,11 +81,12 @@ class Items extends Component {
                 size="small"
                 label="Delete">Delete</Button>
             </Grid>
-            <div>
-                <span>
-                  <Button onClick={this.onClick}>{this.state.count} ❤️ </Button>
-                </span>
-            </div>
+
+            {/* incrementing likes for a todo */}
+            <span>
+              <Button onClick={this.incrementLikes}> ❤️ {this.state.count} </Button>
+            </span>
+            
           </Grid>
         </Grid>
       </Grid>
