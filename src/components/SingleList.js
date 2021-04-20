@@ -7,7 +7,7 @@ class SingleList extends Component {
   state = {
     name: "",
     isComplete: this.props.isComplete,
-    hideFinishedTodo: false
+    hideCompletedTodo: false
   }
 
   updateListStatus = (e) => {
@@ -42,10 +42,12 @@ class SingleList extends Component {
 
   // onClick for clicking a button to hide completed todos from a list
   onClick = () => {
+    console.log("the checkbox is being clicked to hide a todo");
     this.setState({
-      hideFinishedTodo: !this.state.hideFinishedTodo
+      hideCompletedTodo: !this.state.hideCompletedTodo
     })
   }
+
 
   render() {
     console.log("this is for singlelist");
@@ -65,10 +67,7 @@ class SingleList extends Component {
     // this.props.todos.filter(todo => todo.is_complete === false) 
     // : this.props.todos;
 
-
-    const filterTodo = this.props.todos.filter(todo => todo.is_complete === false);
-    console.log(filterTodo);
-
+    const filteredTodos = this.props.todos.filter(item => item.is_complete === false)
 
     return (
 
@@ -79,21 +78,21 @@ class SingleList extends Component {
         className="debug"
       >
         {/* checkbox to hide completed todos */}
-        <>
-          <div>
-            <input
-              name="taskCompleted"
-              type="checkbox"
-              checked={this.state.hideFinishedTodo}
-              onChange={this.onClick}
-            />
-            &nbsp;
-            <label for="taskCompleted">Toggle tasks</label>            
-          </div>
-        </>
-
-
-        
+        {/* <>
+          <input
+            name="hideCompletedTodo"
+            type="checkbox"
+            onChange={this.onClick}
+            checked={this.state.hideCompletedTodo}
+          />
+          <label>Hide finished todos</label>
+        </> */}
+        <div>
+          <button onClick={this.onClick} type="toggle" label="Toggle">Hide or unhide</button>
+          {/* <button onChange={this.onClick}>toggle</button> */}
+          {/* {this.state.hideCompletedTodo ? <div>hide or unhide</div> : null } */}
+          {/* <div style={{ display: (this.state.hideCompletedTodo ? "block" : "none") }}>Hidden</div> */}
+        </div>
 
         <Grid item xs={10}>
           <h4>
@@ -142,7 +141,7 @@ class SingleList extends Component {
           {/* hideCompletedTask = true,  hideCompletedTask = false */}
           {/* {!hideCompletedTask && <h1>hide</h1>}
           {hideCompletedTask && <h1>unhide</h1>} */}
-          {!this.state.hideFinishedTodo && this.props.todos.map((e, index) => {
+          {!this.state.hideCompletedTodo && this.props.todos.map((e, index) => {
             return (<ItemsContainer
             key={index}
             name={e.name}
@@ -152,7 +151,8 @@ class SingleList extends Component {
           )}
           )}
           
-          {this.state.hideFinishedTodo && filterTodo.map((e, index) => {
+
+          {this.state.hideCompletedTodo && filteredTodos.map((e, index) => {
             return (<ItemsContainer
             key={index}
             name={e.name}
@@ -161,6 +161,10 @@ class SingleList extends Component {
           />
           )}
           )}
+
+         
+          
+         
 
           {/* {!hideFinishedTodo && this.props.todos.map((e, index) => {
             return (<ItemsContainer

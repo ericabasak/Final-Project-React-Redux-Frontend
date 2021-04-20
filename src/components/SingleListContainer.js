@@ -36,8 +36,7 @@ class SingleListContainer extends Component {
       token 
     } = this.props
 
-    const filteredItems = this.props.todos.filter(
-      item => item.list_id === this.props.id)
+    const filteredItems = this.props.todos.filter(item => item.list_id === this.props.id)
     console.log(filteredItems);
 
    return (
