@@ -115,7 +115,7 @@ class SingleList extends Component {
         {/* checkbox to hide completed todos */}
         <>
           <form>
-            <input
+            <Checkbox
               name="hideCompletedTodo"
               type="checkbox"
               checked={this.state.hideCompletedTodo}
