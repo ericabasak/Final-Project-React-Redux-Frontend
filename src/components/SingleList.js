@@ -4,10 +4,16 @@ import { Grid, Button, Checkbox, TextField } from '@material-ui/core';
 
 class SingleList extends Component {
 
+  // ask yourself these questions about state:
+  // do i need state in this component?
+  // where should the state be? i.e.which component should the state be in?
+  // are there any other components that need this state?
+
   state = {
     name: "",
     isComplete: this.props.isComplete,
     hideCompletedTodo: false
+    // searchBarText: ""
   }
 
   updateListStatus = (e) => {
@@ -48,6 +54,16 @@ class SingleList extends Component {
     })
   }
 
+  // search bar form to search todos
+  // make sure to add event as parameter
+  // searchBarHandler = (e) => {
+  //   console.log("some text is being typed");
+  //   this.setState({
+  //     searchBarText: e.target.value
+  //   })
+  // }
+
+
 
   render() {
     console.log("this is for singlelist");
@@ -67,25 +83,46 @@ class SingleList extends Component {
     // this.props.todos.filter(todo => todo.is_complete === false) 
     // : this.props.todos;
 
-    const filteredTodos = this.props.todos.filter(item => item.is_complete === false)
+
+    const filterTodos = this.props.todos.filter(todo => todo.is_complete === false);
+    console.log(filterTodos);
 
     return (
-
       <Grid
         container
         spacing={2}
         direction="column"
         className="debug"
       >
+
+       {/* this is code for creating a search bar to query todos */}
+       {/* <>
+        <form>
+          <textarea
+              type="text"
+              placeholder="Seach todos here..."
+              onChange={this.searchBarHandler} 
+              >
+          </textarea>
+        </form>
+          <p>{this.state.searchBarText}</p>
+        </> */}
+
+
+
+        
+
         {/* checkbox to hide completed todos */}
         <>
-          <input
-            name="hideCompletedTodo"
-            type="checkbox"
-            onChange={this.hideTodoHandler}
-            checked={this.state.hideCompletedTodo}
-          />
-          <label>Hide finished todos</label>
+          <form>
+            <input
+              name="hideCompletedTodo"
+              type="checkbox"
+              checked={this.state.hideCompletedTodo}
+              onChange={this.hideTodoHandler}
+            />
+            <label>Hide finished todos</label>
+          </form>
         </>
         {/* <div> */}
           {/* <button onClick={this.hideTodoHandler} type="toggle" label="Toggle">Hide or unhide</button>
@@ -135,9 +172,6 @@ class SingleList extends Component {
         <Grid item xs={12} className="singleListContainer" >
 
           {/* react event handlers are written in curly braces */}
-          {/* <button onClick={this.onClick} type="toggle" label="Toggle">Hide or unhide</button> */}
-
-
           {/* hideCompletedTask = true,  hideCompletedTask = false */}
           {/* {!hideCompletedTask && <h1>hide</h1>}
           {hideCompletedTask && <h1>unhide</h1>} */}
@@ -151,8 +185,7 @@ class SingleList extends Component {
           )}
           )}
           
-
-          {this.state.hideCompletedTodo && filteredTodos.map((e, index) => {
+          {this.state.hideCompletedTodo && filterTodos.map((e, index) => {
             return (<ItemsContainer
             key={index}
             name={e.name}
@@ -161,6 +194,8 @@ class SingleList extends Component {
           />
           )}
           )}
+
+         
 
          
           
@@ -186,9 +221,6 @@ class SingleList extends Component {
             )
           }
           )} */}
-
-
-
 
         </Grid>
       </Grid>
