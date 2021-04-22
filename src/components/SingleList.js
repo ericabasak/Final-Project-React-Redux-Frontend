@@ -12,8 +12,7 @@ class SingleList extends Component {
   state = {
     name: "",
     isComplete: this.props.isComplete,
-    hideCompletedTodo: false
-    // searchBarText: ""
+    searchBarText: ""
   }
 
   updateListStatus = (e) => {
@@ -56,12 +55,12 @@ class SingleList extends Component {
 
   // search bar form to search todos
   // make sure to add event as parameter
-  // searchBarHandler = (e) => {
-  //   console.log("some text is being typed");
-  //   this.setState({
-  //     searchBarText: e.target.value
-  //   })
-  // }
+  searchBarHandler = (e) => {
+    console.log("some text is being typed");
+    this.setState({
+      searchBarText: e.target.value
+    })
+  }
 
 
 
@@ -83,9 +82,9 @@ class SingleList extends Component {
     // this.props.todos.filter(todo => todo.is_complete === false) 
     // : this.props.todos;
 
-
-    const filterTodos = this.props.todos.filter(todo => todo.is_complete === false);
-    console.log(filterTodos);
+    const filterTodo = this.props.todos.filter(todo => todo.name.includes(this.state.searchBarText));
+    // const filterTodos = this.props.todos.filter(todo => todo.is_complete === false);
+    console.log(filterTodo);
 
     return (
       <Grid
@@ -96,7 +95,7 @@ class SingleList extends Component {
       >
 
        {/* this is code for creating a search bar to query todos */}
-       {/* <>
+       <>
         <form>
           <textarea
               type="text"
@@ -106,11 +105,7 @@ class SingleList extends Component {
           </textarea>
         </form>
           <p>{this.state.searchBarText}</p>
-        </> */}
-
-
-
-        
+        </>
 
         {/* checkbox to hide completed todos */}
         <>
@@ -175,7 +170,7 @@ class SingleList extends Component {
           {/* hideCompletedTask = true,  hideCompletedTask = false */}
           {/* {!hideCompletedTask && <h1>hide</h1>}
           {hideCompletedTask && <h1>unhide</h1>} */}
-          {!this.state.hideCompletedTodo && this.props.todos.map((e, index) => {
+          {!this.state.hideCompletedTodo && filterTodo.map((e, index) => {
             return (<ItemsContainer
             key={index}
             name={e.name}
@@ -185,7 +180,7 @@ class SingleList extends Component {
           )}
           )}
           
-          {this.state.hideCompletedTodo && filterTodos.map((e, index) => {
+          {this.state.hideCompletedTodo && filterTodo.map((e, index) => {
             return (<ItemsContainer
             key={index}
             name={e.name}
