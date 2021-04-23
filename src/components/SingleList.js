@@ -12,7 +12,7 @@ class SingleList extends Component {
   state = {
     name: "",
     isComplete: this.props.isComplete,
-    searchBarText: ""
+    hideCompletedTask: false
   }
 
   updateListStatus = (e) => {
@@ -45,22 +45,23 @@ class SingleList extends Component {
     });
   }
 
-  // clicking a button to hide completed todos from a list
-  hideTodoHandler = () => {
-    console.log("the checkbox is being clicked to hide a todo");
-    this.setState({
-      hideCompletedTodo: !this.state.hideCompletedTodo
-    })
+  // onClick a checkbox to hide completed todos from a list
+  hideCompletedTodoHandler = () => {
+    console.log("this checkbox is hiding completed todos");
+      this.setState({
+        hideCompletedTask: !this.state.hideCompletedTask
+      })
   }
+  
 
   // search bar form to search todos
   // make sure to add event as parameter
-  searchBarHandler = (e) => {
-    console.log("some text is being typed");
-    this.setState({
-      searchBarText: e.target.value
-    })
-  }
+  // searchBarHandler = (e) => {
+  //   console.log("some text is being typed");
+  //   this.setState({
+  //     searchBarText: e.target.value
+  //   })
+  // }
 
 
 
@@ -82,9 +83,8 @@ class SingleList extends Component {
     // this.props.todos.filter(todo => todo.is_complete === false) 
     // : this.props.todos;
 
-    const filterTodo = this.props.todos.filter(todo => todo.name.includes(this.state.searchBarText));
-    // const filterTodos = this.props.todos.filter(todo => todo.is_complete === false);
-    console.log(filterTodo);
+    // const filterTodo = this.props.todos.filter(todo => todo.name.includes(this.state.searchBarText));
+    const filterTodos = this.props.todos.filter(todo => todo.is_complete === false);
 
     return (
       <Grid
@@ -95,7 +95,7 @@ class SingleList extends Component {
       >
 
        {/* this is code for creating a search bar to query todos */}
-       <>
+       {/* <>
         <form>
           <textarea
               type="text"
@@ -105,20 +105,21 @@ class SingleList extends Component {
           </textarea>
         </form>
           <p>{this.state.searchBarText}</p>
-        </>
+        </> */}
 
         {/* checkbox to hide completed todos */}
         <>
           <form>
-            <Checkbox
-              name="hideCompletedTodo"
+            <input
               type="checkbox"
-              checked={this.state.hideCompletedTodo}
-              onChange={this.hideTodoHandler}
+              name="hideTodoCheckbox"
+              onClick={this.hideCompletedTodoHandler}
             />
-            <label>Hide finished todos</label>
+            &nbsp;
+            <label>Hide completed todo</label>
           </form>
         </>
+        
         {/* <div> */}
           {/* <button onClick={this.hideTodoHandler} type="toggle" label="Toggle">Hide or unhide</button>
           <button onClick={this.hideTodoHandler}>toggle</button> */}
@@ -170,7 +171,7 @@ class SingleList extends Component {
           {/* hideCompletedTask = true,  hideCompletedTask = false */}
           {/* {!hideCompletedTask && <h1>hide</h1>}
           {hideCompletedTask && <h1>unhide</h1>} */}
-          {!this.state.hideCompletedTodo && filterTodo.map((e, index) => {
+          {!this.state.hideCompletedTask && this.props.todos.map((e, index) => {
             return (<ItemsContainer
             key={index}
             name={e.name}
@@ -180,7 +181,8 @@ class SingleList extends Component {
           )}
           )}
           
-          {this.state.hideCompletedTodo && filterTodo.map((e, index) => {
+
+          {this.state.hideCompletedTask && filterTodos.map((e, index) => {
             return (<ItemsContainer
             key={index}
             name={e.name}
@@ -189,6 +191,7 @@ class SingleList extends Component {
           />
           )}
           )}
+
 
          
 
