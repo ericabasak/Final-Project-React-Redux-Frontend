@@ -4,14 +4,6 @@ import { Grid } from '@material-ui/core';
 
 class Items extends Component {
 
-
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     isComplete: this.props.isComplete
-  //   }
-  // }
-
   state = {
     isComplete: this.props.isComplete,
     count: 0

@@ -128,8 +128,9 @@ export default function index(
 // [{id:1},{id:2},{id:3}]
     case "UPDATE_TODO_ITEM":
       console.log(action);
-      const itemIndex = state.todoItems.findIndex((item) => item.id === action.todo.id);
-      state.todoItems.splice(itemIndex, 1, action.todo);
+      // const itemIndex = state.todoItems.findIndex((item) => item.id === action.todo.id);
+      // state.todoItems.splice(itemIndex, 1, action.todo);
+      const newTodoItems = state.todoItems.map(item => item.id === action.todo.id ? action.todo : item);
       // prevItems = prevItems.concat(action.todo);
       // const postItems = state.todoItems.splice(itemIndex + 1);
       console.log(state.todoItems);
@@ -137,7 +138,7 @@ export default function index(
       // console.log(updatedItems);
       return {
         ...state,
-        todoItems: state.todoItems,
+        todoItems: newTodoItems,
         loading: false
       };
     case 'ADD_A_LIST':
