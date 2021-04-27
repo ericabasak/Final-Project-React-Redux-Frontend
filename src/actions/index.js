@@ -222,6 +222,8 @@ export const addTodoItemToList = (id, name, token) => {
 }
 
 // this is for when a list is created in the listform component
+
+
 export const addAList = (title, token) => {
   console.log('b')
   return (dispatch) => {
@@ -246,4 +248,5 @@ export const addAList = (title, token) => {
     })
     console.log('e')
   }
+  console.log('f')
 }

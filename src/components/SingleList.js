@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ItemsContainer from './ItemsContainer';
+import ItemContainer from './ItemContainer';
 import { Grid, Button, Checkbox, TextField } from '@material-ui/core';
 
 class SingleList extends Component {
@@ -123,7 +123,7 @@ class SingleList extends Component {
         <Grid item xs={12} className="singleListContainer" >
 
         {!this.state.hideFinishedTodo && this.props.todos.map((e) => {
-            return (<ItemsContainer
+            return (<ItemContainer
             key={e.id}
             name={e.name}
             id={e.id}
@@ -133,7 +133,7 @@ class SingleList extends Component {
           )}
 
           {this.state.hideFinishedTodo && filterTodo.map((e) => {
-            return (<ItemsContainer
+            return (<ItemContainer
             key={e.id}
             name={e.name}
             id={e.id}

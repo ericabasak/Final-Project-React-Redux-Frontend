@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Items from './Items';
+import Item from './Item';
 import { deleteTodoItem, updateItemCheckbox } from '../actions/index';
 
 
@@ -21,7 +21,7 @@ class ItemsContainer extends Component {
     } = this.props
 
     return (
-      <Items 
+      <Item 
         id={id}
         name={name}
         token={token}
