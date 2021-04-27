@@ -22,7 +22,7 @@ class Items extends Component {
 
   deleteHandlerItem = (e) => {
     console.log("the delete is being clicked");
-    this.state.isComplete = false;
+    // this.state.isComplete = false;
     this.props.deleteTodoItem(
       this.props.id,
       this.props.token
@@ -75,9 +75,9 @@ class Items extends Component {
             </Grid>
 
             {/* incrementing likes for a todo */}
-            <span>
-              <Button onClick={this.incrementLikes}> ❤️ {this.state.count} </Button>
-            </span>
+            <div>
+              <Button onClick={this.incrementLikes}> <span role="img" aria-label="like">❤️</span> {this.state.count} </Button>
+            </div>
             
           </Grid>
         </Grid>

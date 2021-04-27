@@ -225,9 +225,7 @@ export const addTodoItemToList = (id, name, token) => {
 
 
 export const addAList = (title, token) => {
-  console.log('b')
   return (dispatch) => {
-    console.log('c')
     console.log("this is creating a new list");
     fetch('http://localhost:3001/api/v1/lists', {
       method: "POST",
@@ -243,10 +241,7 @@ export const addAList = (title, token) => {
       return response.json()
     }).then(response => {
       console.log(response);
-      console.log('d')
       dispatch({ type: 'ADD_A_LIST', list: response})
     })
-    console.log('e')
   }
-  console.log('f')
 }
