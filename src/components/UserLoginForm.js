@@ -30,13 +30,10 @@ class UserLoginForm extends Component {
     })
       .then(resp => resp.json())
       .then(response => {
-        // set user to state
-        //redirect user
         if (response.errors) {
-          // console.log(response);
+          console.log(response);
           alert(response.error)
         } else {
-          // localStorage.setItem('token', response.token);
           this.props.setToken(response.token)
           this.props.setCurrentUser(response.user);
           this.props.history.push("/")
@@ -59,8 +56,7 @@ class UserLoginForm extends Component {
   }
 
   render() {
-    // const { history } = this.props;
-    // console.log(this.props);
+    console.log(this.props);
     
     if (this.props.user.username) {
       this.props.history.push("/")

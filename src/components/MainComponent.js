@@ -7,10 +7,7 @@ import { Redirect } from 'react-router-dom';
 class MainComponent extends Component {
   
   render() {
-    // console.log(this.props);
     if (!this.props.user.username) {
-      // redirect to login
-      // this.props.history.push("/userloginform");
       return <Redirect to="/userloginform" />
     }
 

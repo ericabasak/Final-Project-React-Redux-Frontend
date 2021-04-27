@@ -37,8 +37,6 @@ class Items extends Component {
     })
   }
 
-
-
   render() {
     console.log("this is for items")
     console.log(this.props);

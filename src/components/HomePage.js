@@ -4,9 +4,7 @@ import { getCurrentUser } from '../actions/index';
 import Logout from './Logout';
 import UserLoginForm from './UserLoginForm';
 
-// class HomePage extends Component {
 function HomePage(props){
-  // render() {
     const { username } = props.user
 
     if (props.token) {

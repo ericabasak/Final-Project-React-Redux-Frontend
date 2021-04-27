@@ -3,12 +3,8 @@ import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, IconButton, Box } from '@material-ui/core';
 import { connect } from 'react-redux';
 
-// class Nav extends Component {
 function Nav(props) {
-  // DO THIS --
-  // auth token passed in every function and store in redux instead of local storage
-  // redux for state
-  // render() {
+  
     return (
       <div>
         <AppBar 
@@ -30,7 +26,6 @@ function Nav(props) {
                   <Link to="/homepage">Home</Link>
                 </Box>
                 &nbsp;
-
                 {props.token && <Box color="primary" padding={2} position="right">
                   <Link to="/">Lists</Link>
                   </Box>}
@@ -38,7 +33,6 @@ function Nav(props) {
         </AppBar>
       </div>      
     );
-  // }
 }
 
 const mapStatetoProps = state => {

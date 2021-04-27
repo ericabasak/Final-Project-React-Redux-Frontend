@@ -20,8 +20,6 @@ class AllLists extends Component {
       return (<div>Loading...</div>);
     }
 
-    
-
     console.log(this.props.lists);
 
     const { lists } = this.props

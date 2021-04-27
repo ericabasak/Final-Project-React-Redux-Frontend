@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { getListForm, addAList } from '../actions/index';
 import { Grid, Button, TextField } from '@material-ui/core';
 
-
 class ListForm extends Component {
 
   state = {

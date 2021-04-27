@@ -56,7 +56,6 @@ export const getTodoItems = (listId, token) => {
   }
 }
 
-
 // WWHEN DO YOU USE DISPATCH AND WHEN NOT?????????? line 64
 // is_complete update for lists
 export const updateListStatus = (listId, isComplete) => {
@@ -83,8 +82,6 @@ export const updateListStatus = (listId, isComplete) => {
   }
 }
 
-
-
 // deleting an individual todo item
 export const deleteTodoItem = (id, token) => {
   return (dispatch) => {
@@ -105,7 +102,6 @@ export const deleteTodoItem = (id, token) => {
       })
   }
 }
-
 
 // this is for updating an item/todo's checkbox 
 export const updateItemCheckbox = (id, token, isComplete) => {
@@ -131,7 +127,6 @@ export const updateItemCheckbox = (id, token, isComplete) => {
   }
 }
 
-
 export const getCurrentUser = (token) => {
   return (dispatch) => {
     console.log("loading current user")
@@ -153,7 +148,6 @@ export const getCurrentUser = (token) => {
       })
   }
 }
-
 
 
 // to be finished for the listform component - finish converting to redux
@@ -222,8 +216,6 @@ export const addTodoItemToList = (id, name, token) => {
 }
 
 // this is for when a list is created in the listform component
-
-
 export const addAList = (title, token) => {
   return (dispatch) => {
     console.log("this is creating a new list");
