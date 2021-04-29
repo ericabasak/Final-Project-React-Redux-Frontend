@@ -27,14 +27,12 @@ export default function index(
       // console.log(sortedList);
       return {
         ...state,
-        // lists: sortedList,
         lists: action.lists,
         loading: false
       };
     case "LOAD_TODO_ITEMS":
       return {
         ...state,
-        // todoItems: action.todoItems,
         loading: true
       };
     case "ADD_TODO_ITEMS":
@@ -48,15 +46,20 @@ export default function index(
         todoItems: state.todoItems.concat(newItems),
         loading: false
       };
+
     // update the list checkbox status
     case "UPDATE_LIST_STATUS":
-        const listIndex = state.lists.filter(l => l.id === action.list.id);
-        state.lists.splice(listIndex, 1, action.list)
+        // const listIndex = state.lists.filter(l => l.id === action.list.id);
+        // state.lists.splice(listIndex, 1, action.list)
+        const updatedList= state.lists.map(list => list.id === action.list.id ? action.list : list);
+        console.log("the status of a list checkbox is being updated");
+        console.log(updatedList);
         return {
           ...state,
-          lists: state.lists,
+          lists: updatedList,
           loading: false
         };
+
     // deleting a todo item from a list
     case "LOAD_DELETE_TODO_ITEM":
       return {
